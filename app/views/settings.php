@@ -26,7 +26,7 @@
             <div class="clear-both"></div>
         </div>
 
-        <div class="">
+        <div class="setting-clock">
             
         </div>
     </div>

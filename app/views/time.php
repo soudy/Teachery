@@ -1,4 +1,8 @@
 <main>
+    <!-- Timer (Overlay) -->
+    <div></div>
+    <!-- Timer (Overlay) -->
+
     <!-- Timer (Head) -->
     <header>
         <h1>Clock</h1>
@@ -7,8 +11,9 @@
     
     <!-- Timer + -->
     <div class="checkbox-plus">
-        <i class="icon ion-plus"></i>
-        <i class="icon ion-refresh"></i>
+        <a href="#AddTimer"><i class="icon ion-plus"></i></a>
+        <a href="#MuteSound"><i class="icon ion-volume-low"></i></a> <!-- <i class="icon ion-volume-high"></i> -->
+        <a href="#RemoveTimers"><i class="icon ion-refresh"></i></a>
     </div>
     <!-- /Timer + -->
 
@@ -27,9 +32,10 @@
             </div>
 
             <div class="checkbox-button"> 
-                <i class="icon ion-play"></i>
-                <i class="icon ion-chevron-up"></i> 
-                <i class="icon ion-minus"></i>
+                <a href="#Play"><i class="icon ion-play"></i></a> <!-- <i class="icon ion-volume-pause"></i> -->
+                <a href="#Fullscreen"><i class="icon ion-monitor"></i> </a>
+                <a href="#Remove"><i class="icon ion-trash-b"></i></a>
+                <a href="#Settings"><i class="icon ion-gear-a"></i></a>
             </div>
         </div>
         <!-- /Timer -->
@@ -49,9 +55,10 @@
             </div>
 
             <div class="checkbox-button"> 
-                <i class="icon ion-play"></i>
-                <i class="icon ion-chevron-up"></i> 
-                <i class="icon ion-minus"></i>
+                <a href="#Play"><i class="icon ion-play"></i></a> <!-- <i class="icon ion-volume-pause"></i> -->
+                <a href="#Fullscreen"><i class="icon ion-monitor"></i> </a>
+                <a href="#Remove"><i class="icon ion-trash-b"></i></a>
+                <a href="#Settings"><i class="icon ion-gear-a"></i></a>
             </div>
         </div>
         <!-- /Timer -->
@@ -71,9 +78,10 @@
             </div>
 
             <div class="checkbox-button"> 
-                <i class="icon ion-play"></i>
-                <i class="icon ion-chevron-up"></i> 
-                <i class="icon ion-minus"></i>
+                <a href="#Play"><i class="icon ion-play"></i></a> <!-- <i class="icon ion-volume-pause"></i> -->
+                <a href="#Fullscreen"><i class="icon ion-monitor"></i> </a>
+                <a href="#Remove"><i class="icon ion-trash-b"></i></a>
+                <a href="#Settings"><i class="icon ion-gear-a"></i></a>
             </div>
         </div>
         <!-- /Timer -->
