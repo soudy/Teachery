@@ -17,6 +17,6 @@
         <a href="#5"> <div><i class="icon ion-gear-b"></i></div> </a>
     </nav>
     
-    <? include 'views/settings.php';?>
+    <? include 'views/time.php';?>
 </body>
 </html>
