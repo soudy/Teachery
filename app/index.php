@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+    <script src="js/timer.js"></script>
+    <script src="js/render.js"></script>
     <script src="code.js"></script>
 </head>
 <body> 

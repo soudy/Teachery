@@ -20,7 +20,7 @@
         <!-- Timer -->
         <div class="checkboxes">
             <div class="checkbox-title">
-               <input placeholder="Title 1" value="Timer 1" type="text">
+               <input placeholder="Title 1" type="text">
             </div>
 
             <div class="checkbox-input"> 
@@ -43,7 +43,7 @@
         <!-- Timer -->
         <div class="checkboxes">
             <div class="checkbox-title">
-               <input placeholder="Title 2" value="Timer 2" type="text">
+               <input placeholder="Title 2" type="text">
             </div>
 
             <div class="checkbox-input"> 
@@ -66,7 +66,7 @@
         <!-- Timer -->
         <div class="checkboxes">
             <div class="checkbox-title">
-               <input placeholder="Title 3" value="Timer 3" type="text">
+               <input placeholder="Title 3" type="text">
             </div>
 
             <div class="checkbox-input"> 
