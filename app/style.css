@@ -9,8 +9,7 @@
 /* Reset standard margins and apply standard fallback font + Background placement.*/
 html, 
 body                {margin:0;padding:0;font-family: 'Tahoma', 'sans-serif';
-                    vertical-align:baseline;line-height:1;background:#D7FAF3;
-                    height:100%;}
+                    vertical-align:baseline;line-height:1;background:#D7FAF3;}
 
 /* Prevent padding to resize the element.*/
 *,
