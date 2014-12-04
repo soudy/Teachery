@@ -54,6 +54,7 @@ main                {-webkit-flex:22;
                              flex:22;
                     float:left;background:#F2F2F2;transition:flex .3s;font-family: 'Lato', sans-serif;}
 
+.shadowTimer            {display:none;}
 .checkboxes             {width:100%;font-family: 'Montserrat', sans-serif;}
 
 header                  {width:300px;margin:20 auto 50 auto}

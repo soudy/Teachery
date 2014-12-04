@@ -17,6 +17,29 @@
     </div>
     <!-- /Timer + -->
 
+         <!-- Shadow Timer -->
+        <div class="shadowTimer checkboxes">
+            <div class="checkbox-title">
+               <input placeholder="Title" type="text">
+            </div>
+
+            <div class="checkbox-input"> 
+                <input maxlength="2" placeholder="HH" value="00" type="text">
+                <span>:</span>
+                <input maxlength="2" placeholder="MM" value="00" type="text">
+                <span>:</span>
+                <input maxlength="2" placeholder="SS" value="00" type="text"> 
+            </div>
+
+            <div class="checkbox-button"> 
+                <a href="#Play"><i class="icon ion-play"></i></a> <!-- <i class="icon ion-volume-pause"></i> -->
+                <a href="#Fullscreen"><i class="icon ion-monitor"></i> </a>
+                <a href="#Remove"><i class="icon ion-trash-b"></i></a>
+                <a href="#Settings"><i class="icon ion-gear-a"></i></a>
+            </div>
+        </div>
+        <!-- /Shadow Timer -->
+
         <!-- Timer -->
         <div class="checkboxes">
             <div class="checkbox-title">
