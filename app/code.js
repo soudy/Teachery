@@ -10,7 +10,10 @@ window.onload = function(){
     timers[0].timer = new Timer({
     	name:'timer1',
     	direction: 'down',
-    	time: '00:00:10',
+    	time: '00:00:02',
+        callback: function(){
+            console.log(timers[0].render.stop());
+        }
     }).start();
 
     timers[0].render = new Render({

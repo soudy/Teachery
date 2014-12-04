@@ -6,6 +6,16 @@ function Timer(settings){
 	this.mute = settings.mute || false;
 	this.callback = settings.callback || function(){};
 
+	this.time = false;
+	if (settings.time ){
+		var t = settings.time.split(':');
+		this.time = t[2];
+		this.time += t[1] * 60;
+		this.time += [0] * (3600);
+		this.time *= 10;
+	}
+	console.log(this.time);
+
 	this.startTick = false;
 	this.pauseTick = false;
 
@@ -53,6 +63,14 @@ function Timer(settings){
 			duration = (new Date() - this.startTick);
 		else
 			duration = (new Date() - this.pauseTick);
+
+		if (this.time)
+			duration = this.time - duration;
+
+		if (duration < 0){
+			this.callback();
+			duration = 0;
+		}
 
 		var milliseconds = parseInt((duration%1000)/100),
 			seconds = parseInt((duration/1000)%60),
