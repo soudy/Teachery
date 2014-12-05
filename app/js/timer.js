@@ -7,39 +7,40 @@ function Timer(settings){
 	this.callback = settings.callback || function(){};
 
 	this.time = false;
-	if (settings.time ){
-		var t = settings.time.split(':');
-		this.time = t[2];
-		this.time += t[1] * 60;
-		this.time += [0] * (3600);
-		this.time *= 10;
-	}
-	console.log(this.time);
 
-	this.startTick = false;
-	this.pauseTick = false;
+	this.duration = 0;
+	this.lastTick = false;
+	this.pauseBool = false;
 
 	this.start = function(){
-		if (!this.pauseTick)
-			this.startTick = new Date();
-		else
-			this.startTick = this.pauseTick;
+		this.lastTick = new Date();
+		this.pauseBool = false;
 		return this;
 	}
 
 	this.reset = function(){
-		this.startTick = new Date();
+		this.duration = 0;
+		this.pauseBool = false;
+		this.lastTick = false;
 		return this;
 	}
 
 	this.pause = function(){
-		this.pauseTick = this.startTick;
+		this.pauseBool = true;
 		return this;
 	}
 
 	this.setName = function(name){
 		this.name = name;
 		return this;
+	}
+
+	this.setTime = function(time){
+		var t = time.split(':');
+		this.time = parseInt(t[2]);
+		this.time += parseInt(t[1]) * 60;
+		this.time += parseInt(t[0]) * (3600);
+		this.time *=  1000;
 	}
 
 	this.setDirection = function(direction){
@@ -58,24 +59,29 @@ function Timer(settings){
 	}
 	
 	this.getTime = function(){
-		var duration;
-		if (!this.pauseTick)
-			duration = (new Date() - this.startTick);
+		var currentTick = new Date();
+		var added;
+		if (this.pauseBool)
+			added = 0
 		else
-			duration = (new Date() - this.pauseTick);
+			added = currentTick - this.lastTick;
 
-		if (this.time)
-			duration = this.time - duration;
+		this.duration += added;
+		var display = this.duration;
+		this.lastTick = new Date();
 
-		if (duration < 0){
+		if (this.time && this.direction == 'down')
+			display = this.time - this.duration;
+
+		if (display < 0){
 			this.callback();
-			duration = 0;
+			this.duration = 0;
 		}
 
-		var milliseconds = parseInt((duration%1000)/100),
-			seconds = parseInt((duration/1000)%60),
-			minutes = parseInt((duration/(1000*60))%60),
-			hours = parseInt((duration/(1000*60*60))%24);
+		var milliseconds = parseInt((display%1000)/100),
+			seconds = parseInt((display/1000)%60),
+			minutes = parseInt((display/(1000*60))%60),
+			hours = parseInt((display/(1000*60*60))%24);
 
 		hours = (hours < 10) ? "0" + hours : hours;
 		minutes = (minutes < 10) ? "0" + minutes : minutes;
@@ -84,8 +90,12 @@ function Timer(settings){
 	}
 
 	this.isPaused = function(){
-		if (!this.pauseTick)
+		if (!this.pauseBool)
 			return false;
 		return true;
+	}
+
+	if (settings.time){
+		this.setTime(settings.time);
 	}
 }

@@ -4,17 +4,19 @@ window.onload = function(){
     })();
 
     var clocks = [];
-    
-    clocks[0] = new Clock({
-        appendTo: document.querySelector('main'),
-    })
+    var clockCount = 0;
+
+    document.querySelector('.addTimer').onclick = function(){
+        clocks.push(new Clock({
+            appendTo: document.querySelector('main'),
+            name: 'Clock'+clockCount,
+        }));
+        clockCount++;
+    }
 
 };
 
-var clockCount = 0;
 function Clock(settings){
-    // static clock clockCount
-    clockCount++;
 
     // We need this to work in events
     var self = this;
@@ -29,12 +31,17 @@ function Clock(settings){
     this.times = this.element.querySelectorAll('.checkbox-input input');
     this.buttons = this.element.querySelectorAll('.checkbox-button a');
 
+    this.started = false;
+
+    this.title.value = settings.name || 'Clock'+(Math.floor(Math.random()*200));
+
     // Create a default timer
     this.timer = new Timer({
-        name:'Clock'+clockCount,
+        name: this.title.value,
         direction: 'down',
         time: '00:10:00',
         callback: function(){
+            self.setPlaying(false);
             console.log(self.render.stop());
         },
     });
@@ -42,9 +49,82 @@ function Clock(settings){
     // Create the render
     this.render = new Render({
         callback: function(){
-            console.log(self.timer.getTime());
+            self.updateDisplay();
         },
         timeout: 500,
     });
+
+    for (var i = 0; i < this.buttons.length; i++) {
+        this.buttons[i].addEventListener('click', function(e){
+            e.preventDefault();
+            this.hash = this.hash.toLowerCase();
+            switch(this.hash){
+                case '#play':
+                    self.start();
+                    break;
+                case '#fullscreen':
+                    alert('Fullscreen is not yet supported');
+                    break;
+                case '#remove':
+                    alert('Removing is not yet supported');
+                    break;
+                case '#settings':
+                    alert('Settings is not yet supported');
+                    break;
+            }
+        });
+    };
+
+    this.updateTimer = function(){
+        this.timer.setName(this.title.value);
+        if (!this.timer.isPaused()){
+            this.timer.setTime(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
+        }
+        console.log(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
+    }
+
+    this.updateDisplay = function(){
+        var time = this.timer.getTime(),
+            times = time.split(':');
+        this.times[0].value = times[0];
+        this.times[1].value = times[1];
+        this.times[2].value = times[2];
+        //console.log(times);
+    }
+
+    this.start = function(){
+        if (this.started){
+            this.setReadOnly(false);
+            this.setPlaying(false);
+            this.timer.pause();
+            this.render.stop();
+            this.started = false;
+        } else {
+            this.setReadOnly(true);
+            this.setPlaying(true);
+            this.updateTimer();
+            this.timer.start();
+            this.render.start();
+            this.started = true;
+        }
+    }
+
+    this.setPlaying = function(bool){
+        var button = this.buttons[0].querySelector('i');
+        if (bool){
+            button.classList.remove('ion-play');
+            button.classList.add('ion-pause');
+        } else {
+            button.classList.add('ion-play');
+            button.classList.remove('ion-pause');
+        }
+    }
+
+    this.setReadOnly = function(bool){
+        this.title.readOnly = bool;
+        for (var i = 0; i < this.times.length; i++) {
+            this.times[i].readOnly = bool;
+        };
+    }
 
 }

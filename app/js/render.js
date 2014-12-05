@@ -18,10 +18,14 @@ function Render(settings){
 	var self = this;
 	this.call = settings.callback || function(){};
 	this.timeout = settings.timeout || 10;
+	this.started = false;
 	this.break = false;
 
 	this.start = function(){
+		if (this.started) return false;
+
 		this.break = false;
+		this.started = true;
 		function render(){
 			if (self.break) return false;
 			self.call();
@@ -35,6 +39,7 @@ function Render(settings){
 
 	this.stop = function(){
 		this.break = true;
+		this.started = false;
 		return this;
 	}
 }
