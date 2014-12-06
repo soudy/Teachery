@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
     <script src="js/timer.js"></script>
     <script src="js/render.js"></script>
-    <script src="code.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body> 
     <!-- This is where the navigation resires. -->
