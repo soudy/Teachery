@@ -28,33 +28,28 @@ input               {outline:none;}
                     BACKGROUND: #821031;
                     TEXT_COLOR: #191919;  
                     */
+                    /* WIDTH: 100% */
+body                {widows:  100%;background:#F2F2F2;overflow-x:hidden;}                         
+                   
+                    /* WIDTH: 10% */
+nav                 {width:   10%;
+                    float:left;background:#821031;color:#F2F2F2;transition:width .3s ;overflow:none;position:fixed;}
 
-                    /* FLEX24 */
-body                {display: -webkit-box;
-                     display: -webkit-flex;
-                     display: flex; 
-                     background:#F2F2F2;overflow-x:hidden;}                         
-                    
-                    /* FLEX2  */
-nav                 {-webkit-flex:2;
-                             flex:2;
-                    float:left;background:#821031;color:#F2F2F2;transition:flex .3s ;overflow:none;}
-nav:hover           {-webkit-flex:3;
-                             flex:3;} 
+                    /* WIDTH: 15% */
+nav:hover           {width:   15%;} 
 
 nav a               {display: -webkit-box;
                      display: -webkit-flex;
                      display: flex;
-                    height:20%;-webkit-align-items: center;align-items: center;
+                    height:20vh;-webkit-align-items: center;align-items: center;
                     justify-content: center;-webkit-justify-content: center;font-size:2em;
                     transition:background .3s, color .3s;}
 nav a:hover,
 nav a.active        {background:#F2F2F2;color:#821031;}
 
-                    /* FLEX22 */
-main                {-webkit-flex:22;
-                             flex:22;
-                    float:left;background:#F2F2F2;transition:flex .3s;font-family: 'Lato', sans-serif;}
+                    /* WIDTH: 100% */
+main                {width:   100%;
+                    float:left;background:#F2F2F2;transition:width .3s;font-family: 'Lato', sans-serif;padding-left:100px;}
 
 .shadowTimer            {display:none;}
 .checkboxes             {width:100%;font-family: 'Montserrat', sans-serif;}
@@ -77,17 +72,18 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .checkbox-button        {width:50%;float:left;font-size:250%;margin:35 0px;text-align:center;}
 .checkbox-button i      {color:#821031;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 15;}
 
-.settings               {width:100%;font-family: 'Montserrat', sans-serif;}
+.settings               {width:100%;font-family: 'Montserrat', sans-serif;padding-left:7.5%;}
 .setting-color          {width:50%;font-size:100%;font-family: 'Montserrat', sans-serif;text-align:center;padding:0 25;}
 .setting-color h2       {font-weight:300;}
 .setting-color input    {background:white;border:none;border-left:65px solid #821031;font-size:200%;padding:15;color:#666;width:100%;}
 
 @media (max-width: 720px) {
     /* CORE RESPONSIVE */
-    body                {display:block;}
-    main                {margin-top:50px;}
-    nav                 {display:block;position:fixed;width:100%;}
-    nav a div           {height:50px;width:20%;float:left;}
+    body                {}
+    main                {padding:0;margin-top:65px;}
+    nav                 {display:block;position:fixed;width:100%;height:50px;bottom:0;}
+    nav:hover           {width:100%;}
+    nav a               {height:50px;width:20%;float:left;}
 
     /* TIMER */
     .checkbox-title input{width:60vw}
@@ -97,5 +93,6 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
     .checkbox-button    {margin-top:0;}
 
     /* SETTINGS */
+    .settings           {padding:0;}
     .setting-color      {width:100%;}
 }
