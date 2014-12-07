@@ -132,10 +132,10 @@ function Clock(settings){
 
     this.checkSound = function(){
         if (!this.started || this.mute){
-            this.sound.pause();
+            //this.sound.pause();
         }
         if (this.started && !this.mute){
-            this.sound.play();
+            //this.sound.play();
             var event = new CustomEvent('unmuteClock');
             document.dispatchEvent(event);
         }

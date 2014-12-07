@@ -50,8 +50,6 @@ nav a               {display: -webkit-box;
                     transition:background .3s, color .3s;}
 nav a:hover,
 nav a.active        {background:#F2F2F2;color:#821031;}
-/* Add styling to make active better. Just temporary this */
-nav a.active        {border-left:10px solid #821031;}
 
                     /* FLEX22 */
 main                {-webkit-flex:22;
