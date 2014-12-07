@@ -14,7 +14,11 @@ function Clock(settings){
     this.buttons = this.element.querySelectorAll('.checkbox-button a');
 
     this.started = false;
+    this.mute = true;
     this.id = settings.id;
+    this.sound = new Audio('src/clocktick.mp3');
+    this.sound.loop = true;
+    this.endsound = new Audio('src/endtick.mp3');
 
     this.title.value = settings.name || 'Clock'+(Math.floor(Math.random()*200));
 
@@ -24,7 +28,9 @@ function Clock(settings){
         direction: 'down',
         time: '00:10:00',
         callback: function(){
-            self.setPlaying(false);
+            if (!self.mute)
+                self.endsound.play();
+            self.stop();
             console.log(self.render.stop());
         },
     });
@@ -60,11 +66,19 @@ function Clock(settings){
 
     this.updateTimer = function(){
         this.timer.setName(this.title.value);
-        if (!this.timer.isPaused()){
-            this.timer.setTime(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
-        }
+    }
+
+    this.updateTime = function(){
+        this.timer.reset();
+        this.timer.setTime(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
         console.log(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
     }
+
+    for (var i = 0; i < this.times.length; i++) {
+        this.times[i].addEventListener('blur', function(e){
+            self.updateTime();
+        });
+    };
 
     this.updateDisplay = function(){
         var time = this.timer.getTime(),
@@ -82,6 +96,8 @@ function Clock(settings){
             this.timer.pause();
             this.render.stop();
             this.started = false;
+            this.checkSound();
+            return this;
         } else {
             this.setReadOnly(true);
             this.setPlaying(true);
@@ -89,7 +105,13 @@ function Clock(settings){
             this.timer.start();
             this.render.start();
             this.started = true;
+            this.checkSound();
         }
+    }
+
+    this.stop = function(){
+        this.started = true;
+        this.start();
     }
 
     this.setPlaying = function(bool){
@@ -100,6 +122,22 @@ function Clock(settings){
         } else {
             button.classList.add('ion-play');
             button.classList.remove('ion-pause');
+        }
+    }
+
+    this.setMuted = function(bool){
+        this.mute = bool;
+        this.checkSound();
+    }
+
+    this.checkSound = function(){
+        if (!this.started || this.mute){
+            this.sound.pause();
+        }
+        if (this.started && !this.mute){
+            this.sound.play();
+            var event = new CustomEvent('unmuteClock');
+            document.dispatchEvent(event);
         }
     }
 
@@ -118,4 +156,5 @@ function Clock(settings){
             document.dispatchEvent(event);
         }
     }
+    
 }

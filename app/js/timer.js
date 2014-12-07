@@ -20,6 +20,7 @@ function Timer(settings){
 
 	this.reset = function(){
 		this.duration = 0;
+		this.time = false;
 		this.pauseBool = false;
 		this.lastTick = false;
 		return this;
@@ -37,10 +38,12 @@ function Timer(settings){
 
 	this.setTime = function(time){
 		var t = time.split(':');
+		console.log('cur', this.time);
 		this.time = parseInt(t[2]);
 		this.time += parseInt(t[1]) * 60;
 		this.time += parseInt(t[0]) * (3600);
 		this.time *=  1000;
+		console.log('now', this.time);
 	}
 
 	this.setDirection = function(direction){

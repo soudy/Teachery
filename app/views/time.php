@@ -12,7 +12,7 @@
     <!-- Timer + -->
     <div class="checkbox-plus">
         <a class="addTimer" href="#AddTimer"><i class="icon ion-plus"></i></a>
-        <a class="muteSounds" href="#MuteSound"><i class="icon ion-volume-low"></i></a> <!-- <i class="icon ion-volume-high"></i> -->
+        <a class="muteSounds muted" href="#MuteSound"><i class="icon ion-volume-mute"></i></a> <!-- <i class="icon ion-volume-high"></i> -->
         <a class="removeTimers" href="#RemoveTimers"><i class="icon ion-refresh"></i></a>
     </div>
     <!-- /Timer + -->
