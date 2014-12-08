@@ -34,6 +34,11 @@ window.onload = function(){
 
     document.querySelector('.removeTimers').onclick = function(e){
         e.preventDefault();
+        if (!clockCount) {
+            alert("You have no clocks.");
+            return false;
+        }
+
         if (confirm('Are you sure u want to delete all clocks?')){
             for (key in clocks){
                 clocks[key].remove(true);
@@ -44,6 +49,7 @@ window.onload = function(){
     document.addEventListener('removeClock', function(e){
         clocks[e.detail] = null;
         delete clocks[e.detail];
+        clockCount--;
     });
 
     document.addEventListener('unmuteClock', function(e){
