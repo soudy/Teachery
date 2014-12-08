@@ -40,7 +40,7 @@ function Clock(settings){
         callback: function(){
             self.updateDisplay();
         },
-        timeout: 500,
+        timeout: 10,
     });
 
     for (var i = 0; i < this.buttons.length; i++) {
@@ -86,7 +86,7 @@ function Clock(settings){
         this.times[0].value = times[0];
         this.times[1].value = times[1];
         if (this.times[2].value != times[2] && !this.mute){
-            this.sound.currentTime = 0;
+            /* this.sound.currentTime = 0; */
             this.sound.play();
         }
         this.times[2].value = times[2];
@@ -146,8 +146,10 @@ function Clock(settings){
 
     this.setReadOnly = function(bool){
         this.title.readOnly = bool;
+        this.title.disabled = bool;
         for (var i = 0; i < this.times.length; i++) {
             this.times[i].readOnly = bool;
+            this.times[i].disabled = bool;
         };
     }
 

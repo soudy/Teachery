@@ -77,6 +77,8 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .setting-color h2       {font-weight:300;}
 .setting-color input    {background:white;border:none;border-left:65px solid #821031;font-size:200%;padding:15;color:#666;width:100%;}
 
+input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
+
 @media (max-width: 720px) {
     /* CORE RESPONSIVE */
     body                {}
