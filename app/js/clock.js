@@ -16,8 +16,8 @@ function Clock(settings){
     this.started = false;
     this.mute = true;
     this.id = settings.id;
-    this.sound = new Audio('src/clocktick.mp3');
-    this.sound.loop = true;
+    this.sound = new Audio('src/hitmarker.mp3');
+    //this.sound.loop = true;
     this.endsound = new Audio('src/endtick.mp3');
 
     this.title.value = settings.name || 'Clock'+(Math.floor(Math.random()*200));
@@ -85,6 +85,10 @@ function Clock(settings){
             times = time.split(':');
         this.times[0].value = times[0];
         this.times[1].value = times[1];
+        if (this.times[2].value != times[2] && !this.mute){
+            this.sound.currentTime = 0;
+            this.sound.play();
+        }
         this.times[2].value = times[2];
         //console.log(times);
     }
@@ -132,10 +136,9 @@ function Clock(settings){
 
     this.checkSound = function(){
         if (!this.started || this.mute){
-            //this.sound.pause();
+            this.sound.pause();
         }
         if (this.started && !this.mute){
-            //this.sound.play();
             var event = new CustomEvent('unmuteClock');
             document.dispatchEvent(event);
         }
