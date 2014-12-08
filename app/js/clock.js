@@ -3,6 +3,8 @@ function Clock(settings){
     // We need this to work in events
     var self = this;
 
+    var cookie = new Cookies();
+
     // Copy the shadow clone and append it to the given node
     this.element = document.querySelector('.shadowTimer').cloneNode(true);
     this.element.classList.remove('shadowTimer');
@@ -20,13 +22,15 @@ function Clock(settings){
     //this.sound.loop = true;
     this.endsound = new Audio('src/endtick.mp3');
 
-    this.title.value = settings.name || 'Clock'+(Math.floor(Math.random()*200));
+    // wtf is this
+    // confused the shit out of me
 
+    this.title.value = settings.name || 'Clock'+(Math.floor(Math.random()*200));
     // Create a default timer
     this.timer = new Timer({
         name: this.title.value,
         direction: 'down',
-        time: '00:10:00',
+        time: "00:10:00",
         callback: function(){
             if (!self.mute)
                 self.endsound.play();
@@ -47,7 +51,7 @@ function Clock(settings){
         this.buttons[i].addEventListener('click', function(e){
             e.preventDefault();
             this.hash = this.hash.toLowerCase();
-            switch(this.hash){
+            switch(this.hash) {
                 case '#play':
                     self.start();
                     break;
@@ -72,6 +76,8 @@ function Clock(settings){
         this.timer.reset();
         this.timer.setTime(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
         console.log(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
+
+        cookie.create(settings.name, this.times[0].value + this.times[1].value + this.times[2].value);
     }
 
     for (var i = 0; i < this.times.length; i++) {
@@ -90,7 +96,7 @@ function Clock(settings){
             this.sound.play();
         }
         this.times[2].value = times[2];
-        //console.log(times);
+        /* console.log(times); */
     }
 
     this.start = function(){
@@ -146,7 +152,7 @@ function Clock(settings){
 
     this.setReadOnly = function(bool){
         this.title.readOnly = bool;
-        this.title.disabled = bool;
+        this.title.readOnly = bool;
         for (var i = 0; i < this.times.length; i++) {
             this.times[i].readOnly = bool;
             this.times[i].disabled = bool;
@@ -161,5 +167,4 @@ function Clock(settings){
             document.dispatchEvent(event);
         }
     }
-    
 }

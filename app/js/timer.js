@@ -1,4 +1,3 @@
-
 function Timer(settings){
 
 	this.name = settings.name;
@@ -60,7 +59,7 @@ function Timer(settings){
 	this.getName = function(){
 		return this.name;
 	}
-	
+
 	this.getTime = function(){
 		var currentTick = new Date();
 		var added;
