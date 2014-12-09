@@ -27,7 +27,7 @@
             <div class="text_color_box color_box"></div>
             <span>#</span>
             <input maxlength="6" type="text" id="text_color">
-            <span><i class="ion ion-refresh" id="icon_reset"></i></span>
+            <span><i class="ion ion-refresh" id="text_reset"></i></span>
             <div class="clear-both"></div>
         </div>
 
