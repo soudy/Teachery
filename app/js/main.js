@@ -1,5 +1,7 @@
 window.onload = function(){
 
+    if (rt != 'time') return;
+    
     var cookie = new Cookies();
     var clocks = [];
     var clockCount = parseInt(cookie.get("count")) || 0;

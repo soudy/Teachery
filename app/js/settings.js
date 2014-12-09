@@ -6,6 +6,9 @@
  */
 
 (function() {
+
+    if (rt != 'settings') return;
+    
     var cookie = new Cookies();
     var base_color = document.getElementById("base_color");
     var icon_color = document.getElementById("icon_color");
