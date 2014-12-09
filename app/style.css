@@ -27,7 +27,8 @@ input               {outline:none;}
 
                     /*
                     ICON_COLOR: #F2F2F2;
-                    BASECOLOR:  #821031;
+                    BASECOLOR:  #214E96;
+                    OLD (RED) BASECOLOR: #A821031;
                     TEXT_COLOR: #191919;
                     */
                     /* WIDTH: 100% */
@@ -35,7 +36,7 @@ body                {widows:  100%;background:#F2F2F2;overflow-x:hidden;}
 
                     /* WIDTH: 10% */
 nav                 {width:   10%;
-                    float:left;background:#821031;color:#F2F2F2;transition:width .3s ;overflow:none;position:fixed;}
+                    float:left;background:#214E96;color:#F2F2F2;transition:width .3s ;overflow:none;position:fixed;}
 
                     /* WIDTH: 15% */
 nav:hover           {width:   15%;}
@@ -48,45 +49,45 @@ nav a               {display: -webkit-box;
                     transition:background .3s, color .3s;}
 nav a:hover,
 nav a:active,
-nav a.active        {background:#F2F2F2;color:#821031;}
+nav a.active        {background:#F2F2F2;color:#214E96;}
 
                     /* WIDTH: 100% */
 main                {width:   100%;
                     float:left;background:#F2F2F2;transition:width .3s;font-family: 'Lato', sans-serif;padding-left:100px;}
 
-.landing                {width:100%;background:#821031;height:100%;text-align:center;}
+.landing                {width:100%;background:#214E96;height:100%;text-align:center;}
 .landing img            {margin-top:100px;width:85%;}
 .landing div            {font-family: 'Montserrat', sans-serif;text-align:center;margin-top:65px;}
 .landing div a          {letter-spacing:.5em;color:#fff;border:2.5px solid #fff;padding:20 50;transition:background .3s, color .3s;}
-.landing div a:hover    {color:#821031;background:#fff;}
+.landing div a:hover    {color:#214E96;background:#fff;}
 
 .shadowTimer            {display:none;}
 .checkboxes             {width:100%;font-family: 'Montserrat', sans-serif;}
 
 header                  {width:300px;margin:20 auto 50 auto}
-header h1               {font-family: 'Montserrat', sans-serif;text-align:center;font-size:385%;font-weight:100;border-bottom:5px solid #821031;}
+header h1               {font-family: 'Montserrat', sans-serif;text-align:center;font-size:385%;font-weight:100;border-bottom:5px solid #214E96;}
 
 .checkbox-plus          {margin:40px 0px 40px 10px;font-size:200%;text-align:center;}
-.checkbox-plus i        {color:#821031;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 25;}
+.checkbox-plus i        {color:#214E96;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 25;}
 
 .checkbox-title         {width:100%;float:left;text-align:center;margin-top:50px;}
-.checkbox-title input   {border:none;border-bottom:5px solid #821031;border-left:5px solid #821031;display:inline-table;
+.checkbox-title input   {border:none;border-bottom:5px solid #214E96;border-left:5px solid #214E96;display:inline-table;
                         font-weight:300;padding:7.5px;font-size:125%;width:20vw;font-family: 'Montserrat', sans-serif;}
 
 .checkbox-input         {width:50%;float:left;margin:20 0px;text-align:center;}
-.checkbox-input input   {width:70px;border:0px;font-size:150%;font-weight:300;margin:0;border-bottom:5px solid #821031;
+.checkbox-input input   {width:70px;border:0px;font-size:150%;font-weight:300;margin:0;border-bottom:5px solid #214E96;
                         font-family: 'Montserrat', sans-serif;padding:10px;text-align:center;}
 .checkbox-input span    {font-size:250%;margin:0 5;}
 
 .checkbox-button        {width:50%;float:left;font-size:250%;margin:35 0px;text-align:center;}
-.checkbox-button i      {color:#821031;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 15;}
+.checkbox-button i      {color:#214E96;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 15;}
 
 .settings               {width:100%;font-family: 'Montserrat', sans-serif;padding-left:7.5%;}
 .settings h1            {margin:50 0 25 0;}
 
 .setting-color          {width:50%;font-size:100%;font-family: 'Montserrat', sans-serif;text-align:center;padding:0 2.5% 0 5%;float:left;}
 .setting-color h2       {font-weight:300;}
-.setting-color span     {width:15%;float:left;background:#821031;font-size:2em;padding: 15 0;
+.setting-color span     {width:15%;float:left;background:#214E96;font-size:2em;padding: 15 0;
                         text-align:center;color:white;font-weight:300;height:60px;}
 .setting-color .color_box{width:100%;height:10px;box-shadow:0 0 9px 0 #ccc}
 .setting-color input    {width:70%;background:white;border:none;font-size:200%;height:60px;padding:15;color:#666;float:left;}
@@ -102,10 +103,10 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 
 .home                   {width:100%; margin:auto;font-family: 'Montserrat', sans-serif;padding:0 25;}
 .home .home-group       {margin-bottom:50px; max-width:700px; margin:auto;}
-.home .home-group h2    {font-size:200%;color:#821031;margin-top:60px;}
-.home .home-group p     {padding-left:10px; border-left:10px solid #821031;font-size:125%;}
+.home .home-group h2    {font-size:200%;color:#214E96;margin-top:60px;}
+.home .home-group p     {padding-left:10px; border-left:10px solid #214E96;font-size:125%;}
 
-.base_color_box         {background:#821031}
+.base_color_box         {background:#214E96}
 .text_color_box         {background:#191919}
 .background_color_box   {background:#F2F2F2}
 
