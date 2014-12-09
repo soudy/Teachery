@@ -45,6 +45,7 @@ nav a               {display: -webkit-box;
                     justify-content: center;-webkit-justify-content: center;font-size:2em;
                     transition:background .3s, color .3s;}
 nav a:hover,
+nav a:active,
 nav a.active        {background:#F2F2F2;color:#821031;}
 
                     /* WIDTH: 100% */
