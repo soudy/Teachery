@@ -7,20 +7,12 @@ window.onload = function(){
     var clockCount = parseInt(cookie.get("count")) || 0;
     var muteAll = cookie.get("muteAll") || false;
 
-    console.log(clockCount);
-    console.log(muteAll);
-
     // create the clocks saved in cookie
-    // TODO: remember clock name, time and mute
     if (document.cookie) {
         for (var i = 0; i < clockCount; i ++) {
-            clocks[i] = new Clock({
-                appendTo: document.querySelector("main"),
-                id: i,
-                /* name: cookie.get("clock"+i+"name"),  */
-                name: "clock"+i, 
-                time: parseInt(cookie.get("clock"+i))
-            });
+            clocks[i] = new Clock(
+                JSON.parse(cookie.get("clock"+i))
+            );
         }
     }
 
@@ -33,7 +25,7 @@ window.onload = function(){
             name: 'clock'+clockCount,
         });
 
-        cookie.create("clock"+clockCount, clocks[clockCount].timer.time);
+        cookie.create("clock"+clockCount, JSON.stringify(clocks[clockCount]));
         cookie.create("count", clockCount+1);
 
         clockCount = parseInt(cookie.get("count"));
@@ -70,7 +62,6 @@ window.onload = function(){
                 clocks[key].remove(true);
                 cookie.remove("clock"+key);
             }
-            // reset the count to 0
             cookie.create("count", 0);
         }
     }

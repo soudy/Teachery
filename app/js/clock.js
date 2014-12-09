@@ -2,13 +2,12 @@ function Clock(settings){
 
     // We need this to work in events
     var self = this;
-
-    var cookie = new Cookies();
+    var appendTo = document.querySelector("main");
 
     // Copy the shadow clone and append it to the given node
     this.element = document.querySelector('.shadowTimer').cloneNode(true);
     this.element.classList.remove('shadowTimer');
-    settings.appendTo.appendChild(this.element);
+    appendTo.appendChild(this.element); 
 
     // Get all objects we need
     this.title = this.element.querySelector('.checkbox-title input');
@@ -22,20 +21,17 @@ function Clock(settings){
     //this.sound.loop = true;
     this.endsound = new Audio('src/endtick.mp3');
 
-    // wtf is this
-    // confused the shit out of me
-
     this.title.value = settings.name || 'Clock'+(Math.floor(Math.random()*200));
     // Create a default timer
     this.timer = new Timer({
         name: this.title.value,
         direction: 'down',
-        time: "00:10:00",
+        time: settings.time || "00:10:00",
         callback: function(){
             if (!self.mute)
                 self.endsound.play();
-            self.stop();
             console.log(self.render.stop());
+            self.stop();
         },
     });
 
@@ -76,8 +72,6 @@ function Clock(settings){
         this.timer.reset();
         this.timer.setTime(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
         console.log(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
-
-        cookie.create(settings.name, this.times[0].value + this.times[1].value + this.times[2].value);
     }
 
     for (var i = 0; i < this.times.length; i++) {

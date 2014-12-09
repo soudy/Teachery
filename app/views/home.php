@@ -10,7 +10,7 @@
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, pariatur! Alias aspernatur, animi adipisci amet similique ipsam, incidunt laborum totam!</p>
 		</div>
 		<div class="home-group">
-			<h2><i class="icon ion-person"></i> Pickory</h2>
+			<h2><i class="icon ion-person"></i> Pickery</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est iure veritatis sunt, vel alias explicabo minima itaque soluta repudiandae sapiente!</p>
 		</div>
 		<div class="home-group">
