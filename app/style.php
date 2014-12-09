@@ -1,6 +1,5 @@
 <?php
-
-//setcookie("BASECOLOR", '#ff00ff', time()+60);
+header("Content-type: text/css; charset: UTF-8");
 
 $content = file_get_contents('style.css');
 
