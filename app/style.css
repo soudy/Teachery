@@ -9,15 +9,15 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 /* Reset standard margins and apply standard fallback font + Background placement.*/
-html, 
+html,
 body                {margin:0;padding:0;font-family: 'Tahoma', 'sans-serif';
-                    vertical-align:baseline;line-height:1;}
+                    vertical-align:baseline;line-height:1;color:#191919;}
 
 /* Prevent padding to resize the element.*/
 *,
 *:before,
-*:after             {-webkit-box-sizing: border-box;     
-                        -moz-box-sizing: border-box; 
+*:after             {-webkit-box-sizing: border-box;
+                        -moz-box-sizing: border-box;
                              box-sizing: border-box;
                     outline:none;}
 
@@ -28,17 +28,17 @@ input               {outline:none;}
                     /*
                     ICON_COLOR: #F2F2F2;
                     BASECOLOR:  #821031;
-                    TEXT_COLOR: #191919;  
+                    TEXT_COLOR: #191919;
                     */
                     /* WIDTH: 100% */
-body                {widows:  100%;background:#F2F2F2;overflow-x:hidden;}                         
-                   
+body                {widows:  100%;background:#F2F2F2;overflow-x:hidden;}
+
                     /* WIDTH: 10% */
 nav                 {width:   10%;
                     float:left;background:#821031;color:#F2F2F2;transition:width .3s ;overflow:none;position:fixed;}
 
                     /* WIDTH: 15% */
-nav:hover           {width:   15%;} 
+nav:hover           {width:   15%;}
 
 nav a               {display: -webkit-box;
                      display: -webkit-flex;
@@ -86,9 +86,9 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 
 .setting-color          {width:50%;font-size:100%;font-family: 'Montserrat', sans-serif;text-align:center;padding:0 2.5% 0 5%;float:left;}
 .setting-color h2       {font-weight:300;}
-.setting-color .color_box{width:100%;height:10px;background:blue;}
 .setting-color span     {width:15%;float:left;background:#821031;font-size:2em;padding: 15 0;
                         text-align:center;color:white;font-weight:300;height:60px;}
+.setting-color .color_box{width:100%;height:10px;box-shadow:0 0 9px 0 #ccc}
 .setting-color input    {width:70%;background:white;border:none;font-size:200%;height:60px;padding:15;color:#666;float:left;}
 
 .setting-clock          {width:50%;font-size:100%;font-family: 'Montserrat', sans-serif;text-align:center;padding:0 2.5% 0 7.5%;float:left;}
@@ -105,6 +105,10 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 .home .home-group h2    {font-size:200%;color:#821031;margin-top:60px;}
 .home .home-group p     {padding-left:10px; border-left:10px solid #821031;font-size:125%;}
 
+.base_color_box         {background:#821031}
+.text_color_box         {background:#191919}
+.background_color_box   {background:#F2F2F2}
+
 @media (max-width: 720px) {
     /* CORE RESPONSIVE */
     body                {}
@@ -112,7 +116,7 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
     nav                 {display:block;position:fixed;width:100%;bottom:0;}
     nav:hover           {width:100%;}
     nav a               {height:65px;width:20%;float:left;}
-    
+
     /* LANDING */
     .landing div a,
     .landing div p      {width:100%;}
@@ -120,7 +124,7 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
     /* TIMER */
     .checkbox-title input{width:60vw}
     .checkbox-plus      {margin-left:10px;}
-    .checkbox-input,          
+    .checkbox-input,
     .checkbox-button    {width:100%;}
     .checkbox-button    {margin-top:0;}
 

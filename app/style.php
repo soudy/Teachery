@@ -3,13 +3,13 @@ header("Content-type: text/css; charset: UTF-8");
 
 $content = file_get_contents('style.css');
 
-// ICON_COLOR: #F2F2F2;
-// BACKGROUND: #821031;
-// TEXT_COLOR: #191919;
+// BASE_COLOR: #821031;
+// BACKGROUND: #F2F2F2;
+// TEXT_COLOR: #000000;
 $colors = array(
     array('821031', 'base_color'),
-    array('F2F2F2', 'icon_color'),
     array('F2F2F2', 'background_color'),
+    array('191919', 'text_color'),
 );
 
 foreach ($colors as $value) {

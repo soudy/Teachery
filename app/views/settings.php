@@ -9,25 +9,25 @@
         <div class="setting-color">
             <h1>Colorscheme</h1>
 
-            <h2>Primary color.</h2>
+            <h2>Primary color</h2>
             <div class="base_color_box color_box"></div>
             <span>#</span>
             <input maxlength="6" type="text" id="base_color">
-            <span><i class="ion ion-refresh"></i></span>
+            <span><i class="ion ion-refresh" id="base_reset"></i></span>
             <div class="clear-both"></div>
                 
-            <h2>Primary icon color/Primary background color.</h2>
-            <div class="icon_color_box color_box"></div>
-            <span>#</span>
-            <input maxlength="6" type="text" id="icon_color">
-            <span><i class="ion ion-refresh"></i></span>
-            <div class="clear-both"></div>
-                
-            <h2>Secondary background color.</h2>
+            <h2>Background color</h2>
             <div class="background_color_box color_box"></div>
             <span>#</span>
             <input maxlength="6" type="text" id="background_color">
-            <span><i class="ion ion-refresh"></i></span>
+            <span><i class="ion ion-refresh" id="background_reset"></i></span>
+            <div class="clear-both"></div>
+                
+            <h2>Text color</h2>
+            <div class="text_color_box color_box"></div>
+            <span>#</span>
+            <input maxlength="6" type="text" id="text_color">
+            <span><i class="ion ion-refresh" id="icon_reset"></i></span>
             <div class="clear-both"></div>
         </div>
 
