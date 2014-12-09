@@ -1,7 +1,7 @@
 <main>
      <!-- Sorting (Head) -->
     <header>
-        <h1>Sorting</h1>
+        <h1>Pickory</h1>
     </header>
     <!-- /Sorting (Head) -->
 
