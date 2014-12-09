@@ -5,7 +5,7 @@ RewriteEngine On
 
 Options -Indexes
 
-RewriteBase /school/teachery/app/
+RewriteBase /Teachery/app/
 
 # General rewrite rules
 RewriteCond %{REQUEST_FILENAME} !-d
