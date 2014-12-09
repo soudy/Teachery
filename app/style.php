@@ -7,9 +7,9 @@ $content = file_get_contents('style.css');
 // BACKGROUND: #821031;
 // TEXT_COLOR: #191919;
 $colors = array(
-    array('#821031', 'base_color'),
-    array('#F2F2F2', 'icon_color'),
-    array('#F2F2F2', 'background_color'),
+    array('821031', 'base_color'),
+    array('F2F2F2', 'icon_color'),
+    array('F2F2F2', 'background_color'),
 );
 
 foreach ($colors as $value) {
