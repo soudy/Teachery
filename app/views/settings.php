@@ -9,20 +9,16 @@
         <div class="setting-color">
             <h1>Colorscheme</h1>
 
-            <h2>Primary navigation color.</h2>
-            <input maxlength="7" type="text">
+            <h2>Primary color.</h2>
+            <input maxlength="7" type="text" id="base_color">
             <div class="clear-both"></div>
                 
             <h2>Primary icon color/Primary background color.</h2>
-            <input maxlength="7" type="text">
-            <div class="clear-both"></div>
-                
-            <h2>Primary text color</h2>
-            <input maxlength="7" type="text">
+            <input maxlength="7" type="text" id="icon_color">
             <div class="clear-both"></div>
                 
             <h2>Secondary background color.</h2>
-            <input maxlength="7" type="text">
+            <input maxlength="7" type="text" id="background_color">
             <div class="clear-both"></div>
         </div>
 
@@ -31,3 +27,5 @@
         </div>
     </div>
 </main>
+
+<script src="js/settings.js" type="text/javascript" charset="utf-8"></script>
