@@ -1,6 +1,6 @@
 <?php 
 
-$rt = isset($_GET["rt"]) ? $_GET["rt"] : 'time';
+$rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
 
 ?>
 <html>
@@ -18,17 +18,23 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'time';
 </head>
 <body> 
     <!-- This is where the navigation resires. -->
-    <nav>
+    <nav> 
+        <a class="<?php echo ($rt=="home") ? 'active' : ''; ?>" href="?rt=home"><i class="icon ion-home"></i></a>
         <a class="<?php echo ($rt=="time") ? 'active' : ''; ?>" href="?rt=time"><i class="icon ion-clock"></i></a>
-        <a class="<?php echo ($rt=="") ? 'active' : ''; ?>" href="#2"><i class="icon ion-person"></i></a>
-        <a class="<?php echo ($rt=="") ? 'active' : ''; ?>" href="#3"><i class="icon ion-person-stalker"></i></div></a> 
-        <a class="<?php echo ($rt=="") ? 'active' : ''; ?>" href="#4"><i class="icon ion-calendar"></i></a>
+        <a class="<?php echo ($rt=="sorting") ? 'active' : ''; ?>" href="?rt=sorting"><i class="icon ion-person"></i></a>
+        <a class="<?php echo ($rt=="") ? 'active' : ''; ?>" href="#3"><i class="icon ion-person-stalker"></i></div></a>
         <a class="<?php echo ($rt=="settings") ? 'active' : ''; ?>" href="?rt=settings"><i class="icon ion-gear-b"></i></a>
     </nav>
     <?php 
     switch($rt){
+        case 'home':
+            include('views/home.php');
+            break;
         case 'time':
             include('views/time.php');
+            break;
+        case 'sorting':
+            include('views/sorting.php');
             break;
         case 'settings':
             include('views/settings.php');
