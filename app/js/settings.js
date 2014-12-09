@@ -69,4 +69,19 @@
         }
     });
 
+    document.querySelector("#base_reset").onclick = function() {
+        cookie.remove("base_color");
+        window.location.reload();
+    }
+
+    document.querySelector("#background_reset").onclick = function() {
+        cookie.remove("background_color");
+        window.location.reload();
+    }
+
+    document.querySelector("#text_reset").onclick = function() {
+        cookie.remove("text_color");
+        window.location.reload();
+    }
+
 })();
