@@ -19,7 +19,7 @@
     background_color.value = cookie.get("background_color") || "#F2F2F2";
 
     base_color.addEventListener("blur", function(e) {
-        if(base_color.value.length < 4) {
+        if(base_color.value.length != 4 || base_color.value.length != 7) {
             alert("not a valid color: " + base_color.value);
             return;
         }
@@ -33,7 +33,7 @@
     });
 
     icon_color.addEventListener("blur", function(e) {
-        if(icon_color.value.length < 4) {
+        if(icon_color.value.length != 4 || icon_color.value.length != 7) {
             alert("not a valid color: " + icon_color.value);
             return;
         }
@@ -47,7 +47,7 @@
     });
 
     background_color.addEventListener("blur", function(e) {
-        if(icon_color.value.length < 4) {
+        if(background_color.value.length != 4 || background_color.value.length != 7) {
             alert("not a valid color: " + icon_color.value);
             return;
         }

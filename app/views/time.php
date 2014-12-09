@@ -5,7 +5,7 @@
 
     <!-- Timer (Head) -->
     <header>
-        <h1>Timory</h1>
+        <h1>Timery</h1>
     </header>
     <!-- /Timer (Head) -->
     
