@@ -1,5 +1,5 @@
 /*
- * Teachery is a web application to make the life of teacher's easier.
+ * Teachery is a web application to make the life of teachers easier.
  * Copyright (C) 2014 Terence Keur, Mirko van der Waal and Steven Oud
  * 
  * This program is free software; you can redistribute it and/or modify
