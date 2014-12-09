@@ -87,8 +87,8 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .setting-color          {width:50%;font-size:100%;font-family: 'Montserrat', sans-serif;text-align:center;padding:0 2.5% 0 5%;float:left;}
 .setting-color h2       {font-weight:300;}
 .setting-color span     {width:15%;float:left;background:#545454;font-size:2em;padding: 15 0;
-                        text-align:center;color:white;font-weight:300;}
-.setting-color input    {width:70%;background:white;border:none;font-size:200%;padding:15;color:#666;float:left;}
+                        text-align:center;color:white;font-weight:300;height:60px;}
+.setting-color input    {width:70%;background:white;border:none;font-size:200%;height:60px;padding:15;color:#666;float:left;}
 
 .setting-clock          {width:50%;font-size:100%;font-family: 'Montserrat', sans-serif;text-align:center;padding:0 2.5% 0 7.5%;float:left;}
 .setting-clock h2       {font-weight:300;}
