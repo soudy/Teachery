@@ -19,6 +19,10 @@
     background_color.value = cookie.get("background_color") || "#F2F2F2";
 
     base_color.addEventListener("blur", function(e) {
+        if(base_color.value.length < 4) {
+            alert("not a valid color: " + base_color.value);
+            return;
+        }
         var regex  = new RegExp("(#[a-fA-F0-9]+)");
         var result = regex.exec(base_color.value);
         if (result) {
@@ -29,6 +33,10 @@
     });
 
     icon_color.addEventListener("blur", function(e) {
+        if(icon_color.value.length < 4) {
+            alert("not a valid color: " + icon_color.value);
+            return;
+        }
         var regex  = new RegExp("(#[a-fA-F0-9]+)");
         var result = regex.exec(icon_color.value);
         if (result) {
@@ -39,6 +47,10 @@
     });
 
     background_color.addEventListener("blur", function(e) {
+        if(icon_color.value.length < 4) {
+            alert("not a valid color: " + icon_color.value);
+            return;
+        }
         var regex  = new RegExp("(#[a-fA-f0-9]+)");
         var result = regex.exec(background_color.value);
         if (result) {
