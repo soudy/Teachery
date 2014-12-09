@@ -82,10 +82,10 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 
 input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 
-.wrap                   {width:70%; margin:auto;}
-.wrap .group            {margin-bottom:50px; max-width:700px; margin:auto;}
-.wrap .group h2         {color:#821031;}
-.group p                {padding-left:10px; border-left:5px solid #821031;}
+.home                   {width:70%; margin:auto;font-family: 'Montserrat', sans-serif;}
+.home .home-group       {margin-bottom:50px; max-width:700px; margin:auto;}
+.home .home-group h2    {color:#821031;font-size:200%;margin-top:75px;}
+.home .home-group p     {padding-left:10px; border-left:5px solid #821031;}
 
 @media (max-width: 720px) {
     /* CORE RESPONSIVE */
