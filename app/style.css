@@ -1,9 +1,9 @@
 
 /*
 * Stylesheet
-* Author: Mirko van der Waal (CSS God);
-*         Terence Keur
+* Author: Mirko van der Waal (God);
 */
+
 
 @import url(http://fonts.googleapis.com/css?family=Lato:400,100,300);
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
@@ -22,15 +22,23 @@ body                {margin:0;padding:0;font-family: 'Tahoma', 'sans-serif';
                     outline:none;}
 
 .clear-both         {clear:both;}
+.ion-refresh        {cursor:pointer;}
+
 a                   {color:inherit;text-decoration:inherit;}
 input               {outline:none;}
+
+.cookie             {position:fixed;z-index:995;width:90%;text-align:center;background:rgba(0, 0, 0, .2);line-height:0.4em;
+                    font-family: 'Montserrat', sans-serif;font-weight:300;right:0;transition:width .3s;display:block;}
+.cookie p           {float:left;width:80%;margin-left:10%;}
+.cookie i           {float:left;width:10%;padding:7.5 0 0 0;font-size:150%;cursor:pointer;}
 
                     /*
                     ICON_COLOR: #F2F2F2;
                     BASECOLOR:  #214E96;
-                    OLD (RED) BASECOLOR: #A821031;
+                 OLD_BASECOLOR: #821031;
                     TEXT_COLOR: #191919;
                     */
+
                     /* WIDTH: 100% */
 body                {widows:  100%;background:#F2F2F2;overflow-x:hidden;}
 
@@ -40,6 +48,7 @@ nav                 {width:   10%;
 
                     /* WIDTH: 15% */
 nav:hover           {width:   15%;}
+nav:hover + .cookie {width:   85%;}
 
 nav a               {display: -webkit-box;
                      display: -webkit-flex;
@@ -67,6 +76,15 @@ main                {width:   100%;
 header                  {width:300px;margin:20 auto 50 auto}
 header h1               {font-family: 'Montserrat', sans-serif;text-align:center;font-size:385%;font-weight:100;border-bottom:5px solid #214E96;}
 
+.checkbox-overlay       {height:100%;width:100%;background:rgba(255, 255, 255, .5);position:absolute;left:0;top:0;}
+.checkbox-texts         {text-align:center;padding:25vh 0 0 0;font-size:150%;text-shadow:0px 2px 0px white;}
+.checkbox-bool          {width:190px;margin:0 auto;}
+.checkbox-confirm       {text-align:center;background:transparent;padding:20 0;width:75px;color:#214E96;float:left;margin:0 10;
+                        border:3px solid #214E96;font-size:125%;font-family: 'Montserrat', sans-serif;
+                        transition:background .3s, color .3s;cursor:pointer;}
+.checkbox-confirm:hover{background:#214E96;color:white;}
+.checkbox-confirm:active{background:#214E96;color:white;}
+
 .checkbox-plus          {margin:40px 0px 40px 10px;font-size:200%;text-align:center;}
 .checkbox-plus i        {color:#214E96;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 25;}
 
@@ -82,22 +100,47 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .checkbox-button        {width:50%;float:left;font-size:250%;margin:35 0px;text-align:center;}
 .checkbox-button i      {color:#214E96;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 15;}
 
+.pick                   {width:100%;font-family: 'Montserrat', sans-serif;}
+
 .settings               {width:100%;font-family: 'Montserrat', sans-serif;padding-left:7.5%;}
 .settings h1            {margin:50 0 25 0;}
+.settings h2            {font-weight:300;font-size:125%;}
 
-.setting-color          {width:50%;font-size:100%;font-family: 'Montserrat', sans-serif;text-align:center;padding:0 2.5% 0 5%;float:left;}
-.setting-color h2       {font-weight:300;}
-.setting-color span     {width:15%;float:left;background:#214E96;font-size:2em;padding: 15 0;
+.settings .hash,        
+.settings .ref          {width:0;float:left;background:#214E96;font-size:2em;padding: 15 0;
                         text-align:center;color:white;font-weight:300;height:60px;}
-.setting-color .color_box{width:100%;height:10px;box-shadow:0 0 9px 0 #ccc}
+.setting-color,
+.setting-clock,
+.setting-general        {width:50%;font-size:100%;font-family: 'Montserrat', sans-serif;text-align:center;padding:0 2.5% 0 5%;float:left;}
+
+.setting-color .hash,
+.setting-color .ref     {width:15%;}
 .setting-color input    {width:70%;background:white;border:none;font-size:200%;height:60px;padding:15;color:#666;float:left;}
 
-.setting-clock          {width:50%;font-size:100%;font-family: 'Montserrat', sans-serif;text-align:center;padding:0 2.5% 0 7.5%;float:left;}
-.setting-clock h2       {font-weight:300;}
-.setting-clock input    {background:white;border:none;font-size:200%;padding:15;color:#666;width:100%;}
+.color_box              {width:100%;height:10px;box-shadow:0 0 9px 0 #ccc}
 
-.setting-general        {width:50%;font-size:100%;font-family: 'Montserrat', sans-serif;text-align:center;padding:0 2.5% 0 7.5%;}
+.setting-clock input    {width:25%;background:white;border:none;font-size:200%;padding:0;color:#666;float:left;height:60px;
+                        text-align:center;border-bottom:5px solid #214E96;}
+.setting-clock .ref     {width:15%;}
+.setting-clock .semi    {float:left;padding:15 0;font-size:150%;width:5%;}  
 
+.setting-clock .boolcont{margin:40 0 0 0;}
+.setting-clock .h2bool  {width:60%;float:left;}
+.setting-clock .bool    {width:20%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s;}
+.bool:hover             {background:rgba(33, 62, 150, .75);}
+.bool:active            {background:rgba(33, 62, 150, .5);}
+
+.setting-clock .optcont {margin: 40 0 0 0;}
+.setting-clock .h2opt   {width:100%;float:left;}
+.setting-clock .opt     {width:33.3334%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s;}
+.opt:hover              {background:rgba(33, 62, 150, .75);}
+.opt:active             {background:rgba(33, 62, 150, .5);}
+
+.setting-general .boolcont{margin:40 0 0 0;}
+.setting-general .h2bool  {width:60%;float:left;}
+.setting-general .bool    {width:20%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s;}
+.bool:hover             {background:rgba(33, 62, 150, .75);}
+.bool:active            {background:rgba(33, 62, 150, .5);}
 
 input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 
@@ -110,10 +153,9 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 .text_color_box         {background:#191919}
 .background_color_box   {background:#F2F2F2}
 
-.ion-refresh            {cursor:pointer}
-
 @media (max-width: 720px) {
     /* CORE RESPONSIVE */
+    .cookie             {width:100%;line-height:1em;}
     body                {}
     main                {padding:0;margin-top:65px;margin-bottom:65px;}
     nav                 {display:block;position:fixed;width:100%;bottom:0;}
@@ -134,7 +176,7 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
     /* SETTINGS */
     .settings           {padding:0;}
     .setting-color,
-    .setting-clock      {width:100%;padding:0 25;}
-    .setting-color input{width:60%}
-    .setting-color span {width:20%;}
+    .setting-clock,
+    .setting-general    {width:100%;padding:0 25;}
+    
 }

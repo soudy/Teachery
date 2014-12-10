@@ -1,6 +1,19 @@
 <main>
     <!-- Timer (Overlay) -->
-    <div></div>
+    <div class="checkbox-overlay">
+        <div class="checkbox-texts">
+            <p>Do you want to delete {clock.name}?  </p>
+        </div>
+
+        <div class="checkbox-bool">
+            <div class="checkbox-confirm">
+                YES
+            </div>
+            <div class="checkbox-confirm">
+                NO
+            </div>
+        </div>
+    </div>
     <!-- Timer (Overlay) -->
 
     <!-- Timer (Head) -->

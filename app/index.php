@@ -21,6 +21,7 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <script src="js/main.js"></script>
 </head>
 <body> 
+   
     <!-- This is where the navigation resires. -->
     <nav> 
         <a class="<?php echo ($rt=="home") ? 'active' : ''; ?>" href="home"><i class="icon ion-home"></i></a>
@@ -29,6 +30,10 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
         <a class="<?php echo ($rt=="") ? 'active' : ''; ?>" href="#3"><i class="icon ion-person-stalker"></i></a>
         <a class="<?php echo ($rt=="settings") ? 'active' : ''; ?>" href="settings"><i class="icon ion-gear-b"></i></a>
     </nav>
+
+    <div class="cookie">
+        <p>This site uses cookies to maximize the users experience. </p> <i class="icon ion-close" id="close-cookie"></i>
+    </div>
     <?php 
     switch($rt){
         case 'home':
