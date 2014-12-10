@@ -25,7 +25,7 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <nav> 
         <a class="<?php echo ($rt=="home") ? 'active' : ''; ?>" href="home"><i class="icon ion-home"></i></a>
         <a class="<?php echo ($rt=="time") ? 'active' : ''; ?>" href="time"><i class="icon ion-clock"></i></a>
-        <a class="<?php echo ($rt=="sorting") ? 'active' : ''; ?>" href="sorting"><i class="icon ion-person"></i></a>
+        <a class="<?php echo ($rt=="picker") ? 'active' : ''; ?>" href="picker"><i class="icon ion-person"></i></a>
         <a class="<?php echo ($rt=="") ? 'active' : ''; ?>" href="#3"><i class="icon ion-person-stalker"></i></a>
         <a class="<?php echo ($rt=="settings") ? 'active' : ''; ?>" href="settings"><i class="icon ion-gear-b"></i></a>
     </nav>
@@ -37,8 +37,8 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
         case 'time':
             include('views/time.php');
             break;
-        case 'sorting':
-            include('views/sorting.php');
+        case 'picker':
+            include('views/picker.php');
             break;
         case 'settings':
             include('views/settings.php');
