@@ -13,10 +13,12 @@ $colors = array(
     array('191919', 'text_color'),
 );
 
+$json = isset($_COOKIE['settings']) ? $_COOKIE['settings'] : null;
+$settings = json_decode($json);
+
 foreach ($colors as $value) {
-    if (isset($_COOKIE[$value[1]])){
-        $content = str_replace($value[0], $_COOKIE[$value[1]], $content);
-    }
+    if(isset($settings->{$value[1]}))
+        $content = str_replace($value[0], $settings->{$value[1]}, $content);
 }
 
 echo $content;

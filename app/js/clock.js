@@ -53,6 +53,10 @@ function Clock(settings){
         },
     });
 
+    this.getInfo = function() {
+        return JSON.stringify(this);
+    }
+
     // Create the render
     this.render = new Render({
         callback: function(){

@@ -31,9 +31,7 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
         <a class="<?php echo ($rt=="settings") ? 'active' : ''; ?>" href="settings"><i class="icon ion-gear-b"></i></a>
     </nav>
 
-    <div class="cookie">
-        <p>This site uses cookies to maximize the users experience. </p> <i class="icon ion-close" id="close-cookie"></i>
-    </div>
+    <div class="cookie"></div>
     <?php 
     switch($rt){
         case 'home':
