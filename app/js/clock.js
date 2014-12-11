@@ -20,6 +20,7 @@ function Clock(settings){
 
     // We need this to work in events
     var self = this;
+    var cookie = new Cookies();
     var appendTo = document.querySelector("main");
 
     // Copy the shadow clone and append it to the given node
@@ -33,7 +34,7 @@ function Clock(settings){
     this.buttons = this.element.querySelectorAll('.checkbox-button a');
 
     this.started = false;
-    this.mute = true;
+    this.mute = settings.mute || true;
     this.id = settings.id;
     this.sound = new Audio('src/hitmarker.mp3');
     //this.sound.loop = true;
@@ -43,7 +44,7 @@ function Clock(settings){
     // Create a default timer
     this.timer = new Timer({
         name: this.title.value,
-        direction: 'down',
+        direction: settings.direction || 'down',
         time: settings.time || "00:10:00",
         callback: function(){
             if (!self.mute)
@@ -88,17 +89,19 @@ function Clock(settings){
 
     this.updateTimer = function(){
         this.timer.setName(this.title.value);
+        this.updateCookie();
     }
 
     this.updateTime = function(){
         this.timer.reset();
         this.timer.setTime(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
-        console.log(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
+        this.updateCookie();
     }
 
     for (var i = 0; i < this.times.length; i++) {
         this.times[i].addEventListener('blur', function(e){
             self.updateTime();
+            self.updateCookie();
         });
     };
 
@@ -110,6 +113,7 @@ function Clock(settings){
         if (this.times[2].value != times[2] && !this.mute){
             /* this.sound.currentTime = 0; */
             this.sound.play();
+            this.updateCookie();
         }
         this.times[2].value = times[2];
         /* console.log(times); */
@@ -133,6 +137,7 @@ function Clock(settings){
             this.started = true;
             this.checkSound();
         }
+        this.updateCookie();
     }
 
     this.stop = function(){
@@ -154,6 +159,7 @@ function Clock(settings){
     this.setMuted = function(bool){
         this.mute = bool;
         this.checkSound();
+        this.updateCookie();
     }
 
     this.checkSound = function(){
@@ -197,6 +203,23 @@ function Clock(settings){
             }
         }
     }
+
+
+    this.getInfo = function(){
+        return {
+            muted: this.mute,
+            id: this.id,
+            name: this.timer.name,
+            direction: this.timer.direction,
+            time: this.timer.time,
+        }
+    }
+
+    this.updateCookie = function(){
+        cookie.create("clock__"+this.id, JSON.stringify(this.getInfo()));
+    }
+
+    this.updateCookie();
 
 }
 

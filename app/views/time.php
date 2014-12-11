@@ -2,7 +2,7 @@
     <!-- Timer (Overlay) -->
     <div class="checkbox-overlay">
         <div class="checkbox-texts">
-            <p>Do you want to delete {clock.name}?  </p>
+            <p>Do you want to delete <span class="clock-name"></span>?  </p>
         </div>
 
         <div class="checkbox-bool">

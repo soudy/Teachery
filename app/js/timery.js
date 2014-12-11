@@ -26,12 +26,19 @@
     var clockCount = 0;
     var muteAll = false;
 
-    // create the clocks saved in cookie
     if (document.cookie) {
+        clockCount = cookie.get('clock_count');
         for (var i = 0; i < clockCount; i ++) {
-            clocks[i] = new Clock(
-                JSON.parse(cookie.get("clock"+i))
-            );
+            var settings = cookie.get('clock__'+i);
+            if (settings != null){
+                settings = JSON.parse(settings);
+                clocks[i] = new Clock({
+                    id: settings.id,
+                    name: settings.name,
+                    direction: settings.direction,
+                    time: settings.time,
+                });
+            }
         }
     }
 
@@ -43,13 +50,10 @@
             id: clockCount,
             name: 'clock'+clockCount
         });
+        //cookie.create("clock__"+clockCount, JSON.stringify(clocks[clockCount].getInfo()));
+        cookie.create("clock_count", clockCount+1);
 
-        cookie.create("clock"+clockCount, clocks[clockCount].getInfo());
-        cookie.create("count", clockCount+1);
-
-        console.log(clocks[clockCount].getInfo());
-
-        clockCount = parseInt(cookie.get("count"));
+        clockCount = parseInt(cookie.get("clock_count"));
     }
 
     document.querySelector('.muteSounds').onclick = function(e){
@@ -91,8 +95,7 @@
         clocks[e.detail] = null;
         delete clocks[e.detail];
 
-        cookie.create("count", clockCount-1);
-        clockCount = parseInt(cookie.get("count"));
+        cookie.remove('clock__'+e.detail);
     });
 
     document.addEventListener('unmuteClock', function(e){
