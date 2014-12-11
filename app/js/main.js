@@ -16,8 +16,8 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-window.onload = function(){
-
+(function()
+{
     var cookie = new Cookies();
 
     if(!cookie.get("cookie_warn")) {
@@ -28,4 +28,4 @@ window.onload = function(){
             document.querySelector(".cookie").innerHTML = "";
         }
     }
-};
+})();

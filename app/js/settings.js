@@ -16,7 +16,8 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-window.onload = function() {
+(function()
+{
 
     if(rt != "settings") return;
 
@@ -105,5 +106,4 @@ window.onload = function() {
         cookie.create("settings", JSON.stringify(settings));
         window.location.reload();
     }
-}
-
+})();

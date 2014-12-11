@@ -13,14 +13,10 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <script type="text/javascript" >
         var rt = "<?php echo $rt ?>";
     </script>
-    <script src="js/cookies.js"></script>
-    <script src="js/timer.js"></script>
-    <script src="js/render.js"></script>
-    <script src="js/clock.js"></script>
-    <script src="js/timery.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/main.js"></script>
-</head>
+    <script type="text/javascript" src="js/cookies.js"></script>
+    <script type="text/javascript" src="js/timer.js"></script>
+    <script type="text/javascript" src="js/render.js"></script>
+    <script type="text/javascript" src="js/clock.js"></script>
 <body>
 
     <!-- This is where the navigation resires. -->
@@ -49,5 +45,10 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
             break;
     }
     ?>
+
+    <script type="text/javascript" src="js/timery.js"></script>
+    <script type="text/javascript" src="js/settings.js"></script>
+    <script type="text/javascript" src="js/pickery.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

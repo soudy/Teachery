@@ -16,14 +16,15 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-window.onload = function() {
+(function()
+{
 
     if(rt != "time") return;
 
     var cookie = new Cookies();
     var clocks = [];
-    var clockCount = parseInt(cookie.get("count")) || 0;
-    var muteAll = cookie.get("muteAll") || false;
+    var clockCount = 0;
+    var muteAll = false;
 
     // create the clocks saved in cookie
     if (document.cookie) {
@@ -99,4 +100,4 @@ window.onload = function() {
          document.querySelector('.muteSounds i').classList.remove('ion-volume-mute');
          document.querySelector('.muteSounds i').classList.add('ion-volume-high');
     });
-}
+})();
