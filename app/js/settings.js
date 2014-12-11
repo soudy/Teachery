@@ -18,8 +18,6 @@
 
 window.onload = function() {
 
-    if (rt != 'settings') return;
-
     var cookie = new Cookies();
 
     var base_default = "214E98";
