@@ -69,7 +69,7 @@ main                {width:   100%;
 .landing div            {font-family: 'Montserrat', sans-serif;text-align:center;margin-top:65px;}
 .landing div a          {letter-spacing:.5em;color:#fff;border:2.5px solid #fff;padding:20 50;transition:background .3s, color .3s;}
 .landing div a:hover    {color:#214E96;background:#fff;}
-.landing .devs          {text-align:center;width:400px;position:fixed;left:50%;margin-left:-200px;bottom:10;color:white;font-size:70%;}
+.landing .devs          {text-align:center;width:400px;position:fixed;left:50%;-left:-200px;bottom:10;color:white;font-size:70%;}
 
 .shadowTimer            {display:none;}
 .checkboxes             {width:100%;font-family: 'Montserrat', sans-serif;}
@@ -154,6 +154,60 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 .text_color_box         {background:#191919}
 .background_color_box   {background:#F2F2F2}
 
+
+*:-webkit-full-screen {
+ position: fixed;
+ width: 100%;
+ height:100%;
+ top: 0;
+ padding-top:10%;
+}
+
+
+*:-webkit-full-screen .checkbox-button{
+ display:none;
+}
+
+*:-webkit-full-screen .checkbox-input{
+ width:100%;
+ line-height: 100%;
+}
+
+*:-webkit-full-screen .checkbox-input input{
+ font-size:20vh;
+ width:30%;
+}
+
+*:-webkit-full-screen input[disabled] {
+ background:#fff!important;
+}
+
+*:-moz-full-screen input[disabled] {
+ background:#fff!important;
+}
+
+*:-moz-full-screen {
+ position: fixed;
+ width: 100%;
+ height:100%;
+ top: 0;
+ padding-top:10%;
+ background-color: rgba(255,255,255,1);
+}
+
+*:-moz-full-screen .checkbox-button{
+ display:none;
+}
+
+*:-moz-full-screen .checkbox-input{
+ width:100%;
+ line-height: 100%;
+}
+
+*:-moz-full-screen .checkbox-input input{
+ font-size:20vh;
+ width:30%;
+}
 @media (max-width: 720px) {
     /* CORE RESPONSIVE */
     .cookie             {width:100%;line-height:1em;}
