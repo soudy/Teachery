@@ -54,5 +54,3 @@
         <!-- /Shadow Timer -->
 
 </main>
-
-<script src="js/timery.js" type="text/javascript" charset="utf-8"></script>

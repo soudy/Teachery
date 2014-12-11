@@ -81,5 +81,3 @@
         </div>
     </div>
 </main>
-
-<script src="js/settings.js" type="text/javascript" charset="utf-8"></script>

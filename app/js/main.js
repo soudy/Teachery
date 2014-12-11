@@ -20,11 +20,11 @@ window.onload = function(){
 
     var cookie = new Cookies();
 
-    if(!cookie.get("visited")) {
+    if(!cookie.get("cookie_warn")) {
         document.querySelector(".cookie").innerHTML = '<p>This site uses cookies to maximize the users experience. </p> \
                                                        <i class="icon ion-close" id="close-cookie"></i>';
         document.querySelector("#close-cookie").onclick = function(e) {
-            cookie.create("visited", 1);
+            cookie.create("cookie_warn", 1);
             document.querySelector(".cookie").innerHTML = "";
         }
     }

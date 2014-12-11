@@ -10,10 +10,15 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.php">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+    <script type="text/javascript" >
+        var rt = "<?php echo $rt ?>";
+    </script>
     <script src="js/cookies.js"></script>
     <script src="js/timer.js"></script>
     <script src="js/render.js"></script>
     <script src="js/clock.js"></script>
+    <script src="js/timery.js"></script>
+    <script src="js/settings.js"></script>
     <script src="js/main.js"></script>
 </head>
 <body>
