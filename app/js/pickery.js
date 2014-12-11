@@ -24,6 +24,7 @@
 
     var inputFile = document.querySelector("#class");
 
+    var classes = [];
     function CSVtoJSON(csv)
     {
         var lines  = csv.split("\n");
@@ -34,20 +35,21 @@
         var i;
 
         for (var item in lines) {
-
             lines[item] = lines[item].split(",").splice(0, 7);
 
+            classes[lines[item][1]] = lines[item][1];
+
+            if (lines[item][0] == "Stamnr")
+                continue;
+
             for (i = 0; i <= lines[item].length; ++i) {
-                if(lines[item][i] == 0)
-                    continue;
-                obj[lines[item][0]] = {};
+                obj["student" + lines[item][0]] = {};
                 for (i = 0; i <= values.length; ++i) {
-                    if(!lines[item][i])
-                        continue;
-                    obj[lines[item][0]][values[i]] = lines[item][i];
+                    obj["student"+lines[item][0]][values[i]] = lines[item][i] || "";
                 }
             }
         }
+
         return obj;
     }
 
@@ -67,6 +69,11 @@
             return false;
         }
 
+        if(file.type != "text/csv") {
+            alert("File isn't a csv file.");
+            return false;
+        }
+
         if (!file) {
             alert("Please select a file.");
             return false;
@@ -77,7 +84,31 @@
         r.readAsText(file);
 
         r.onload = function(e) {
-            console.log(CSVtoJSON(this.result));
+            var jsonfied = CSVtoJSON(this.result);
+
+            // show what classes are imported
+            document.querySelector("#classes").innerHTML = classes.length != 1 ? "Classes: "
+                                                                         : "Class: ";
+
+            for (var _class in classes) {
+                if (_class == "Klas" || _class == "undefined" )
+                    continue;
+                document.querySelector("#classes").innerHTML += _class + " ";
+            }
+
+            // show amount of names imported
+            var student_count = 0;
+            for(var _student in jsonfied) student_count++;
+            document.querySelector("#students").innerHTML = "Count: " + student_count;
+
+            /* document.querySelector("h2").innerHTML = ;  */
+            for (var student in jsonfied) {
+                var fullname = jsonfied[student].Roepnaam + " "
+                    + jsonfied[student].Tussenv + (jsonfied[student].Tussenv == "" ? "" : " " ) 
+                    + jsonfied[student].Achternaam;
+
+                document.querySelector("#all_names").value += fullname + "\n";
+            }
         };
     }, false);
 })();

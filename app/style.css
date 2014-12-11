@@ -107,7 +107,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .settings h1            {margin:50 0 25 0;}
 .settings h2            {font-weight:300;font-size:125%;}
 
-.settings .hash,        
+.settings .hash,
 .settings .ref          {width:0;float:left;background:#214E96;font-size:2em;padding: 15 0;
                         text-align:center;color:white;font-weight:300;height:60px;}
 .setting-color,
@@ -123,7 +123,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .setting-clock input    {width:25%;background:white;border:none;font-size:200%;padding:0;color:#666;float:left;height:60px;
                         text-align:center;border-bottom:5px solid #214E96;}
 .setting-clock .ref     {width:15%;}
-.setting-clock .semi    {float:left;padding:15 0;font-size:150%;width:5%;}  
+.setting-clock .semi    {float:left;padding:15 0;font-size:150%;width:5%;}
 
 .setting-clock .boolcont{margin:40 0 0 0;}
 .setting-clock .h2bool  {width:60%;float:left;}
@@ -153,6 +153,8 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 .base_color_box         {background:#214E96}
 .text_color_box         {background:#191919}
 .background_color_box   {background:#F2F2F2}
+
+#all_names              {width:40%;height:60%;overflow-y:scroll;overflow-x:hidden;}
 
 
 *:-webkit-full-screen {
@@ -233,5 +235,5 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
     .setting-color,
     .setting-clock,
     .setting-general    {width:100%;padding:0 25;}
-    
+
 }
