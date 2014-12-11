@@ -23,12 +23,14 @@ window.onload = function() {
     var base_default = "214E98";
     var text_default = "191919";
     var background_default = "F2F2F2";
+    var mute_default = 1;
 
-    var settings = JSON.parse(cookie.get("settings")) || 
+    var settings = JSON.parse(cookie.get("settings")) ||
     {
         base_color: base_default,
         text_color: text_default,
-        background_color: background_default
+        background_color: background_default,
+        auto_mute: mute_default
     };
 
     var base_color       = document.querySelector("#base_color");

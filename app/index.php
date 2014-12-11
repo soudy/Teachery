@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
 
@@ -8,22 +8,18 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <meta charset="UTF-8">
     <title>Teachery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!--  <link rel="stylesheet" href="style.css"> -->
-   <link rel="stylesheet" href="style.php">
+    <link rel="stylesheet" href="style.php">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
-    <script>
-    var rt = '<?php echo $rt; ?>';
-    </script>
     <script src="js/cookies.js"></script>
     <script src="js/timer.js"></script>
     <script src="js/render.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/main.js"></script>
 </head>
-<body> 
-   
+<body>
+
     <!-- This is where the navigation resires. -->
-    <nav> 
+    <nav>
         <a class="<?php echo ($rt=="home") ? 'active' : ''; ?>" href="home"><i class="icon ion-home"></i></a>
         <a class="<?php echo ($rt=="time") ? 'active' : ''; ?>" href="time"><i class="icon ion-clock"></i></a>
         <a class="<?php echo ($rt=="picker") ? 'active' : ''; ?>" href="picker"><i class="icon ion-person"></i></a>
@@ -32,7 +28,7 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     </nav>
 
     <div class="cookie"></div>
-    <?php 
+    <?php
     switch($rt){
         case 'home':
             include('views/home.php');

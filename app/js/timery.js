@@ -17,7 +17,6 @@
  */
 
 window.onload = function() {
-    if (rt != 'time') return;
 
     var cookie = new Cookies();
     var clocks = [];
