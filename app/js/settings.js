@@ -23,22 +23,17 @@ window.onload = function() {
     var base_default = "214E98";
     var text_default = "191919";
     var background_default = "F2F2F2";
-    var start_default = "F2F2F2";
 
-    var settings = JSON.parse(cookie.get("settings")) ||
+    var settings = JSON.parse(cookie.get("settings")) || 
     {
         base_color: base_default,
         text_color: text_default,
-        background_color: background_default,
-        start_time: start_default
+        background_color: background_default
     };
 
     var base_color       = document.querySelector("#base_color");
     var background_color = document.querySelector("#background_color");
     var text_color       = document.querySelector("#text_color");
-    var start_time       = document.querySelector("#text_color");
-    var tick_sound       = document.querySelector("#text_color");
-    var end_sound        = document.querySelector("#text_color");
 
     base_color.value       = settings.base_color;
     background_color.value = settings.background_color;
@@ -49,7 +44,7 @@ window.onload = function() {
             alert("not a valid color: " + base_color.value);
             return;
         }
-        console.log(base_color.value);
+
         var regex  = new RegExp("([a-fA-F0-9]+)");
         var result = regex.exec(base_color.value);
         if (result) {
@@ -64,6 +59,7 @@ window.onload = function() {
             alert("not a valid color: " + text_color.value);
             return;
         }
+
         var regex  = new RegExp("([a-fA-f0-9]+)");
         var result = regex.exec(background_color.value);
         if (result) {
@@ -78,6 +74,7 @@ window.onload = function() {
             alert("not a valid color: " + text_color.value);
             return;
         }
+
         var regex  = new RegExp("([a-fA-F0-9]+)");
         var result = regex.exec(text_color.value);
         if (result) {
