@@ -69,7 +69,7 @@ main                {width:   100%;
 .landing div            {font-family: 'Montserrat', sans-serif;text-align:center;margin-top:65px;}
 .landing div a          {letter-spacing:.5em;color:#fff;border:2.5px solid #fff;padding:20 50;transition:background .3s, color .3s;}
 .landing div a:hover    {color:#214E96;background:#fff;}
-.landing .devs          {text-align:center;width:400px;position:fixed;left:50%;-left:-200px;bottom:10;color:white;font-size:70%;}
+.landing .devs          {text-align:center;width:400px;position:fixed;left:50%;margin-left:-200px;bottom:10;color:white;font-size:70%;}
 
 .shadowTimer            {display:none;}
 .checkboxes             {width:100%;font-family: 'Montserrat', sans-serif;}
