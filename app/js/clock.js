@@ -74,7 +74,7 @@ function Clock(settings){
                     self.start();
                     break;
                 case '#fullscreen':
-                    alert('Fullscreen is not yet supported');
+                    self.fullscreen(true);
                     break;
                 case '#remove':
                     self.remove();
@@ -183,4 +183,24 @@ function Clock(settings){
             document.dispatchEvent(event);
         }
     }
+
+    this.fullscreen = function(force){
+        if (fullScreenEnabled()){
+            if (this.element.requestFullscreen) {
+                this.element.requestFullscreen();
+            } else if (this.element.webkitRequestFullscreen) {
+                this.element.webkitRequestFullscreen();
+            } else if (this.element.mozRequestFullScreen) {
+                this.element.mozRequestFullScreen();
+            } else if (this.element.msRequestFullscreen) {
+                this.element.msRequestFullscreen();
+            }
+        }
+    }
+
+}
+
+function fullScreenEnabled(){
+    if( document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) return true;
+    return false;
 }
