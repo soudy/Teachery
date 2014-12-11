@@ -23,17 +23,22 @@ window.onload = function() {
     var base_default = "214E98";
     var text_default = "191919";
     var background_default = "F2F2F2";
+    var start_default = "F2F2F2";
 
-    var settings = JSON.parse(cookie.get("settings")) || 
+    var settings = JSON.parse(cookie.get("settings")) ||
     {
         base_color: base_default,
         text_color: text_default,
-        background_color: background_default
+        background_color: background_default,
+        start_time: start_default
     };
 
-    var base_color       = document.getElementById("base_color");
-    var background_color = document.getElementById("background_color");
-    var text_color       = document.getElementById("text_color");
+    var base_color       = document.querySelector("#base_color");
+    var background_color = document.querySelector("#background_color");
+    var text_color       = document.querySelector("#text_color");
+    var start_time       = document.querySelector("#text_color");
+    var tick_sound       = document.querySelector("#text_color");
+    var end_sound        = document.querySelector("#text_color");
 
     base_color.value       = settings.base_color;
     background_color.value = settings.background_color;
