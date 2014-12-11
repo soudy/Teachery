@@ -12,6 +12,10 @@
         <div>
             <a href="app">CONTINUE</a>
         </div>
+
+        <div class="devs">
+            <span>Mirko van der Waal</span>, <span>Steven Oud</span>, <span>Terence Keur</span>
+        </div>
     </div>
 </body>
 </html>

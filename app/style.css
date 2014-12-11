@@ -69,6 +69,7 @@ main                {width:   100%;
 .landing div            {font-family: 'Montserrat', sans-serif;text-align:center;margin-top:65px;}
 .landing div a          {letter-spacing:.5em;color:#fff;border:2.5px solid #fff;padding:20 50;transition:background .3s, color .3s;}
 .landing div a:hover    {color:#214E96;background:#fff;}
+.landing .devs          {text-align:center;width:400px;position:fixed;left:50%;-left:-200px;bottom:10;color:white;font-size:70%;}
 
 .shadowTimer            {display:none;}
 .checkboxes             {width:100%;font-family: 'Montserrat', sans-serif;}
@@ -126,21 +127,21 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 
 .setting-clock .boolcont{margin:40 0 0 0;}
 .setting-clock .h2bool  {width:60%;float:left;}
-.setting-clock .bool    {width:20%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s;}
-.bool:hover             {background:rgba(33, 62, 150, .75);}
-.bool:active            {background:rgba(33, 62, 150, .5);}
+.setting-clock .bool    {width:20%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s, color .2s;}
+.bool:hover             {background:white;color:#214E96;cursor:pointer;}
+.bool:active            {background:white;color:#214E96;color:#191919}
 
 .setting-clock .optcont {margin: 40 0 0 0;}
 .setting-clock .h2opt   {width:100%;float:left;}
-.setting-clock .opt     {width:33.3334%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s;}
-.opt:hover              {background:rgba(33, 62, 150, .75);}
-.opt:active             {background:rgba(33, 62, 150, .5);}
+.setting-clock .opt     {width:33.3334%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s, color .2s;}
+.opt:hover              {background:white;color:#214E96;cursor:pointer;}
+.opt:active             {background:white;color:#214E96;color:#191919}
 
 .setting-general .boolcont{margin:40 0 0 0;}
 .setting-general .h2bool  {width:60%;float:left;}
-.setting-general .bool    {width:20%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s;}
-.bool:hover             {background:rgba(33, 62, 150, .75);}
-.bool:active            {background:rgba(33, 62, 150, .5);}
+.setting-general .bool    {width:20%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s, color .2s;}
+.bool:hover             {background:white;color:#214E96;cursor:pointer;}
+.bool:active            {background:white;color:#214E96;color:#191919}
 
 input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 
@@ -179,58 +180,4 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
     .setting-clock,
     .setting-general    {width:100%;padding:0 25;}
     
-}
-
-*:-webkit-full-screen {
-    position: fixed;
-    width: 100%;
-    height:100%;
-    top: 0;
-    padding-top:10%;
-}
-
-
-*:-webkit-full-screen .checkbox-button{
-    display:none;
-}
-
-*:-webkit-full-screen .checkbox-input{
-    width:100%;
-    line-height: 100%;
-}
-
-*:-webkit-full-screen .checkbox-input input{
-    font-size:20vh;
-    width:30%;
-}
-
-*:-webkit-full-screen input[disabled] {
-    background:#fff!important;
-}
-
-*:-moz-full-screen input[disabled] {
-    background:#fff!important;
-}
-
-*:-moz-full-screen {
-    position: fixed;
-    width: 100%;
-    height:100%;
-    top: 0;
-    padding-top:10%;
-    background-color: rgba(255,255,255,1);
-}
-
-*:-moz-full-screen .checkbox-button{
-    display:none;
-}
-
-*:-moz-full-screen .checkbox-input{
-    width:100%;
-    line-height: 100%;
-}
-
-*:-moz-full-screen .checkbox-input input{
-    font-size:20vh;
-    width:30%;
 }
