@@ -15,6 +15,7 @@
 
         <h3 id="classes"></h3>
         <h3 id="students"></h3>
-        <textarea name="all_names" id="all_names" readonly=true rows="8" cols="40"></textarea>
+        <select size="10" id="all_names"></select>
+        <input type="button" name="delete_name" id="delete_name" value="Remove" />
     </div>
 </main>
