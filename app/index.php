@@ -19,7 +19,7 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <script type="text/javascript" src="js/clock.js"></script>
 <body>
     <noscript>
-    <strong>This website will not function with javascript disabled.
+        <strong>This website will not function with javascript disabled.</strong>
     </noscript>
     <!-- This is where the navigation resires. -->
     <nav>

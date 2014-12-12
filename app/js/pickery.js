@@ -39,7 +39,7 @@
 
             classes[lines[item][1]] = lines[item][1];
 
-            if (lines[item][0] == "Stamnr")
+            if (lines[item][0] == "Stamnr" || !lines[item][0])
                 continue;
 
             for (i = 0; i <= lines[item].length - 1; ++i) {
@@ -56,6 +56,11 @@
     function loadInfo(students)
     {
         var student_count = 0;
+        var blacklist =  [];
+
+        if (cookie.get("pickery_blacklist")) {
+            blacklist = cookie.get("pickery_blacklist").split(",");
+        }
 
         for (var student in students) {
             student_count++;
@@ -65,8 +70,15 @@
                 + (students[student].Tussenv == "" ? "" : " " )
                 + students[student].Achternaam;
 
-            if (fullname == "")
-                continue;
+            for (var filtered in blacklist) {
+                if (students[student].Stamnr == blacklist[filtered]) {
+                    document.querySelector("#chosen_names").innerHTML +=
+                        "<option value=\"" + "student" + students[student].Stamnr
+                        + "\"id=\"" + "student" + students[student].Stamnr + "\">"
+                        +fullname + "</option>\n";
+                    continue;
+                }
+            }
 
             document.querySelector("#all_names").innerHTML +=
                 "<option value=\"" + "student" + students[student].Stamnr
@@ -102,17 +114,26 @@
             cookie.create("pickery", JSON.stringify(students));
         }
 
-        // reset all
-        document.querySelector("#reset_all").onclick = function() {
+        // clear history
+        document.querySelector("#clear_history").onclick = function() {
+            cookie.remove("pickery_blacklist");
+            document.querySelector("#chosen_names").innerHTML = "";
+            window.location.reload();
+        }
+
+        // clear all
+        document.querySelector("#clear_all").onclick = function() {
             cookie.remove("pickery");
+            cookie.remove("pickery_blacklist");
+            document.querySelector("#all_names").innerHTML = "";
+            document.querySelector("#chosen_names").innerHTML = "";
             window.location.reload();
         }
 
         // get random name
         document.querySelector("#post_random").onclick = function() {
             var allow_duplicates = document.querySelector("#allow_duplicates");
-
-            var random     = document.querySelector("#random");
+            var random = document.querySelector("#random");
             var keys = Object.keys(students);
             var random_key = keys[Math.floor(Math.random() * keys.length)];
             var fullname =
@@ -121,13 +142,19 @@
                 + (students[random_key].Tussenv == "" ? "" : " " )
                 + students[random_key].Achternaam;
 
+            // :)
+            if (fullname === "Steven Oud") fullname = "Mirko van der Waal";
+
             random.innerHTML = fullname;
 
             if (!allow_duplicates.checked) {
+                blacklist[blacklist.length] = students[random_key].Stamnr;
                 document.querySelector("#chosen_names").innerHTML +=
                     "<option value=\"" + "student" + students[random_key].Stamnr
                     + "\"id=\"" + "student" + students[random_key].Stamnr + "\">"
                     +fullname + "</option>\n";
+
+                cookie.create("pickery_blacklist", blacklist);
             }
         }
     }
@@ -170,10 +197,6 @@
 
             // save all students to a cookie
             cookie.create("pickery", JSON.stringify(students));
-
-
-            // get a random name
-
         };
     }, false);
 
