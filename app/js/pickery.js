@@ -53,13 +53,92 @@
         return obj;
     }
 
+    function loadInfo(students)
+    {
+        var student_count = 0;
+
+        for (var student in students) {
+            student_count++;
+            var fullname =
+                  students[student].Roepnaam + " "
+                + students[student].Tussenv
+                + (students[student].Tussenv == "" ? "" : " " )
+                + students[student].Achternaam;
+
+            if (fullname == "")
+                continue;
+
+            document.querySelector("#all_names").innerHTML +=
+                "<option value=\"" + "student" + students[student].Stamnr
+                + "\"id=\"" + "student" + students[student].Stamnr + "\">"
+                +fullname + "</option>\n";
+        }
+
+        // show amount of names imported
+        document.querySelector("#students").innerHTML = "Count: " + student_count;
+        // can't save that much in a cookie
+        if (student_count > 35) {
+            alert("Due to the large number of imported names, these names won't be saved.")
+        }
+
+        // delete a name
+        document.querySelector("#delete_name").onclick = function() {
+            var selected = document.querySelector("#all_names").value;
+            var selected_id = document.getElementById(selected);
+
+            if (!selected) {
+                alert("Nothing to remove.");
+                return false
+            }
+
+            delete students[selected];
+            selected_id.parentElement.removeChild(selected_id);
+
+            // update count
+            student_count--;
+            document.querySelector("#students").innerHTML = "Count: " + student_count;
+
+            // update cookie with deleted user
+            cookie.create("pickery", JSON.stringify(students));
+        }
+
+        // reset all
+        document.querySelector("#reset_all").onclick = function() {
+            cookie.remove("pickery");
+            window.location.reload();
+        }
+
+        // get random name
+        document.querySelector("#post_random").onclick = function() {
+            var allow_duplicates = document.querySelector("#allow_duplicates");
+
+            var random     = document.querySelector("#random");
+            var keys = Object.keys(students);
+            var random_key = keys[Math.floor(Math.random() * keys.length)];
+            var fullname =
+                  students[random_key].Roepnaam + " "
+                + students[random_key].Tussenv
+                + (students[random_key].Tussenv == "" ? "" : " " )
+                + students[random_key].Achternaam;
+
+            random.innerHTML = fullname;
+
+            if (!allow_duplicates.checked) {
+                document.querySelector("#chosen_names").innerHTML +=
+                    "<option value=\"" + "student" + students[random_key].Stamnr
+                    + "\"id=\"" + "student" + students[random_key].Stamnr + "\">"
+                    +fullname + "</option>\n";
+            }
+        }
+    }
+
     if (!window.FileReader) {
         document.querySelector("#uploadcsv").innerHTML =
         "Your browser does not support window.FileReader. Uploading files will not be possible.";
         return false;
     }
 
-    // get the contents of the uploaded csv
+    // importing csv
     inputFile.addEventListener("change", function (e) {
         var file = this.files[0];
         var contents;
@@ -85,57 +164,21 @@
 
         // what happens when a file gets selected
         r.onload = function(e) {
-            cookie.create("pickery", JSON.stringify(CSVtoJSON(this.result)));
-
             var students = CSVtoJSON(this.result);
-            /* var students = cookie.get("pickery") || ""; */
-            var student_count = 0;
 
-            // show what classes are imported
-            document.querySelector("#classes").innerHTML = classes.length != 1
-                                                           ? "Classes: "
-                                                           : "Class: ";
+            loadInfo(students);
 
-            for (var _class in classes) {
-                if (_class == "Klas" || _class == "undefined" )
-                    continue;
-                document.querySelector("#classes").innerHTML += _class + " ";
-            }
+            // save all students to a cookie
+            cookie.create("pickery", JSON.stringify(students));
 
-            /* document.querySelector("h2").innerHTML = ;  */
-            for (var student in students) {
-                student_count++;
-                var fullname =
-                      students[student].Roepnaam + " "
-                    + students[student].Tussenv
-                    + (students[student].Tussenv == "" ? "" : " " )
-                    + students[student].Achternaam;
 
-                document.querySelector("#all_names").innerHTML +=
-                    "<option value=\"" + "student" + students[student].Stamnr
-                    + "\"id=\"" + "student" + students[student].Stamnr + "\">"
-                    +fullname + "</option>\n";
-            }
+            // get a random name
 
-            // show amount of names imported
-            document.querySelector("#students").innerHTML = "Count: " + student_count;
-
-            document.querySelector("#delete_name").onclick = function() {
-                var selected = document.querySelector("#all_names").value;
-                var selected_id = document.getElementById(selected);
-
-                if (!selected) {
-                    alert("Nothing to remove.");
-                    return false
-                }
-
-                console.log(selected);
-                delete students[selected];
-                selected_id.parentElement.removeChild(selected_id);
-
-                console.log(students);
-            }
         };
     }, false);
+
+    if (cookie.get("pickery")) {
+        loadInfo(JSON.parse(cookie.get("pickery")));
+    }
 
 })();

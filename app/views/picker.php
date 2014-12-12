@@ -13,9 +13,17 @@
             </form>
         </div>
 
-        <h3 id="classes"></h3>
+        <input type="checkbox" name="duplicates" id="allow_duplicates" />
+        <label for="allow_duplicates">Allow duplicates</label>
+
+        <h2 id="random"></h2>
+        <input type="button" name="post_random" id="post_random" value="RANDOM" />
+        
         <h3 id="students"></h3>
         <select size="10" id="all_names"></select>
         <input type="button" name="delete_name" id="delete_name" value="Remove" />
+        <input type="button" name="reset_all" id="reset_all" value="Reset" />
+
+        <select size="10" id="chosen_names"></select>
     </div>
 </main>

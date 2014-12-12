@@ -18,7 +18,9 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <script type="text/javascript" src="js/render.js"></script>
     <script type="text/javascript" src="js/clock.js"></script>
 <body>
-
+    <noscript>
+    <strong>This website will not function with javascript disabled.
+    </noscript>
     <!-- This is where the navigation resires. -->
     <nav>
         <a class="<?php echo ($rt=="home") ? 'active' : ''; ?>" href="home"><i class="icon ion-home"></i></a>

@@ -154,7 +154,7 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 .text_color_box         {background:#191919}
 .background_color_box   {background:#F2F2F2}
 
-#all_names              {width:40%;height:60%;overflow-y:scroll;overflow-x:hidden;}
+select                  {width:30%;height:60%;overflow-y:scroll;overflow-x:hidden;}
 
 
 *:-webkit-full-screen {
