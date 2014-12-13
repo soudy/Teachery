@@ -35,18 +35,18 @@
             <h1>Clock</h1>
             
             <h2>Default start time</h2>
-            <input maxlength="2" placeholder="HH" type="text" name="" id="">
+            <input class="clock_default" value="00" maxlength="2" placeholder="HH" type="text" name="" id="">
             <span class="semi">:</span>
-            <input maxlength="2" placeholder="MM" type="text" name="" id="">
+            <input class="clock_default" value="10" maxlength="2" placeholder="MM" type="text" name="" id="">
             <span class="semi">:</span>
-            <input maxlength="2" placeholder="SS" type="text" name="" id="">
-            <span class="ref"><i class="ion ion-refresh" id="text_reset"></i></span>
+            <input class="clock_default" value="00" maxlength="2" placeholder="SS" type="text" name="" id="">
+            <span class="ref"><i class="ion ion-refresh" id="time_reset"></i></span>
             <div class="clear-both"></div>
 
-            <div class="boolcont">
+            <div class="boolcont auto-mute">
                 <h2 class="h2bool">Auto mute</h2>
-                <span class="bool">YES</span>
-                <span class="bool">NO</span>
+                <span class="bool auto-mute">YES</span>
+                <span class="bool auto-mute">NO</span>
             </div>
 
             <div class="optcont">

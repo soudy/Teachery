@@ -50,7 +50,7 @@
         clocks[c] = new Clock({
             appendTo: document.querySelector('main'),
             id: c,
-            name: 'clock'+c
+            name: 'clock'+c,
         });
         cookie.create("clock_count", c);
     }

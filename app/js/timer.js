@@ -82,6 +82,7 @@ function Timer(settings){
 	}
 
 	this.getTime = function(){
+		if (!this.lastTick) return this.timeLeft();
 		var currentTick = new Date();
 		var added;
 		if (this.pauseBool)
@@ -116,6 +117,25 @@ function Timer(settings){
 		if (!this.pauseBool)
 			return false;
 		return true;
+	}
+
+	this.timeLeft = function(){
+		var display = this.duration;
+		if (this.time && this.direction == 'down')
+			display = this.time - this.duration;
+
+		if (display < 0){
+			this.duration = 0;
+		}
+		var milliseconds = parseInt((display%1000)/100),
+			seconds = parseInt((display/1000)%60),
+			minutes = parseInt((display/(1000*60))%60),
+			hours = parseInt((display/(1000*60*60))%24);
+
+		hours = (hours < 10) ? "0" + hours : hours;
+		minutes = (minutes < 10) ? "0" + minutes : minutes;
+		seconds = (seconds < 10) ? "0" + seconds : seconds;
+		return hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
 	}
 
 	if (settings.time){

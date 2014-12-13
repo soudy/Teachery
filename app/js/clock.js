@@ -16,11 +16,12 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-function Clock(settings){
+function Clock(options){
 
     // We need this to work in events
     var self = this;
     var cookie = new Cookies();
+    var settings = JSON.parse(cookie.get("settings")) || {};
     var appendTo = document.querySelector("main");
 
     // Copy the shadow clone and append it to the given node
@@ -34,21 +35,20 @@ function Clock(settings){
     this.buttons = this.element.querySelectorAll('.checkbox-button a');
 
     this.started = false;
-    this.mute = settings.mute || true;
-    this.id = settings.id;
+    this.mute = options.mute || (settings.auto_mute == 1) ? true : false || true;
+    this.id = options.id;
     this.sound = new Audio('src/hitmarker.mp3');
     //this.sound.loop = true;
     this.endsound = new Audio('src/endtick.mp3');
 
-    this.title.value = settings.name || 'Clock'+(Math.floor(Math.random()*200));
+    this.title.value = options.name || 'Clock'+(Math.floor(Math.random()*200));
     // Create a default timer
     this.timer = new Timer({
         name: this.title.value,
-        direction: settings.direction || 'down',
-        time: settings.time || "00:10:00",
+        direction: options.direction || 'down',
+        time: options.time || settings.clock || "00:10:00",
         callback: function(){
-            if (!self.mute)
-                self.endsound.play();
+            self.endsound.play();
             console.log(self.render.stop());
             self.stop();
         },
@@ -127,7 +127,6 @@ function Clock(settings){
             this.render.stop();
             this.started = false;
             this.checkSound();
-            return this;
         } else {
             this.setReadOnly(true);
             this.setPlaying(true);
@@ -137,7 +136,7 @@ function Clock(settings){
             this.started = true;
             this.checkSound();
         }
-        this.updateCookie();
+        this.updateCookie()
     }
 
     this.stop = function(){
@@ -224,15 +223,17 @@ function Clock(settings){
             id: this.id,
             name: this.timer.name,
             direction: this.timer.direction,
-            time: this.timer.time,
+            time: this.timer.timeLeft(),
         }
     }
 
     this.updateCookie = function(){
         cookie.create("clock__"+this.id, JSON.stringify(this.getInfo()));
+        return true;
     }
 
     this.updateCookie();
+    this.updateDisplay();
 
 }
 

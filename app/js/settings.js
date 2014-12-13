@@ -27,18 +27,21 @@
     var text_default = "191919";
     var background_default = "F2F2F2";
     var mute_default = 1;
+    var clock_default = '00:10:00';
 
     var settings = JSON.parse(cookie.get("settings")) ||
     {
         base_color: base_default,
         text_color: text_default,
         background_color: background_default,
-        auto_mute: mute_default
+        auto_mute: mute_default,
+        clock: clock_default,
     };
 
     var base_color       = document.querySelector("#base_color");
     var background_color = document.querySelector("#background_color");
     var text_color       = document.querySelector("#text_color");
+    var clocks           = document.querySelectorAll('.clock_default');
 
     base_color.value       = settings.base_color;
     background_color.value = settings.background_color;
@@ -105,5 +108,41 @@
         settings.text_color = text_default;
         cookie.create("settings", JSON.stringify(settings));
         window.location.reload();
+    }
+
+    document.querySelector("#time_reset").onclick = function() {
+        var t = clock_default.split(':');
+        clocks[0].value = t[0];
+        clocks[1].value = t[1];
+        clocks[2].value = t[2];
+        cookie.create("settings", JSON.stringify(settings));
+    }
+
+    var t = settings.clock.split(':');
+    for (var i = 0; i < clocks.length; i++) {
+        clocks[i].value = t[i];
+        clocks[i].addEventListener('blur', function(){
+            settings.clock = clocks[0].value+':'+clocks[1].value+':'+clocks[2].value;
+            cookie.create("settings", JSON.stringify(settings));
+        });
+    };
+
+    var mute_toggle = document.querySelector('.auto-mute').querySelectorAll('.bool');
+    if (settings.auto_mute == 1)
+        mute_toggle[0].classList.add('active')
+    else
+        mute_toggle[1].classList.add('active')
+
+    mute_toggle[0].onclick = function(){
+        mute_toggle[1].classList.remove('active');
+        mute_toggle[0].classList.add('active');
+        settings.auto_mute = 1;
+        cookie.create("settings", JSON.stringify(settings));
+    }
+    mute_toggle[1].onclick = function(){
+         mute_toggle[0].classList.remove('active');
+        mute_toggle[1].classList.add('active');
+        settings.auto_mute = 0;
+        cookie.create("settings", JSON.stringify(settings));
     }
 })();
