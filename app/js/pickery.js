@@ -24,8 +24,8 @@
 
     var cookie = new Cookies();
     var inputFile = document.querySelector("#class");
-
     var classes = [];
+
     function CSVtoJSON(csv)
     {
         var lines  = csv.split("\n");
@@ -89,9 +89,8 @@
         // show amount of names imported
         document.querySelector("#students").innerHTML = "Count: " + student_count;
         // can't save that much in a cookie
-        if (student_count > 35) {
-            alert("Due to the large number of imported names, these names won't be saved.")
-        }
+        if (student_count > 35)
+            alert("Due to the large number of imported names, these names won't be saved.");
 
         // delete a name
         document.querySelector("#delete_name").onclick = function() {
@@ -143,19 +142,26 @@
                 + students[random_key].Achternaam;
 
             // :)
-            if (fullname === "Steven Oud") fullname = "Mirko van der Waal";
-
-            random.innerHTML = fullname;
+            if (fullname === "Steven Oud") fullname = "Terence Keur";
 
             if (!allow_duplicates.checked) {
+                for (var i = 0; i < blacklist.length; ++i) {
+                    if (students[random_key].Stamnr == blacklist[i]) {
+                        delete students[random_key];
+                        this;
+                    }
+                }
                 blacklist[blacklist.length] = students[random_key].Stamnr;
                 document.querySelector("#chosen_names").innerHTML +=
-                    "<option value=\"" + "student" + students[random_key].Stamnr
-                    + "\"id=\"" + "student" + students[random_key].Stamnr + "\">"
-                    +fullname + "</option>\n";
+                "<option value=\"" + "student" + students[random_key].Stamnr
+                + "\"id=\"" + "student" + students[random_key].Stamnr + "\">"
+                +fullname + "</option>\n";
 
                 cookie.create("pickery_blacklist", blacklist);
             }
+
+            random.innerHTML = fullname;
+
         }
     }
 

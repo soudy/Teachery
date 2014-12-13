@@ -80,7 +80,6 @@
         for (key in clocks)
             c++;
         if (c < 1) {
-            alert("You have no clocks.");
             return false;
         }
 
