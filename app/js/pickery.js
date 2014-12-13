@@ -124,8 +124,6 @@
         document.querySelector("#clear_all").onclick = function() {
             cookie.remove("pickery");
             cookie.remove("pickery_blacklist");
-            document.querySelector("#all_names").innerHTML = "";
-            document.querySelector("#chosen_names").innerHTML = "";
             window.location.reload();
         }
 
@@ -134,7 +132,24 @@
             var allow_duplicates = document.querySelector("#allow_duplicates");
             var random = document.querySelector("#random");
             var keys = Object.keys(students);
-            var random_key = keys[Math.floor(Math.random() * keys.length)];
+            var random_key;
+
+            if (!allow_duplicates.checked) {
+                for (var filtered in blacklist) {
+                    for (var key in keys) {
+                        if (keys[key] === "student"+blacklist[filtered])
+                            keys.splice(key, 1)
+                    }
+                }
+            }
+
+            random_key = keys[Math.floor(Math.random() * keys.length)];
+
+            if (!students[random_key]) {
+                alert("You've looped through all names.");
+                return false;
+            }
+
             var fullname =
                   students[random_key].Roepnaam + " "
                 + students[random_key].Tussenv
@@ -145,22 +160,17 @@
             if (fullname === "Steven Oud") fullname = "Terence Keur";
 
             if (!allow_duplicates.checked) {
-                for (var i = 0; i < blacklist.length; ++i) {
-                    if (students[random_key].Stamnr == blacklist[i]) {
-                        delete students[random_key];
-                        this;
-                    }
-                }
                 blacklist[blacklist.length] = students[random_key].Stamnr;
-                document.querySelector("#chosen_names").innerHTML +=
-                "<option value=\"" + "student" + students[random_key].Stamnr
-                + "\"id=\"" + "student" + students[random_key].Stamnr + "\">"
-                +fullname + "</option>\n";
 
                 cookie.create("pickery_blacklist", blacklist);
             }
 
             random.innerHTML = fullname;
+
+            document.querySelector("#chosen_names").innerHTML +=
+            "<option value=\"" + "student" + students[random_key].Stamnr
+            + "\"id=\"" + "student" + students[random_key].Stamnr + "\">"
+            +fullname + "</option>\n";
 
         }
     }
@@ -206,8 +216,7 @@
         };
     }, false);
 
-    if (cookie.get("pickery")) {
+    if (cookie.get("pickery"))
         loadInfo(JSON.parse(cookie.get("pickery")));
-    }
 
 })();
