@@ -2,14 +2,14 @@
     <!-- Timer (Overlay) -->
     <div class="checkbox-overlay">
         <div class="checkbox-texts">
-            <p>Do you want to delete <span class="clock-name"></span>?  </p>
+            <p class="checkbox-message"></p>
         </div>
 
         <div class="checkbox-bool">
             <div class="checkbox-confirm">
                 YES
             </div>
-            <div class="checkbox-confirm">
+            <div class="checkbox-cancel">
                 NO
             </div>
         </div>

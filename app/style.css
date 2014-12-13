@@ -77,14 +77,18 @@ main                {width:   100%;
 header                  {width:300px;margin:20 auto 50 auto}
 header h1               {font-family: 'Montserrat', sans-serif;text-align:center;font-size:385%;font-weight:100;border-bottom:5px solid #214E96;}
 
-.checkbox-overlay       {display:none;height:100%;width:100%;background:rgba(255, 255, 255, .5);position:absolute;left:0;top:0;}
+.checkbox-overlay       {display:none;height:100%;width:100%;background:rgba(255, 255, 255, .8);position:absolute;left:0;top:0;}
+.checkbox-overlay.active{display:block;}
 .checkbox-texts         {text-align:center;padding:25vh 0 0 0;font-size:150%;text-shadow:0px 2px 0px white;}
 .checkbox-bool          {width:190px;margin:0 auto;}
-.checkbox-confirm       {text-align:center;background:transparent;padding:20 0;width:75px;color:#214E96;float:left;margin:0 10;
+.checkbox-confirm,
+.checkbox-cancel        {text-align:center;background:#fff;padding:20 0;width:75px;color:#214E96;float:left;margin:0 10;
                         border:3px solid #214E96;font-size:125%;font-family: 'Montserrat', sans-serif;
                         transition:background .3s, color .3s;cursor:pointer;}
-.checkbox-confirm:hover{background:#214E96;color:white;}
-.checkbox-confirm:active{background:#214E96;color:white;}
+.checkbox-confirm:hover,
+.checkbox-cancel:hover  {background:#214E96;color:white;}
+.checkbox-confirm:active,
+.checkbox-cancel:active,{background:#214E96;color:white;}
 
 .checkbox-plus          {margin:40px 0px 40px 10px;font-size:200%;text-align:center;}
 .checkbox-plus i        {color:#214E96;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 25;}

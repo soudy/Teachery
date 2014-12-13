@@ -23,12 +23,11 @@
 
     var cookie = new Cookies();
     var clocks = [];
-    var clockCount = 0;
     var muteAll = false;
 
     if (document.cookie) {
-        clockCount = cookie.get('clock_count');
-        for (var i = 0; i < clockCount; i ++) {
+        var clockCount = cookie.get('clock_count');
+        for (var i = 0; i < clockCount+1; i ++) {
             var settings = cookie.get('clock__'+i);
             if (settings != null){
                 settings = JSON.parse(settings);
@@ -44,16 +43,16 @@
 
     document.querySelector('.addTimer').onclick = function(e){
         e.preventDefault();
-
-        clocks[clockCount] = new Clock({
+        var c = 0;
+        for (key in clocks)
+            c = key;
+        c++;
+        clocks[c] = new Clock({
             appendTo: document.querySelector('main'),
-            id: clockCount,
-            name: 'clock'+clockCount
+            id: c,
+            name: 'clock'+c
         });
-        //cookie.create("clock__"+clockCount, JSON.stringify(clocks[clockCount].getInfo()));
-        cookie.create("clock_count", clockCount+1);
-
-        clockCount = parseInt(cookie.get("clock_count"));
+        cookie.create("clock_count", c);
     }
 
     document.querySelector('.muteSounds').onclick = function(e){
@@ -77,18 +76,25 @@
 
     document.querySelector('.removeTimers').onclick = function(e){
         e.preventDefault();
-        if (!clockCount) {
+        var c = 0;
+        for (key in clocks)
+            c++;
+        if (c < 1) {
             alert("You have no clocks.");
             return false;
         }
 
-        if (confirm('Are you sure u want to delete all clocks?')){
-            for (key in clocks){
-                clocks[key].remove(true);
-                cookie.remove("clock"+key);
+        new Confirm({
+            element:    document.querySelector('.checkbox-overlay'),
+            message:    'Are you sure u want to delete all clocks?',
+            confirm: function(){
+                for (key in clocks){
+                    clocks[key].remove(true);
+                    cookie.remove("clock__"+key);
+                }
+                cookie.remove("clock_count");
             }
-            cookie.remove("count");
-        }
+        }).show();
     }
 
     document.addEventListener('removeClock', function(e){

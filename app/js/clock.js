@@ -182,11 +182,24 @@ function Clock(settings){
     }
 
     this.remove = function(force){
-        if (force || confirm('Are you sure u want to delete '+this.timer.getName()+'?')) {
+        if (force) {
             this.render.stop();
             this.element.remove();
             var event = new CustomEvent('removeClock', { 'detail': this.id });
             document.dispatchEvent(event);
+        }  else {
+            // Cba to do it better atm
+            // Recreate the above in a temporary function then call it with force or with confirm.
+            new Confirm({
+                element:    document.querySelector('.checkbox-overlay'),
+                message:    'Are you sure u want to delete '+this.timer.getName()+'?',
+                confirm: function(){
+                    self.render.stop();
+                    self.element.remove();
+                    var event = new CustomEvent('removeClock', { 'detail': self.id });
+                    document.dispatchEvent(event);
+                }
+            }).show();
         }
     }
 

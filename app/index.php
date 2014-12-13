@@ -13,6 +13,7 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <script type="text/javascript" >
         var rt = "<?php echo $rt ?>";
     </script>
+    <script type="text/javascript" src="js/confirm.js"></script>
     <script type="text/javascript" src="js/cookies.js"></script>
     <script type="text/javascript" src="js/timer.js"></script>
     <script type="text/javascript" src="js/render.js"></script>
