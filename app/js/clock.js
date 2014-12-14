@@ -37,9 +37,11 @@ function Clock(options){
     this.started = false;
     this.mute = options.mute || (settings.auto_mute == 1) ? true : false || true;
     this.id = options.id;
-    this.sound = new Audio('src/hitmarker.mp3');
+
+    this.endsoundsrc = settings.finish || "airhorn";
     //this.sound.loop = true;
-    this.endsound = new Audio('src/endtick.mp3');
+    this.endsound = new Audio("sounds/" + this.endsoundsrc + ".mp3");
+    this.sound = new Audio('sounds/hitmarker.mp3');
 
     this.title.value = options.name || 'Clock'+(Math.floor(Math.random()*200));
     // Create a default timer

@@ -28,6 +28,7 @@
     var background_default = "F2F2F2";
     var mute_default = 1;
     var clock_default = '00:10:00';
+    var finish_default = "airhorn";
 
     var settings = JSON.parse(cookie.get("settings")) ||
     {
@@ -36,12 +37,14 @@
         background_color: background_default,
         auto_mute: mute_default,
         clock: clock_default,
+        finish: finish_default
     };
 
     var base_color       = document.querySelector("#base_color");
     var background_color = document.querySelector("#background_color");
     var text_color       = document.querySelector("#text_color");
     var clocks           = document.querySelectorAll('.clock_default');
+    var finish           = document.querySelectorAll(".finish");
 
     base_color.value       = settings.base_color;
     background_color.value = settings.background_color;
@@ -118,6 +121,7 @@
         cookie.create("settings", JSON.stringify(settings));
     }
 
+    // default start time
     var t = settings.clock.split(':');
     for (var i = 0; i < clocks.length; i++) {
         clocks[i].value = t[i];
@@ -127,6 +131,7 @@
         });
     };
 
+    // auto mute
     var mute_toggle = document.querySelector('.auto-mute').querySelectorAll('.bool');
     if (settings.auto_mute == 1)
         mute_toggle[0].classList.add('active')
@@ -145,4 +150,22 @@
         settings.auto_mute = 0;
         cookie.create("settings", JSON.stringify(settings));
     }
+
+    // sound finish
+    for (var i = 0; i < finish.length; ++i) {
+        finish[i].onclick = function (e) {
+            settings.finish = this.id;
+            for (var i = 0; i < finish.length; ++i)
+                finish[i].classList.remove("active");
+            this.classList.add("active");
+            cookie.create("settings", JSON.stringify(settings));
+        }
+        //
+        // set active on pageload
+        if (finish[i].id == settings.finish)
+            finish[i].classList.add("active");
+            
+    }
+
+    
 })();

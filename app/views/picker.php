@@ -16,15 +16,24 @@
         <input type="checkbox" name="duplicates" id="allow_duplicates" />
         <label for="allow_duplicates">Allow duplicates</label>
 
-        <h2 id="random"></h2>
-        <input type="button" name="post_random" id="post_random" value="RANDOM" />
         
-        <h3 id="students"></h3>
-        <select size="10" id="all_names"></select>
-        <input type="button" name="delete_name" id="delete_name" value="Remove" />
-        <input type="button" name="clear_all" id="clear_all" value="Clear all" />
-        <input type="button" name="clear_history" id="clear_history" value="Clear history" />
+        <div class="clear-both"> </div>
+        
+        <section>
+            <h3 id="students"></h3>
+            <select size="20" id="all_names"></select>
+            <input type="button" name="delete_name" id="delete_name" value="Remove" />
+            <input type="button" name="clear_all" id="clear_all" value="Clear all" />
+        </section>
 
-        <select size="10" id="chosen_names"></select>
+        <section>
+            <h2 id="random"></h2>
+            <input type="button" name="post_random" id="post_random" value="RANDOM" />
+        </section>
+
+        <section>
+            <select size="20" id="chosen_names"></select>
+            <input type="button" name="clear_history" id="clear_history" value="Clear history" />
+        </section>
     </div>
 </main>

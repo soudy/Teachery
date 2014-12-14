@@ -105,7 +105,9 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .checkbox-button        {width:50%;float:left;font-size:250%;margin:35 0px;text-align:center;}
 .checkbox-button i      {color:#214E96;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 15;}
 
-.pick                   {width:100%;font-family: 'Montserrat', sans-serif;}
+.pick                   {width:100%;font-family: 'Montserrat', sans-serif;padding-left:11.5%}
+.pick section           {width:29%;float:left;}
+.pick select            {width:100%;height:60%;overflow-y:scroll;overflow-x:hidden;}
 
 .settings               {width:100%;font-family: 'Montserrat', sans-serif;padding-left:7.5%;}
 .settings h1            {margin:50 0 25 0;}
@@ -139,7 +141,8 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .setting-clock .h2opt   {width:100%;float:left;}
 .setting-clock .opt     {width:33.3334%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s, color .2s;}
 .opt:hover              {background:white;color:#214E96;cursor:pointer;}
-.opt:active             {background:white;color:#214E96;color:#191919}
+.opt:active,
+.opt.active             {background:white;color:#214E96;color:#191919}
 
 .setting-general .boolcont{margin:40 0 0 0;}
 .setting-general .h2bool  {width:60%;float:left;}
@@ -158,8 +161,6 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 .base_color_box         {background:#214E96}
 .text_color_box         {background:#191919}
 .background_color_box   {background:#F2F2F2}
-
-select                  {width:30%;height:60%;overflow-y:scroll;overflow-x:hidden;}
 
 
 *:-webkit-full-screen {

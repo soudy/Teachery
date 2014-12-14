@@ -61,16 +61,16 @@
 
             <div class="optcont">
                 <h2 class="h2opt">Sound finish</h2>
-                <span class="opt">Sound 1</span>
-                <span class="opt">Sound 2</span>
-                <span class="opt">Sound 3</span>
-                <span class="opt">Sound 4</span>
-                <span class="opt">Sound 5</span>
-                <span class="opt">Sound 6</span>
+                <span class="opt finish" id="airhorn">Airhorn</span>
+                <span class="opt finish" id="bomb">Bomb</span>
+                <span class="opt finish" id="inception">Inception</span>
+                <span class="opt finish" id="pacman">Pacman</span>
+                <span class="opt finish" id="sadtrombone">Trombone</span>
+                <span class="opt finish" id="victory">Victory</span>
             </div>
         </div>
 
-        <div class="setting-general">
+        <!--<div class="setting-general">
             <h1>General</h1>
 
             <div class="boolcont">
@@ -78,6 +78,6 @@
                 <span class="bool">YES</span>
                 <span class="bool">NO</span>
             </div>
-        </div>
+        </div>-->
     </div>
 </main>
