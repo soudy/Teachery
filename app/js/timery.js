@@ -35,7 +35,7 @@
                     id: settings.id,
                     name: settings.name,
                     direction: settings.direction,
-                    time: settings.time,
+                    time: settings.time
                 });
             }
         }
@@ -55,6 +55,10 @@
         cookie.create("clock_count", c);
     }
 
+        
+    if (JSON.parse(cookie.get("settings")).automute) {
+        console.log("muted");
+    }
     document.querySelector('.muteSounds').onclick = function(e){
         e.preventDefault();
         if (this.classList.contains('muted')){

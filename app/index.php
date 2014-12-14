@@ -20,7 +20,9 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <script type="text/javascript" src="js/clock.js"></script>
 <body>
     <noscript>
-        <strong>This website will not function with javascript disabled.</strong>
+         For full functionality of this site it is necessary to enable JavaScript.
+         Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+         instructions how to enable JavaScript in your web browser</a>.
     </noscript>
     <!-- This is where the navigation resires. -->
     <nav>
