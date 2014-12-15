@@ -69,6 +69,8 @@ function Timer(settings){
 	this.setDirection = function(direction){
 		if (direction == 'up' || direction == 'down'){
 			this.direction = direction;
+			if (this.direction == 'down')
+				this.time = null;
 		}
 		return this;
 	}

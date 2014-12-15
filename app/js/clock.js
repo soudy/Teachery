@@ -83,7 +83,21 @@ function Clock(options){
                     self.remove();
                     break;
                 case '#settings':
-                    alert('Settings is not yet supported');
+                    new clockSettings({
+                        elm: document.querySelector('.settings-overlay'),
+                        onChange: function(e){
+                            switch(e.name){
+                                case 'direction':
+                                    self.timer.setDirection((e.value == "UP") ? 'up' : 'down');
+                                    self.updateCookie();
+                                    break;
+                                case 'muted':
+                                    self.setMuted((e.value == "TRUE") ? true : false);
+                                    self.updateCookie();
+                                    break;
+                            }
+                        }, 
+                    });
                     break;
             }
         });
@@ -242,4 +256,25 @@ function Clock(options){
 function fullScreenEnabled(){
     if( document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) return true;
     return false;
+}
+
+
+
+function clockSettings(options){
+    var self = this;
+    this.elm = options.element || options.elm;
+    console.log(options);
+    this.settings = this.elm.querySelectorAll('.settings-bool > div');
+    this.callback = options.onChange || function(){};
+
+    for (var i = 0; i < this.settings.length; i++) {
+        this.settings[i].onclick = function(){
+            self.callback({
+                name: this.dataset.name,
+                value: this.dataset.value,
+            });
+        }
+    };
+
+    this.elm.style.display = 'table';
 }

@@ -16,6 +16,37 @@
     </div>
     <!-- Timer (Overlay) -->
 
+    <div class="settings-overlay">
+        <div class="settings-group">
+            <div class="settings-texts">
+                <p class="settings-message">Direction</p>
+            </div>
+
+            <div class="settings-bool">
+                <div data-name="direction" data-value="up">
+                    UP
+                </div>
+                <div data-name="direction" data-value="down">
+                    DOWN
+                </div>
+            </div>
+        </div>
+        <div class="settings-group">
+            <div class="settings-texts">
+                <p class="settings-message">Muted</p>
+            </div>
+
+            <div class="settings-bool">
+                <div data-name="muted" data-value="TRUE">
+                    TRUE
+                </div>
+                <div data-name="muted" data-value="FALSE">
+                    FALSE
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Timer (Head) -->
     <header>
         <h1>Timery</h1>
