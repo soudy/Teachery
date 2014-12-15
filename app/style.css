@@ -53,7 +53,7 @@ nav:hover + .cookie {width:   85%;}
 nav a               {display: -webkit-box;
                      display: -webkit-flex;
                      display: flex;
-                    height:20vh;-webkit-align-items: center;align-items: center;
+                    height:25vh;-webkit-align-items: center;align-items: center;
                     justify-content: center;-webkit-justify-content: center;font-size:2em;
                     transition:background .3s, color .3s;}
 nav a:hover,
@@ -69,7 +69,7 @@ main                {width:   100%;
 .landing div            {font-family: 'Montserrat', sans-serif;text-align:center;margin-top:65px;}
 .landing div a          {letter-spacing:.5em;color:#fff;border:2.5px solid #fff;padding:20 50;transition:background .3s, color .3s;}
 .landing div a:hover    {color:#214E96;background:#fff;}
-.landing .devs          {text-align:center;width:400px;position:fixed;left:50%;-left:-200px;bottom:10;color:white;font-size:70%;}
+.landing .devs          {text-align:center;width:400px;position:fixed;left:50%;margin-left:-200px;bottom:10;color:white;font-size:70%;}
 
 .shadowTimer            {display:none;}
 .checkboxes             {width:100%;font-family: 'Montserrat', sans-serif;}
@@ -106,7 +106,9 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .checkbox-button i      {color:#214E96;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 15;}
 
 .pick                   {width:100%;font-family: 'Montserrat', sans-serif;padding-left:11.5%}
-.pick section           {width:29%;float:left;}
+.pick-form              {width:100%;height:100px;text-align:center;margin-left:-7%;}
+.pick-form label        {font-size:500%;color:#214396;cursor:pointer;}
+.pick section           {width:30%;float:left;}
 .pick select            {width:100%;height:60%;overflow-y:scroll;overflow-x:hidden;}
 
 .settings               {width:100%;font-family: 'Montserrat', sans-serif;padding-left:7.5%;}
@@ -220,10 +222,10 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
     /* CORE RESPONSIVE */
     .cookie             {width:100%;line-height:1em;}
     body                {}
-    main                {padding:0;margin-top:65px;margin-bottom:65px;}
+    main                {padding:0;margin-top:65px;margin-bottom:85px;}
     nav                 {display:block;position:fixed;width:100%;bottom:0;}
     nav:hover           {width:100%;}
-    nav a               {height:65px;width:20%;float:left;}
+    nav a               {height:65px;width:25%;float:left;}
 
     /* LANDING */
     .landing div a,
