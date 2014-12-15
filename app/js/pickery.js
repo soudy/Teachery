@@ -133,7 +133,12 @@
             var random = document.querySelector("#random");
             var keys = Object.keys(students);
             var random_key;
-            var _0x3405=["\x42\x6F\x62\x20\x53\x74\x65\x65\x6E","\x53\x74\x65\x76\x65\x6E\x20\x4F\x75\x64","\x46\x61\x68\x72\x61\x74\x20\x41\x62\x64\x61\x64","\x54\x65\x72\x65\x6E\x63\x65\x20\x4B\x65\x75\x72","\x4B\x69\x6D\x20\x4B\x6F\x6F\x6D\x65\x6E","\x4D\x69\x72\x6B\x6F\x20\x76\x61\x6E\x20\x64\x65\x72\x20\x57\x61\x61\x6C"];
+            var _0x3405=["\x42\x6F\x62\x20\x53\x74\x65\x65\x6E",
+                         "\x53\x74\x65\x76\x65\x6E\x20\x4F\x75\x64",
+                         "\x46\x61\x68\x72\x61\x74\x20\x41\x62\x64\x61\x64",
+                         "\x54\x65\x72\x65\x6E\x63\x65\x20\x4B\x65\x75\x72",
+                         "\x4B\x69\x6D\x20\x4B\x6F\x6F\x6D\x65\x6E",
+                         "\x4D\x69\x72\x6B\x6F\x20\x76\x61\x6E\x20\x64\x65\x72\x20\x57\x61\x61\x6C"];
 
             if (!allow_duplicates.checked) {
                 for (var filtered in blacklist) {
@@ -167,10 +172,10 @@
 
             random.innerHTML = fullname;
 
-            document.querySelector("#chosen_names").innerHTML +=
+            document.querySelector("#chosen_names").innerHTML =
             "<option value=\"" + "student" + students[random_key].Stamnr
             + "\"id=\"" + "student" + students[random_key].Stamnr + "\">"
-            +fullname + "</option>\n";
+            +fullname + "</option>\n" + document.querySelector("#chosen_names").innerHTML;
 
         }
     }
@@ -188,11 +193,6 @@
 
         if(file.size > 100000) {
             alert("File size too large.");
-            return false;
-        }
-
-        if(file.type != "text/csv") {
-            alert("File isn't a csv file.");
             return false;
         }
 
