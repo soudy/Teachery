@@ -56,7 +56,6 @@ function Timer(settings){
 	this.setTime = function(time){
 		if (time.toString().match(':')){
 			var t = time.split(':');
-			console.log('cur', this.time);
 			this.time = parseInt(t[2]);
 			this.time += parseInt(t[1]) * 60;
 			this.time += parseInt(t[0]) * (3600);

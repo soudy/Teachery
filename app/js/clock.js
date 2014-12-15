@@ -51,7 +51,6 @@ function Clock(options){
         time: options.time || settings.clock || "00:10:00",
         callback: function(){
             self.endsound.play();
-            console.log(self.render.stop());
             self.stop();
         },
     });
@@ -132,7 +131,6 @@ function Clock(options){
             this.updateCookie();
         }
         this.times[2].value = times[2];
-        /* console.log(times); */
     }
 
     this.start = function(){
@@ -263,7 +261,6 @@ function fullScreenEnabled(){
 function clockSettings(options){
     var self = this;
     this.elm = options.element || options.elm;
-    console.log(options);
     this.settings = this.elm.querySelectorAll('.settings-bool > div');
     this.callback = options.onChange || function(){};
 
