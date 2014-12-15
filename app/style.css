@@ -62,7 +62,7 @@ nav a.active        {background:#F2F2F2;color:#214E96;}
 
                     /* WIDTH: 100% */
 main                {width:   100%;
-                    float:left;background:#F2F2F2;transition:width .3s;font-family: 'Lato', sans-serif;padding-left:100px;}
+                    float:left;background:#F2F2F2;transition:width .3s;font-family: 'Lato', sans-serif;padding-left:100px;margin-bottom:75px;}
 
 .landing                {width:100%;background:#214E96;height:100%;text-align:center;}
 .landing img            {margin-top:100px;width:85%;}
@@ -105,11 +105,17 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .checkbox-button        {width:50%;float:left;font-size:250%;margin:35 0px;text-align:center;}
 .checkbox-button i      {color:#214E96;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 15;}
 
-.pick                   {width:100%;font-family: 'Montserrat', sans-serif;padding-left:11.5%}
-.pick-form              {width:100%;height:100px;text-align:center;margin-left:-7%;}
-.pick-form label        {font-size:500%;color:#214396;cursor:pointer;}
-.pick section           {width:30%;float:left;}
-.pick select            {width:100%;height:60%;overflow-y:scroll;overflow-x:hidden;}
+.pick                   {width:100%;font-family: 'Montserrat', sans-serif;padding-left:9.5%}
+.pick h3                {margin:25 0;font-size:100%;}
+.pick-form              {width:100%;height:100px;text-align:center;margin-left:-5.5%;}
+.pick-form label        {font-size:500%;color:#214E96;cursor:pointer;}
+.section-left,
+.section-right          {width:35%;float:left;text-align:center;}
+.section-middle         {width:20%;float:left;text-align:center;margin-top:25px;}
+.section-middle div     {width:100%;border:none;color:#FFF;text-align:center;
+                        font-family: 'Montserrat', sans-serif;font-size:250%;padding:17.5 25;cursor:pointer;}
+.section-middle i       {color:#214E96;}
+.pick select            {width:100%;}
 
 .settings               {width:100%;font-family: 'Montserrat', sans-serif;padding-left:7.5%;}
 .settings h1            {margin:50 0 25 0;}
@@ -244,6 +250,9 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
     .setting-clock,
     .setting-general    {width:100%;padding:0 25;}
 
+
+    /* PICKERY */
+    .section-middle div {padding:17.5 0;}
 }
 
 
