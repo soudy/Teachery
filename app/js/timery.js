@@ -41,8 +41,6 @@
         }
     }
 
-    console.log("dart");
-
     document.querySelector('.addTimer').onclick = function(e){
         e.preventDefault();
         var c = 0;
@@ -57,10 +55,6 @@
         cookie.create("clock_count", c);
     }
 
-        
-    if (JSON.parse(cookie.get("settings")).automute) {
-        console.log("muted");
-    }
     document.querySelector('.muteSounds').onclick = function(e){
         e.preventDefault();
         if (this.classList.contains('muted')){
