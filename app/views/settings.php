@@ -48,17 +48,7 @@
                 <span class="bool auto-mute">YES</span>
                 <span class="bool auto-mute">NO</span>
             </div>
-
-            <div class="optcont">
-                <h2 class="h2opt">Sound per second</h2>
-                <span class="opt">Sound 1</span>
-                <span class="opt">Sound 2</span>
-                <span class="opt">Sound 3</span>
-                <span class="opt">Sound 4</span>
-                <span class="opt">Sound 5</span>
-                <span class="opt">Sound 6</span>
-            </div>
-
+            
             <div class="optcont">
                 <h2 class="h2opt">Sound finish</h2>
                 <span class="opt finish" id="airhorn">Airhorn</span>
