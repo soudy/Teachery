@@ -273,6 +273,7 @@ function clockSettings(options){
                 name: this.dataset.name,
                 value: this.dataset.value,
             });
+            self.elm.style.display = "none";
         }
     };
 
