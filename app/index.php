@@ -19,9 +19,6 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <script type="text/javascript" src="js/render.js"></script>
     <script type="text/javascript" src="js/clock.js"></script>
 <body>
-    <noscript>
-        <strong>This website will not function with javascript disabled.</strong>
-    </noscript>
     <!-- This is where the navigation resires. -->
     <nav>
         <a class="<?php echo ($rt=="home") ? 'active' : ''; ?>" href="home"><i class="icon ion-home"></i></a>
@@ -31,6 +28,12 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     </nav>
 
     <div class="cookie"></div>
+
+    <noscript>
+         For full functionality of this site it is necessary to enable JavaScript.
+         Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+         instructions how to enable JavaScript in your web browser</a>.
+    </noscript>
     <?php
     switch($rt){
         case 'home':

@@ -21,7 +21,7 @@
     var cookie = new Cookies();
 
     if(!cookie.get("cookie_warn")) {
-        document.querySelector(".cookie").innerHTML = '<p>This site uses cookies to maximize the users experience. </p> \
+        document.querySelector(".cookie").innerHTML = '<p>In order to function properly, this site uses cookies.</p> \
                                                        <i class="icon ion-close" id="close-cookie"></i>';
         document.querySelector("#close-cookie").onclick = function(e) {
             cookie.create("cookie_warn", 1);
