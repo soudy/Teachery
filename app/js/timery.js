@@ -41,8 +41,6 @@
         }
     }
 
-    console.log("dart");
-
     document.querySelector('.addTimer').onclick = function(e){
         e.preventDefault();
         var c = 0;

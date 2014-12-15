@@ -40,6 +40,9 @@
         finish: finish_default
     };
 
+    var base_color_hash  = document.querySelector("#base_color_hash");
+    var background_color_hash  = document.querySelector("#background_color_hash");
+    var text_color_hash  = document.querySelector("#text_color_hash");
     var base_color       = document.querySelector("#base_color");
     var background_color = document.querySelector("#background_color");
     var text_color       = document.querySelector("#text_color");
@@ -167,5 +170,25 @@
             
     }
 
+    base_color_hash.onchange = function() {
+        base_color.value = base_color_hash.value.slice(1,7);
+        settings.base_color = base_color_hash.value.slice(1,7);
+        cookie.create("settings", JSON.stringify(settings));
+        window.location.reload();
+    }
+
+    background_color_hash.onchange = function() {
+        background_color.value = background_color_hash.value.slice(1,7);
+        settings.background_color = background_color_hash.value.slice(1,7);
+        cookie.create("settings", JSON.stringify(settings));
+        window.location.reload();
+    }
+
+    text_color_hash.onchange = function() {
+        text_color.value = text_color_hash.value.slice(1,7);
+        settings.text_color = text_color_hash.value.slice(1,7);
+        cookie.create("settings", JSON.stringify(settings));
+        window.location.reload();
+    }
     
 })();
