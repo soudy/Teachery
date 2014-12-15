@@ -13,9 +13,5 @@
 			<h2><i class="icon ion-person"></i> Pickery</h2>
 			<p>Pickery allows you to easily select a random name from a list of names. You can export a class as CSV in Magister and import it here, and it will be ready for use.</p>
 		</div>
-		<div class="home-group">
-			<h2><i class="icon ion-person-stalker"></i> Groupery</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae dolorem veritatis ipsum fuga, quisquam eius et voluptatem consectetur odit magni?</p>
-		</div>
     </div>
 </main>
