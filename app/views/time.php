@@ -77,9 +77,9 @@
 
             <div class="checkbox-button"> 
                 <a href="#Play"><i class="icon ion-play"></i></a> <!-- <i class="icon ion-pause"></i> -->
-                <a href="#Fullscreen"><i class="icon ion-monitor"></i> </a>
-                <a href="#Remove"><i class="icon ion-trash-b"></i></a>
-                <a href="#Settings"><i class="icon ion-gear-a"></i></a>
+                <a class="remove" href="#Fullscreen"><i class="icon ion-monitor"></i> </a>
+                <a class="remove" href="#Remove"><i class="icon ion-trash-b"></i></a>
+                <a class="remove" href="#Settings"><i class="icon ion-gear-a"></i></a>
             </div>
         </div>
         <!-- /Shadow Timer -->
