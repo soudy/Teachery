@@ -39,6 +39,12 @@
                 });
             }
         }
+        var automuted = cookie.get('global_mute');
+        if (automuted == '0'){
+            document.querySelector('.muteSounds').classList.remove('muted');
+            document.querySelector('.muteSounds i').classList.remove('ion-volume-mute');
+            document.querySelector('.muteSounds i').classList.add('ion-volume-high');
+        }
     }
 
     document.querySelector('.addTimer').onclick = function(e){
@@ -64,6 +70,7 @@
             this.classList.remove('muted');
             this.querySelector('i').classList.remove('ion-volume-mute');
             this.querySelector('i').classList.add('ion-volume-high');
+            cookie.create('global_mute', '0');
         } else {
             for(key in clocks){
                 clocks[key].setMuted(true);
@@ -71,6 +78,7 @@
             this.classList.add('muted');
             this.querySelector('i').classList.remove('ion-volume-high');
             this.querySelector('i').classList.add('ion-volume-mute');
+            cookie.create('global_mute', '1');
         }
     }
 
@@ -107,5 +115,6 @@
          document.querySelector('.muteSounds').classList.remove('muted');
          document.querySelector('.muteSounds i').classList.remove('ion-volume-mute');
          document.querySelector('.muteSounds i').classList.add('ion-volume-high');
+         cookie.create('global_mute', '0');
     });
 })();
