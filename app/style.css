@@ -105,9 +105,9 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .checkbox-button        {width:50%;float:left;font-size:250%;margin:35 0px;text-align:center;}
 .checkbox-button i      {color:#214E96;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 15;}
 
-.pick                   {width:100%;font-family: 'Montserrat', sans-serif;padding-left:9.5%}
+.pick                   {width:100%;font-family: 'Montserrat', sans-serif;padding-left:10.5%}
 .pick h3                {margin:25 0;font-size:100%;}
-.pick-form              {width:100%;height:100px;text-align:center;margin-left:-5.5%;}
+.pick-form              {width:100%;height:100px;text-align:center;margin-left:-4.5%;}
 .pick-form label        {font-size:500%;color:#214E96;cursor:pointer;}
 .section-left,
 .section-right          {width:35%;float:left;text-align:center;}
