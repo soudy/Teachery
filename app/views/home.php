@@ -6,12 +6,13 @@
     <!-- /Home (Head) -->
     <div class="home">
 		<div class="home-group">
-			<h2><i class="icon ion-clock"></i> Timery</h2>
-			<p>With Timery you can create as many timers as you want, each with different duration, name and more.</p>
+			<h2><a href="timery"><i class="icon ion-clock"></i> Timery</a></h2>
+            <p>With Timery you can create as many timers as you want, each with different duration, name and more.<br/><br/>
+            </p>
 		</div>
 		<div class="home-group">
-			<h2><i class="icon ion-person"></i> Pickery</h2>
-            <p>Pickery allows you to easily select a random name from a list of names. You can export a class as CSV in Magister and import it here by doing the following steps:<br />
+			<h2><a href="pickery"><i class="icon ion-person"></i> Pickery</a></h2>
+            <p>Pickery allows you to easily select a random name from a list of names. You can export a class as CSV in Magister and import it here by doing the following steps:
                 <ol>
                     <li><a href="https://mediacollege.swp.nl/5.6.34/magister.aspx">Log into Magister.</a></li>
                     <li>Go to the class you want to load in.</li>

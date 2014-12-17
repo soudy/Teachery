@@ -164,10 +164,11 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 
 input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 
-.home                   {width:100%; margin:auto;font-family: 'Montserrat', sans-serif;padding:0 25;}
-.home .home-group       {margin-bottom:50px; max-width:700px; margin:auto;}
-.home .home-group h2    {font-size:200%;color:#214E96;margin-top:60px;}
-.home .home-group p     {padding-left:10px; border-left:10px solid #214E96;font-size:125%;}
+.home                         {width:100%; margin:auto;font-family: 'Montserrat', sans-serif;padding:0 25;}
+.home .home-group             {margin-bottom:50px; max-width:700px; margin:auto;}
+.home .home-group h2          {font-size:200%;color:#214E96;margin-top:60px;}
+.home .home-group h2 a:hover  {text-decoration:underline}
+.home .home-group p           {padding-left:10px; border-left:10px solid #214E96;font-size:125%;}
 
 .base_color_box         {background:#214E96}
 .text_color_box         {background:#191919}
