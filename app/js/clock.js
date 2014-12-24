@@ -57,7 +57,7 @@ function Clock(options){
 
     this.getInfo = function() {
         return JSON.stringify(this);
-    }
+    };
 
     // Create the render
     this.render = new Render({
@@ -100,25 +100,25 @@ function Clock(options){
                     break;
             }
         });
-    };
+    }
 
     this.updateTimer = function(){
         this.timer.setName(this.title.value);
         this.updateCookie();
-    }
+    };
 
     this.updateTime = function(){
         this.timer.reset();
         this.timer.setTime(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
         this.updateCookie();
-    }
+    };
 
-    for (var i = 0; i < this.times.length; i++) {
+    for (i = 0; i < this.times.length; i++) {
         this.times[i].addEventListener('blur', function(e){
             self.updateTime();
             self.updateCookie();
         });
-    };
+    }
 
     this.updateDisplay = function(){
         var time = this.timer.getTime(),
@@ -131,7 +131,7 @@ function Clock(options){
             this.updateCookie();
         }
         this.times[2].value = times[2];
-    }
+    };
 
     this.start = function(){
         if (this.started){
@@ -150,13 +150,13 @@ function Clock(options){
             this.started = true;
             this.checkSound();
         }
-        this.updateCookie()
-    }
+        this.updateCookie();
+    };
 
     this.stop = function(){
         this.started = true;
         this.start();
-    }
+    };
 
     this.setPlaying = function(bool){
         var button = this.buttons[0].querySelector('i');
@@ -167,13 +167,13 @@ function Clock(options){
             button.classList.add('ion-play');
             button.classList.remove('ion-pause');
         }
-    }
+    };
 
     this.setMuted = function(bool){
         this.mute = bool;
         this.checkSound();
         this.updateCookie();
-    }
+    };
 
     this.checkSound = function(){
         if (!this.started || this.mute){
@@ -183,7 +183,7 @@ function Clock(options){
             var event = new CustomEvent('unmuteClock');
             document.dispatchEvent(event);
         }
-    }
+    };
 
     this.setReadOnly = function(bool){
         this.title.readOnly = bool;
@@ -191,8 +191,8 @@ function Clock(options){
         for (var i = 0; i < this.times.length; i++) {
             this.times[i].readOnly = bool;
             this.times[i].disabled = bool;
-        };
-    }
+        }
+    };
 
     this.remove = function(force){
         if (force) {
@@ -214,7 +214,7 @@ function Clock(options){
                 }
             }).show();
         }
-    }
+    };
 
     this.fullscreen = function(force){
         if (fullScreenEnabled()){
@@ -228,7 +228,7 @@ function Clock(options){
                 this.element.msRequestFullscreen();
             }
         }
-    }
+    };
 
 
     this.getInfo = function(){
@@ -238,13 +238,13 @@ function Clock(options){
             name: this.timer.name,
             direction: this.timer.direction,
             time: this.timer.timeLeft(),
-        }
-    }
+        };
+    };
 
     this.updateCookie = function(){
         cookie.create("clock__"+this.id, JSON.stringify(this.getInfo()));
         return true;
-    }
+    };
 
     this.updateCookie();
     this.updateDisplay();
@@ -252,7 +252,9 @@ function Clock(options){
 }
 
 function fullScreenEnabled(){
-    if( document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) return true;
+    if( document.fullscreenEnabled || document.webkitFullscreenEnabled || 
+        document.mozFullScreenEnabled || document.msFullscreenEnabled) 
+        return true;
     return false;
 }
 
@@ -271,8 +273,8 @@ function clockSettings(options){
                 value: this.dataset.value,
             });
             self.elm.style.display = "none";
-        }
-    };
+        };
+    }
 
     this.elm.style.display = 'table';
 }

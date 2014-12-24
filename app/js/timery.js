@@ -29,7 +29,7 @@
         var clockCount = cookie.get('clock_count');
         for (var i = 0; i < clockCount+1; i ++) {
             var settings = cookie.get('clock__'+i);
-            if (settings != null){
+            if (settings !== null){
                 settings = JSON.parse(settings);
                 clocks[i] = new Clock({
                     id: settings.id,
@@ -50,7 +50,7 @@
     document.querySelector('.addTimer').onclick = function(e){
         e.preventDefault();
         var c = 0;
-        for (key in clocks)
+        for (var key in clocks)
             c = key;
         c++;
         clocks[c] = new Clock({
@@ -59,12 +59,12 @@
             name: 'clock'+c,
         });
         cookie.create("clock_count", c);
-    }
+    };
 
     document.querySelector('.muteSounds').onclick = function(e){
         e.preventDefault();
         if (this.classList.contains('muted')){
-            for(key in clocks){
+            for(var key in clocks){
                 clocks[key].setMuted(false);
             }
             this.classList.remove('muted');
@@ -80,12 +80,12 @@
             this.querySelector('i').classList.add('ion-volume-mute');
             cookie.create('global_mute', '1');
         }
-    }
+    };
 
     document.querySelector('.removeTimers').onclick = function(e){
         e.preventDefault();
         var c = 0;
-        for (key in clocks)
+        for (var key in clocks)
             c++;
         if (c < 1) {
             return false;
@@ -102,7 +102,7 @@
                 cookie.remove("clock_count");
             }
         }).show();
-    }
+    };
 
     document.addEventListener('removeClock', function(e){
         clocks[e.detail] = null;

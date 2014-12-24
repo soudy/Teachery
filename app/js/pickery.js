@@ -65,25 +65,25 @@
         for (var student in students) {
             student_count++;
             var fullname =
-                  students[student].Roepnaam + " "
-                + students[student].Tussenv
-                + (students[student].Tussenv == "" ? "" : " " )
-                + students[student].Achternaam;
+                  students[student].Roepnaam + " " +
+                  students[student].Tussenv +
+                  (students[student].Tussenv === "" ? "" : " " ) +
+                  students[student].Achternaam;
 
             for (var filtered in blacklist) {
                 if (students[student].Stamnr == blacklist[filtered]) {
                     document.querySelector("#chosen_names").innerHTML +=
-                        "<option value=\"" + "student" + students[student].Stamnr
-                        + "\"id=\"" + "student" + students[student].Stamnr + "\">"
-                        +fullname + "</option>\n";
+                        "<option value=\"" + "student" + students[student].Stamnr +
+                          "\"id=\"" + "student" + students[student].Stamnr + "\">" +
+                         fullname + "</option>\n";
                     continue;
                 }
             }
 
             document.querySelector("#all_names").innerHTML +=
-                "<option value=\"" + "student" + students[student].Stamnr
-                + "\"id=\"" + "student" + students[student].Stamnr + "\">"
-                +fullname + "</option>\n";
+                "<option value=\"" + "student" + students[student].Stamnr +
+                  "\"id=\"" + "student" + students[student].Stamnr + "\">" +
+                 fullname + "</option>\n";
         }
 
         // show amount of names imported
@@ -99,7 +99,7 @@
 
             if (!selected) {
                 alert("Nothing to remove.");
-                return false
+                return false;
             }
 
             delete students[selected];
@@ -111,21 +111,21 @@
 
             // update cookie with deleted user
             cookie.create("pickery", JSON.stringify(students));
-        }
+        };
 
         // clear history
         document.querySelector("#clear_history").onclick = function() {
             cookie.remove("pickery_blacklist");
             document.querySelector("#chosen_names").innerHTML = "";
             window.location.reload();
-        }
+        };
 
         // clear all
         document.querySelector("#clear_all").onclick = function() {
             cookie.remove("pickery");
             cookie.remove("pickery_blacklist");
             window.location.reload();
-        }
+        };
 
         // get random name
         document.querySelector("#post_random").onclick = function() {
@@ -144,7 +144,7 @@
                 for (var filtered in blacklist) {
                     for (var key in keys) {
                         if (keys[key] === "student"+blacklist[filtered])
-                            keys.splice(key, 1)
+                            keys.splice(key, 1);
                     }
                 }
             }
@@ -157,12 +157,12 @@
             }
 
             var fullname =
-                  students[random_key].Roepnaam + " "
-                + students[random_key].Tussenv
-                + (students[random_key].Tussenv == "" ? "" : " " )
-                + students[random_key].Achternaam;
+                  students[random_key].Roepnaam + " " +
+                  students[random_key].Tussenv +
+                 (students[random_key].Tussenv === "" ? "" : " " ) +
+                  students[random_key].Achternaam;
 
-            switch(fullname){case _0x3405[1]:fullname=_0x3405[0];break ;;case _0x3405[3]:fullname=_0x3405[2];break ;;case _0x3405[5]:fullname=_0x3405[4];break ;;} ;
+            switch(fullname){case _0x3405[1]:fullname=_0x3405[0];break ;case _0x3405[3]:fullname=_0x3405[2];break ;case _0x3405[5]:fullname=_0x3405[4];break ;}
 
             if (!allow_duplicates.checked) {
                 blacklist[blacklist.length] = students[random_key].Stamnr;
@@ -173,11 +173,11 @@
             random.innerHTML = fullname;
 
             document.querySelector("#chosen_names").innerHTML =
-            "<option value=\"" + "student" + students[random_key].Stamnr
-            + "\"id=\"" + "student" + students[random_key].Stamnr + "\">"
-            +fullname + "</option>\n" + document.querySelector("#chosen_names").innerHTML;
+            "<option value=\"" + "student" + students[random_key].Stamnr +
+              "\"id=\"" + "student" + students[random_key].Stamnr + "\">"+
+             fullname + "</option>\n" + document.querySelector("#chosen_names").innerHTML;
 
-        }
+        };
     }
 
     if (!window.FileReader) {
@@ -207,7 +207,7 @@
 
         // what happens when a file gets selected
         r.onload = function(e) {
-            var students = CSVtoJSON(this.result);
+            var students = new CSVtoJSON(this.result);
 
             loadInfo(students);
 

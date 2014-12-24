@@ -49,11 +49,11 @@ function Render(settings){
 		}
 		render();
 		return this;
-	}
+	};
 
 	this.stop = function(){
 		this.break = true;
 		this.started = false;
 		return this;
-	}
+	};
 }

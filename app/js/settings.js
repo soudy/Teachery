@@ -102,19 +102,19 @@
         settings.base_color = base_default;
         cookie.create("settings", JSON.stringify(settings));
         window.location.reload();
-    }
+    };
 
     document.querySelector("#background_reset").onclick = function() {
         settings.background_color = background_default;
         cookie.create("settings", JSON.stringify(settings));
         window.location.reload();
-    }
+    };
 
     document.querySelector("#text_reset").onclick = function() {
         settings.text_color = text_default;
         cookie.create("settings", JSON.stringify(settings));
         window.location.reload();
-    }
+    };
 
     document.querySelector("#time_reset").onclick = function() {
         var t = clock_default.split(':');
@@ -122,7 +122,7 @@
         clocks[1].value = t[1];
         clocks[2].value = t[2];
         cookie.create("settings", JSON.stringify(settings));
-    }
+    };
 
     // default start time
     var t = settings.clock.split(':');
@@ -132,37 +132,37 @@
             settings.clock = clocks[0].value+':'+clocks[1].value+':'+clocks[2].value;
             cookie.create("settings", JSON.stringify(settings));
         });
-    };
+    }
 
     // auto mute
     var mute_toggle = document.querySelector('.auto-mute').querySelectorAll('.bool');
     if (settings.auto_mute == 1)
-        mute_toggle[0].classList.add('active')
+        mute_toggle[0].classList.add('active');
     else
-        mute_toggle[1].classList.add('active')
+        mute_toggle[1].classList.add('active');
 
     mute_toggle[0].onclick = function(){
         mute_toggle[1].classList.remove('active');
         mute_toggle[0].classList.add('active');
         settings.auto_mute = 1;
         cookie.create("settings", JSON.stringify(settings));
-    }
+    };
     mute_toggle[1].onclick = function(){
          mute_toggle[0].classList.remove('active');
         mute_toggle[1].classList.add('active');
         settings.auto_mute = 0;
         cookie.create("settings", JSON.stringify(settings));
-    }
+    };
 
     // sound finish
-    for (var i = 0; i < finish.length; ++i) {
+    for (i = 0; i < finish.length; ++i) {
         finish[i].onclick = function (e) {
             settings.finish = this.id;
             for (var i = 0; i < finish.length; ++i)
                 finish[i].classList.remove("active");
             this.classList.add("active");
             cookie.create("settings", JSON.stringify(settings));
-        }
+        };
         //
         // set active on pageload
         if (finish[i].id == settings.finish)
@@ -175,20 +175,20 @@
         settings.base_color = base_color_hash.value.slice(1,7);
         cookie.create("settings", JSON.stringify(settings));
         window.location.reload();
-    }
+    };
 
     background_color_hash.onchange = function() {
         background_color.value = background_color_hash.value.slice(1,7);
         settings.background_color = background_color_hash.value.slice(1,7);
         cookie.create("settings", JSON.stringify(settings));
         window.location.reload();
-    }
+    };
 
     text_color_hash.onchange = function() {
         text_color.value = text_color_hash.value.slice(1,7);
         settings.text_color = text_color_hash.value.slice(1,7);
         cookie.create("settings", JSON.stringify(settings));
         window.location.reload();
-    }
+    };
     
 })();

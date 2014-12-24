@@ -30,20 +30,20 @@ function Confirm(options){
 	this.show = function(){
 		this.msg.innerHTML = this.message;
 		this.element.classList.add('active');
-	}
+	};
 
 	this.hide = function(){
 		this.msg.innerHTML = '';
 		this.element.classList.remove('active');
-	}
+	};
 
 	this.no.onclick = function(){
 		self.hide();
 		self.cancelCall();
-	}
+	};
 
 	this.yes.onclick = function(){
 		self.hide();
 		self.confirmCall();
-	}
+	};
 }
