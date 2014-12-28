@@ -21,8 +21,6 @@
 
     if(rt != "settings") return;
 
-    var cookie = new Cookies();
-
     var base_default = "214E98";
     var text_default = "191919";
     var background_default = "F2F2F2";

@@ -20,7 +20,6 @@ function Clock(options){
 
     // We need this to work in events
     var self = this;
-    var cookie = new Cookies();
     var settings = JSON.parse(cookie.get("settings")) || {};
     var appendTo = document.querySelector("main");
 

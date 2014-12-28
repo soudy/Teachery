@@ -22,7 +22,6 @@
 
     if(rt != "picker") return;
 
-    var cookie = new Cookies();
     var inputFile = document.querySelector("#class");
     var classes = [];
 

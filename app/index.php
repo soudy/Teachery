@@ -10,21 +10,22 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.php">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+    <script type="text/javascript" src="js/cookies.js"></script>
     <script type="text/javascript" >
         var rt = "<?php echo $rt ?>";
+        var cookie = new Cookies();
     </script>
     <script type="text/javascript" src="js/confirm.js"></script>
-    <script type="text/javascript" src="js/cookies.js"></script>
     <script type="text/javascript" src="js/timer.js"></script>
     <script type="text/javascript" src="js/render.js"></script>
     <script type="text/javascript" src="js/clock.js"></script>
 <body>
     <!-- This is where the navigation resires. -->
     <nav>
-        <a class="<?php echo ($rt=="home") ? 'active' : ''; ?>" href="home"><i class="icon ion-home"></i></a>
-        <a class="<?php echo ($rt=="time") ? 'active' : ''; ?>" href="time"><i class="icon ion-clock"></i></a>
-        <a class="<?php echo ($rt=="picker") ? 'active' : ''; ?>" href="picker"><i class="icon ion-person"></i></a>
-        <a class="<?php echo ($rt=="settings") ? 'active' : ''; ?>" href="settings"><i class="icon ion-gear-b"></i></a>
+        <a class="<?= ($rt=="home") ? 'active' : ''; ?>" href="home"><i class="icon ion-home"></i></a>
+        <a class="<?= ($rt=="time") ? 'active' : ''; ?>" href="time"><i class="icon ion-clock"></i></a>
+        <a class="<?= ($rt=="picker") ? 'active' : ''; ?>" href="picker"><i class="icon ion-person"></i></a>
+        <a class="<?= ($rt=="settings") ? 'active' : ''; ?>" href="settings"><i class="icon ion-gear-b"></i></a>
     </nav>
 
     <div class="cookie"></div>
