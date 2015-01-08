@@ -19,7 +19,6 @@
 (function()
 {
 
-    if(rt != "settings") return;
 
     var base_default = "214E98";
     var text_default = "191919";

@@ -20,7 +20,7 @@
 {
     "use strict";
 
-    if(rt != "picker") return;
+
 
     var inputFile = document.querySelector("#class");
     var classes = [];

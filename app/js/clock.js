@@ -21,7 +21,7 @@ function Clock(options){
     // We need this to work in events
     var self = this;
     var settings = JSON.parse(cookie.get("settings")) || {};
-    var appendTo = document.querySelector("main");
+    var appendTo = options.appendTo || document.querySelector("main");
 
     // Copy the shadow clone and append it to the given node
     this.element = document.querySelector('.shadowTimer').cloneNode(true);

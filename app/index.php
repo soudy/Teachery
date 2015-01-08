@@ -1,8 +1,3 @@
-<?php
-
-$rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
-
-?>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -12,20 +7,24 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
     <script type="text/javascript" src="js/cookies.js"></script>
     <script type="text/javascript" >
-        var rt = "<?php echo $rt ?>";
         var cookie = new Cookies();
     </script>
     <script type="text/javascript" src="js/confirm.js"></script>
     <script type="text/javascript" src="js/timer.js"></script>
     <script type="text/javascript" src="js/render.js"></script>
     <script type="text/javascript" src="js/clock.js"></script>
+    <style>
+    .page {display:none;min-height:100%;}
+    .page.show {display:block;}
+    </style>
+</head>
 <body>
     <!-- This is where the navigation resires. -->
     <nav>
-        <a class="<?= ($rt=="home") ? 'active' : ''; ?>" href="home"><i class="icon ion-home"></i></a>
-        <a class="<?= ($rt=="time") ? 'active' : ''; ?>" href="time"><i class="icon ion-clock"></i></a>
-        <a class="<?= ($rt=="picker") ? 'active' : ''; ?>" href="picker"><i class="icon ion-person"></i></a>
-        <a class="<?= ($rt=="settings") ? 'active' : ''; ?>" href="settings"><i class="icon ion-gear-b"></i></a>
+        <a href="#home"><i class="icon ion-home"></i></a>
+        <a href="#timery"><i class="icon ion-clock"></i></a>
+        <a href="#pickery"><i class="icon ion-person"></i></a>
+        <a href="#settings"><i class="icon ion-gear-b"></i></a>
     </nav>
 
     <div class="cookie"></div>
@@ -35,26 +34,36 @@ $rt = isset($_GET["rt"]) ? $_GET["rt"] : 'home';
          Here are the <a href="http://www.enable-javascript.com/" target="_blank">
          instructions how to enable JavaScript in your web browser</a>.
     </noscript>
-    <?php
-    switch($rt){
-        case 'home':
-            include('views/home.php');
-            break;
-        case 'time':
-            include('views/time.php');
-            break;
-        case 'picker':
-            include('views/picker.php');
-            break;
-        case 'settings':
-            include('views/settings.php');
-            break;
-    }
-    ?>
+
+    <div id="home" class="page">
+        <?php include('views/home.php'); ?>
+    </div>
+    <div id="timery" class="page">
+        <?php include('views/time.php'); ?>
+    </div>
+    <div id="pickery" class="page">
+        <?php include('views/picker.php'); ?>
+    </div>
+    <div id="settings"  class="page">
+        <?php include('views/settings.php'); ?>
+    </div>
 
     <script type="text/javascript" src="js/timery.js"></script>
     <script type="text/javascript" src="js/settings.js"></script>
     <script type="text/javascript" src="js/pickery.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script>
+    var elm = document.querySelector((window.location.hash != "") ? window.location.hash : '#home');
+    if (elm)
+        elm.classList.add('show');
+    window.onhashchange = function(){
+            console.log(window.location.hash);
+            var showing = document.querySelectorAll('.page.show');
+            for (i=0;i<showing.length;i++) showing[i].classList.remove('show');
+            var elm = document.querySelector(window.location.hash);
+            if (elm)
+                elm.classList.add('show');
+        };
+    </script>
 </body>
 </html>

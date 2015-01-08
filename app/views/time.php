@@ -1,4 +1,4 @@
-<main>
+<main class="timery">
     <!-- Timer (Overlay) -->
     <div class="checkbox-overlay">
         <div class="checkbox-texts">

@@ -19,8 +19,6 @@
 (function()
 {
 
-    if(rt != "time") return;
-
     var clocks = [];
     var muteAll = false;
 
@@ -31,6 +29,7 @@
             if (settings !== null){
                 settings = JSON.parse(settings);
                 clocks[i] = new Clock({
+                    appendTo: document.querySelector('main.timery'),
                     id: settings.id,
                     name: settings.name,
                     direction: settings.direction,
@@ -53,7 +52,7 @@
             c = key;
         c++;
         clocks[c] = new Clock({
-            appendTo: document.querySelector('main'),
+            appendTo: document.querySelector('main.timery'),
             id: c,
             name: 'clock'+c,
         });
