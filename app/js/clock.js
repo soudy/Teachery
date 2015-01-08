@@ -35,7 +35,6 @@ function Clock(options){
 
     this.started = false;
     this.mute = options.mute || (settings.auto_mute == 1) ? true : false;
-    console.log(this.mute);
     this.id = options.id;
 
     this.endsoundsrc = settings.finish || "airhorn";
