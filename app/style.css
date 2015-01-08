@@ -211,6 +211,7 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
     nav                 {display:block;position:fixed;width:100%;bottom:0;}
     nav:hover           {width:100%;}
     nav a               {height:65px;width:25%;float:left;}
+    nav:hover + .cookie {width:   100%;}
 
     /* LANDING */
     .landing div a,
