@@ -34,7 +34,8 @@ function Clock(options){
     this.buttons = this.element.querySelectorAll('.checkbox-button a');
 
     this.started = false;
-    this.mute = options.mute || (settings.auto_mute == 1) ? true : false || true;
+    this.mute = options.mute || (settings.auto_mute == 1) ? true : false;
+    console.log(this.mute);
     this.id = options.id;
 
     this.endsoundsrc = settings.finish || "airhorn";
@@ -178,10 +179,6 @@ function Clock(options){
         if (!this.started || this.mute){
             this.sound.pause();
         }
-        if (this.started && !this.mute){
-            var event = new CustomEvent('unmuteClock');
-            document.dispatchEvent(event);
-        }
     };
 
     this.setReadOnly = function(bool){
@@ -264,6 +261,11 @@ function clockSettings(options){
     this.elm = options.element || options.elm;
     this.settings = this.elm.querySelectorAll('.settings-bool > div');
     this.callback = options.onChange || function(){};
+    this.elm.onclick = function(e){
+        if (e.target.classList.contains('settings-overlay')){
+            self.elm.style.display = "none";       
+        }
+    }
 
     for (var i = 0; i < this.settings.length; i++) {
         this.settings[i].onclick = function(){

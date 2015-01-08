@@ -26,7 +26,7 @@ function Confirm(options){
 	this.yes = this.element.querySelector('.checkbox-confirm'),
 	this.no = this.element.querySelector('.checkbox-cancel'),
 	this.msg = this.element.querySelector('.checkbox-message');
-
+    
 	this.show = function(){
 		this.msg.innerHTML = this.message;
 		this.element.classList.add('active');
@@ -36,25 +36,14 @@ function Confirm(options){
 		this.msg.innerHTML = '';
 		this.element.classList.remove('active');
 	};
-
-	this.no.onclick = function(){
-		self.hide();
-		self.cancelCall();
-	};
-
-	this.yes.onclick = function(){
-		self.hide();
-		self.confirmCall();
-	};
-
-    document.onkeydown = function(e) {
-        if (e.keyCode ===  27)
+    this.element.onclick = function(e){
+        if (e.target == self.yes){
             self.hide();
-    };
-
-    document.onclick = function(e) {
-        if (e.target.className === "checkbox-overlay active")
+            self.confirmCall();
+        } else {
+            if (e.target == self.msg) return;
             self.hide();
-    };
-
+            self.cancelCall();
+        }
+    }
 }

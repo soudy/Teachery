@@ -60,7 +60,6 @@
         
         // On button click
         window.onhashchange = function() {
-            console.log(window.location.hash);
             var showing = document.querySelectorAll('.page.show');
             var menu_items = document.querySelectorAll(".menu");
 

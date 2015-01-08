@@ -33,15 +33,10 @@
                     id: settings.id,
                     name: settings.name,
                     direction: settings.direction,
-                    time: settings.time
+                    time: settings.time,
+                    mute: settings.muted,
                 });
             }
-        }
-        var automuted = cookie.get('global_mute');
-        if (automuted == '0'){
-            document.querySelector('.muteSounds').classList.remove('muted');
-            document.querySelector('.muteSounds i').classList.remove('ion-volume-mute');
-            document.querySelector('.muteSounds i').classList.add('ion-volume-high');
         }
     }
 
@@ -61,22 +56,8 @@
 
     document.querySelector('.muteSounds').onclick = function(e){
         e.preventDefault();
-        if (this.classList.contains('muted')){
-            for(var key in clocks){
-                clocks[key].setMuted(false);
-            }
-            this.classList.remove('muted');
-            this.querySelector('i').classList.remove('ion-volume-mute');
-            this.querySelector('i').classList.add('ion-volume-high');
-            cookie.create('global_mute', '0');
-        } else {
-            for(key in clocks){
-                clocks[key].setMuted(true);
-            }
-            this.classList.add('muted');
-            this.querySelector('i').classList.remove('ion-volume-high');
-            this.querySelector('i').classList.add('ion-volume-mute');
-            cookie.create('global_mute', '1');
+        for(key in clocks){
+            clocks[key].setMuted(true);
         }
     };
 
@@ -107,12 +88,5 @@
         delete clocks[e.detail];
 
         cookie.remove('clock__'+e.detail);
-    });
-
-    document.addEventListener('unmuteClock', function(e){
-         document.querySelector('.muteSounds').classList.remove('muted');
-         document.querySelector('.muteSounds i').classList.remove('ion-volume-mute');
-         document.querySelector('.muteSounds i').classList.add('ion-volume-high');
-         cookie.create('global_mute', '0');
     });
 })();
