@@ -13,10 +13,6 @@
     <script type="text/javascript" src="js/timer.js"></script>
     <script type="text/javascript" src="js/render.js"></script>
     <script type="text/javascript" src="js/clock.js"></script>
-    <style>
-    .page {display:block;max-height:0px;min-height:0%;transition:all .4s;overflow:scroll;overflow-x:hidden;}
-    .page.show {display:block;max-height:100%;min-height:100%;}
-    </style>
 </head>
 <body>
     <!-- This is where the navigation resires. -->
