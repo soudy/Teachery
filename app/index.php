@@ -21,10 +21,10 @@
 <body>
     <!-- This is where the navigation resires. -->
     <nav>
-        <a href="#home"><i class="icon ion-home"></i></a>
-        <a href="#timery"><i class="icon ion-clock"></i></a>
-        <a href="#pickery"><i class="icon ion-person"></i></a>
-        <a href="#settings"><i class="icon ion-gear-b"></i></a>
+        <a id="home_menu" class="menu" href="#home"><i class="icon ion-home"></i></a>
+        <a id="timery_menu" class="menu" href="#timery"><i class="icon ion-clock"></i></a>
+        <a id="pickery_menu" class="menu" href="#pickery"><i class="icon ion-person"></i></a>
+        <a id="settings_menu" class="menu" href="#settings"><i class="icon ion-gear-b"></i></a>
     </nav>
 
     <div class="cookie"></div>
@@ -53,16 +53,27 @@
     <script type="text/javascript" src="js/pickery.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script>
-    var elm = document.querySelector((window.location.hash != "") ? window.location.hash : '#home');
-    if (elm)
-        elm.classList.add('show');
-    window.onhashchange = function(){
+        var elm = document.querySelector((window.location.hash != "") ? window.location.hash : '#home');
+        if (elm)
+            elm.classList.add('show');
+        window.onhashchange = function() {
             console.log(window.location.hash);
             var showing = document.querySelectorAll('.page.show');
-            for (i=0;i<showing.length;i++) showing[i].classList.remove('show');
+            var menu_items = document.querySelectorAll(".menu");
+
+            for (i=0;i<showing.length;i++) 
+                showing[i].classList.remove('show');
+
+            for (var i = 0; i < menu_items.length; ++i)
+                menu_items[i].classList.remove("active");
+
             var elm = document.querySelector(window.location.hash);
             if (elm)
                 elm.classList.add('show');
+
+            var menu_item = document.querySelector(window.location.hash + "_menu");
+            if (menu_item)
+                menu_item.classList.add("active");
         };
     </script>
 </body>
