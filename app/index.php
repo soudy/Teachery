@@ -14,8 +14,8 @@
     <script type="text/javascript" src="js/render.js"></script>
     <script type="text/javascript" src="js/clock.js"></script>
     <style>
-    .page {display:none;min-height:100%;}
-    .page.show {display:block;}
+    .page {display:block;max-height:0px;min-height:0%;transition:all .4s;overflow:scroll;overflow-x:hidden;}
+    .page.show {display:block;max-height:100%;min-height:100%;}
     </style>
 </head>
 <body>
@@ -53,9 +53,16 @@
     <script type="text/javascript" src="js/pickery.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script>
+        // Preload
         var elm = document.querySelector((window.location.hash != "") ? window.location.hash : '#home');
         if (elm)
             elm.classList.add('show');
+
+        var menu_item = document.querySelector(window.location.hash + "_menu");
+        if (menu_item)
+            menu_item.classList.add("active");
+        
+        // On button click
         window.onhashchange = function() {
             console.log(window.location.hash);
             var showing = document.querySelectorAll('.page.show');
