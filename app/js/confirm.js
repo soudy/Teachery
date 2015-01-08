@@ -46,4 +46,15 @@ function Confirm(options){
 		self.hide();
 		self.confirmCall();
 	};
+
+    document.onkeydown = function(e) {
+        if (e.keyCode ===  27)
+            self.hide();
+    };
+
+    document.onclick = function(e) {
+        if (e.target.className === "checkbox-overlay active")
+            self.hide();
+    };
+
 }
