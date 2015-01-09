@@ -22,11 +22,14 @@ function Clock(options){
     var self = this;
     var settings = JSON.parse(cookie.get("settings")) || {};
     var appendTo = options.appendTo || document.querySelector("main");
-
     // Copy the shadow clone and append it to the given node
     this.element = document.querySelector('.shadowTimer').cloneNode(true);
     this.element.classList.remove('shadowTimer');
-    appendTo.appendChild(this.element);
+    setTimeout(function(){
+        self.element.classList.remove('offscreen');
+    }, 100);
+    appendTo.insertBefore(this.element, appendTo.querySelector('.checkboxes'));
+    //appendTo.appendChild(this.element);
 
     // Get all objects we need
     this.title = this.element.querySelector('.checkbox-title input');

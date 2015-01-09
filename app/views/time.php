@@ -62,7 +62,7 @@
     <!-- /Timer + -->
 
          <!-- Shadow Timer -->
-        <div class="shadowTimer checkboxes">
+        <div class="shadowTimer offscreen checkboxes">
             <div class="checkbox-title">
                <input placeholder="Title" type="text">
             </div>

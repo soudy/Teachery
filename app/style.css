@@ -28,7 +28,9 @@ a                   {color:inherit;text-decoration:inherit;}
 input               {outline:none;}
 
 .cookie             {position:fixed;z-index:995;width:90%;text-align:center;background:rgba(0, 0, 0, .2);line-height:0.4em;
-                    font-family: 'Montserrat', sans-serif;font-weight:300;right:0;transition:width .3s;display:block;}
+                    font-family: 'Montserrat', sans-serif;font-weight:300;right:0;transition:all .3s;display:block;
+                    overflow:hidden;}
+.cookie.hidden      {-webkit-transform: translateY(-100%);-moz-transform: translateY(-100%);transform: translateY(-100%);}
 .cookie p           {float:left;width:80%;margin-left:10%;}
 .cookie i           {float:left;width:10%;padding:7.5 0 0 0;font-size:150%;cursor:pointer;}
 
@@ -76,7 +78,8 @@ main                {width:   100%;
 .landing .devs          {text-align:center;width:400px;position:fixed;left:50%;margin-left:-200px;bottom:10;color:white;font-size:70%;}
 
 .shadowTimer            {display:none;}
-.checkboxes             {width:100%;font-family: 'Montserrat', sans-serif;}
+.checkboxes             {transition: all .3s;width:100%;font-family: 'Montserrat', sans-serif;}
+.offscreen              {-webkit-transform: translateX(100%);-moz-transform: translateX(100%);transform: translateX(100%);}
 
 header                  {width:300px;margin:20 auto 50 auto}
 header h1               {font-family: 'Montserrat', sans-serif;text-align:center;font-size:385%;font-weight:100;border-bottom:5px solid #214E96;}
@@ -202,6 +205,10 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 *:-moz-full-screen .checkbox-input{width:100%;line-height: 100%;}
 *:-moz-full-screen .checkbox-input span {font-size:20vh;width:5%;}
 *:-moz-full-screen .checkbox-input input{font-size:20vh;width:30%;}
+
+@-moz-document url-prefix() {
+    .page               {transition: opacity .5s; }
+}
 
 @media (max-width: 720px) {
     /* CORE RESPONSIVE */

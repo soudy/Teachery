@@ -48,35 +48,5 @@
     <script type="text/javascript" src="js/settings.js"></script>
     <script type="text/javascript" src="js/pickery.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-    <script>
-        // Preload
-        var elm = document.querySelector((window.location.hash != "") ? window.location.hash : '#home');
-        if (elm)
-            elm.classList.add('show');
-
-        var menu_item = document.querySelector(window.location.hash + "_menu");
-        if (menu_item)
-            menu_item.classList.add("active");
-        
-        // On button click
-        window.onhashchange = function() {
-            var showing = document.querySelectorAll('.page.show');
-            var menu_items = document.querySelectorAll(".menu");
-
-            for (i=0;i<showing.length;i++) 
-                showing[i].classList.remove('show');
-
-            for (var i = 0; i < menu_items.length; ++i)
-                menu_items[i].classList.remove("active");
-
-            var elm = document.querySelector(window.location.hash);
-            if (elm)
-                elm.classList.add('show');
-
-            var menu_item = document.querySelector(window.location.hash + "_menu");
-            if (menu_item)
-                menu_item.classList.add("active");
-        };
-    </script>
 </body>
 </html>
