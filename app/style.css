@@ -45,7 +45,7 @@ input               {outline:none;}
 body                {widows:  100%;background:#F2F2F2;overflow-x:hidden;}
 
 
-.page               {display:block;max-height:0px;opacity:0;min-height:0%;transition: 0.5s;overflow:auto;overflow-x:hidden;}
+.page               {display:block;max-height:0px;opacity:0;min-height:0%;transition: 0.5s;overflow:scroll;overflow-x:hidden;}
 .page.show          {display:block;max-height:100%;opacity:1;min-height:100%;}
 
                     /* WIDTH: 10% */
@@ -207,7 +207,7 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 *:-moz-full-screen .checkbox-input input{font-size:20vh;width:30%;}
 
 @-moz-document url-prefix() {
-    .page               {transition: opacity .5s; }
+    .page               {transition: opacity .5s; overflow:auto;overflow-x:hidden;}
 }
 
 @media (max-width: 720px) {
