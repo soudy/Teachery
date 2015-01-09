@@ -36,6 +36,14 @@ function Confirm(options){
 		this.msg.innerHTML = '';
 		this.element.classList.remove('active');
 	};
+
+    document.onkeydown = function(e){
+        if (e.keyCode == 27){
+            self.hide();
+            cancelCall();
+        }
+    }
+
     this.element.onclick = function(e){
         if (e.target == self.yes){
             self.hide();
