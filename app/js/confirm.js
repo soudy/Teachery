@@ -42,6 +42,10 @@ function Confirm(options){
             self.hide();
             cancelCall();
         }
+        if (e.keyCode == 13){
+            self.hide();
+            self.confirmCall();
+        }
     }
 
     this.element.onclick = function(e){
