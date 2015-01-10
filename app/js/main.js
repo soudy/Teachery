@@ -34,7 +34,10 @@
     }
 
     // Preload
-    var elm = document.querySelector((window.location.hash != "") ? window.location.hash : '#home');
+    var hash = (window.location.hash != "") ? window.location.hash : '#home';
+    if (hash == "#")
+        hash = "#home";
+    var elm = document.querySelector(hash);
     if (elm)
         elm.classList.add('show');
 
