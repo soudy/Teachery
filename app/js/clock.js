@@ -28,8 +28,8 @@ function Clock(options){
     setTimeout(function(){
         self.element.classList.remove('offscreen');
     }, 100);
-    appendTo.insertBefore(this.element, appendTo.querySelector('.checkboxes'));
-    //appendTo.appendChild(this.element);
+    //appendTo.insertBefore(this.element, appendTo.querySelector('.checkboxes'));
+    appendTo.appendChild(this.element);
 
     // Get all objects we need
     this.title = this.element.querySelector('.checkbox-title input');

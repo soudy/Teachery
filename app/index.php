@@ -13,6 +13,7 @@
     <script type="text/javascript" src="js/timer.js"></script>
     <script type="text/javascript" src="js/render.js"></script>
     <script type="text/javascript" src="js/clock.js"></script>
+    <script type="text/javascript" src="js/notification.js"></script>
 </head>
 <body>
     <!-- This is where the navigation resires. -->
