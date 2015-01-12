@@ -126,7 +126,8 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .section-middle i       {color:#214E96;}
 .pick select            {width:100%;}
 
-.settings               {width:100%;font-family: 'Montserrat', sans-serif;padding-left:7.5%;}
+.settings               {width:100%;font-family: 'Montserrat', sans-serif;padding-left:7.5%;transition:margin .5s;
+                        -webkit-transition:margin .5s;max-width:960px;}
 .settings h1            {margin:50 0 25 0;}
 .settings h2            {font-weight:300;font-size:125%;}
 
@@ -217,7 +218,7 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
     main                {padding:0;margin-top:65px;margin-bottom:85px;}
     nav                 {display:block;position:fixed;width:100%;bottom:0;}
     nav:hover           {width:100%;}
-    nav a               {height:65px;width:25%;float:left;}
+    nav a               {height:65px;width:20%;float:left;}
     nav:hover + .cookie {width:   100%;}
 
     /* LANDING */
@@ -242,9 +243,10 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
     .section-middle div {padding:17.5 0;}
 }
 
-
-
-
+@media (min-width: 1280px) {
+    /* SETTINGS */
+    .settings   {margin-left:10%;}
+}
 .settings-overlay       {display:none;height:100%;width:100%;background:rgba(255, 255, 255, .8);position:fixed;left:0;top:0;}
 .settings-overlay.active{display:block;}
 .settings-texts         {text-align:center;padding:20px 0 0 0;font-size:150%;text-shadow:0px 2px 0px white;font-weight: bold;}
