@@ -36,7 +36,7 @@
         <section class="section-input">
             <div class="put-result">
                 <div class="input-result">
-                    <p id="students" >&nbsp;</p>
+                    <p id="students">&nbsp;</p>
                 </div>
             </div>
             <select size="20" id="all_names">

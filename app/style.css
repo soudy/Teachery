@@ -106,7 +106,10 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
     .home-group a       {width:90%;float:left;}
     .home-group p       {padding-left:10px;border-left:10px solid #214E96;
                         font-size:100%;line-height:1.25em;padding-top:50px;}
-    .home-group span    {line-height:2em;color:#214E96;}
+    .home-group span    {line-height:2em;color:#214E96;text-decoration:underline;}
+    .issue              {text-align:center;}
+    .issue a            {text-decoration:underline;}
+    
 /* <Home */
 
 /* >Time */

@@ -35,5 +35,6 @@
         </div>
         <div class=clear-both></div>
 
+        <p class="issue">Found an issue? Report it <a href="https://github.com/kendaru/Teachery/issues">here</a> or <a href="http://www.twitter.com/MMMvdw">contact</a> us.</p>
     </div>
     </main>
