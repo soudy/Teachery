@@ -51,12 +51,13 @@
             id: c,
             name: 'clock'+c,
         });
+        new Notification('Clock'+c+' added.', 'normal');
         cookie.create("clock_count", c);
     };
 
     document.querySelector('.muteSounds').onclick = function(e){
         e.preventDefault();
-        for(key in clocks){
+        for(var key in clocks){
             clocks[key].setMuted(true);
         }
     };
@@ -84,6 +85,9 @@
     };
 
     document.addEventListener('removeClock', function(e){
+        var name = clocks[e.detail].timer.getName();
+        new Notification(name + ' removed.', 'warning');
+        
         clocks[e.detail] = null;
         delete clocks[e.detail];
 

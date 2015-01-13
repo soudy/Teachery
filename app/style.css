@@ -276,6 +276,13 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 *:-moz-full-screen .checkbox-input{width:100%;line-height: 100%;}
 *:-moz-full-screen .checkbox-input span {font-size:20vh;width:5%;}
 *:-moz-full-screen .checkbox-input input{font-size:20vh;width:30%;}
+ 
+#notlist            {position:fixed; top:0;right:10px;z-index:20;width:100%; max-width:220px;padding:10px;}   
+#notlist p          {transition: all .2s;transform:translateX(200%);-webkit-transform:translateX(200%);-moz-transform:translateX(200%);font-weight:bold;padding:10px;color:#fff; margin:4px 0px;}
+#notlist p.show     {transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);}
+#notlist p.hide     {transform:translateY(-200%);-webkit-transform:translateY(-200%);-moz-transform:translateY(-200%);}
+#notlist p.normal   {background:#0000ff;}
+#notlist p.warning  {background:#ff0000;}
 
 @media (max-width: 720px) {
     body                {margin-bottom:35px;}

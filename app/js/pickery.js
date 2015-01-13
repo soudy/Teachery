@@ -89,7 +89,8 @@
         document.querySelector("#students").innerHTML = "Count: " + student_count;
         // can't save that much in a cookie
         if (student_count > 40)
-            alert("Due to the large number of imported names, these names won't be saved.");
+            new Notification("Due to the large number of imported names, these names won't be saved.",
+                             "warning", 3000);
 
         // delete a name
         document.querySelector("#delete_name").onclick = function() {
@@ -97,7 +98,7 @@
             var selected_id = document.getElementById(selected);
 
             if (!selected) {
-                alert("Nothing to remove.");
+                new Notification("Nothing to remove.", "normal", 2500);
                 return false;
             }
 
@@ -151,7 +152,7 @@
             random_key = keys[Math.floor(Math.random() * keys.length)];
 
             if (!students[random_key]) {
-                alert("You've looped through all names.");
+                new Notification("You've looped through all names.", "normal", 2000);
                 return false;
             }
 
@@ -191,12 +192,12 @@
         var contents;
 
         if(file.size > 100000) {
-            alert("File size too large.");
+            new Notification("File size too large.", "warning", 3000);
             return false;
         }
 
         if (!file) {
-            alert("Failed to load file.");
+            new Notification("Failed to load file", "warning", 3000);
             return false;
         }
 

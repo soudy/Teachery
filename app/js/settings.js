@@ -19,7 +19,6 @@
 (function()
 {
 
-
     var base_default = "214E98";
     var text_default = "191919";
     var background_default = "F2F2F2";
@@ -51,48 +50,45 @@
     text_color.value       = settings.text_color;
 
     base_color.addEventListener("blur", function(e) {
-        if(!(base_color.value.length == 3 || base_color.value.length == 6)) {
-            alert("not a valid color: " + base_color.value);
+        var regex  = new RegExp("([a-fA-F0-9]+)");
+        var result = regex.exec(base_color.value);
+
+        if(!result || !(result[0].length == 3 || result[0].length == 6)) {
+            new Notification("not a valid color: " + base_color.value, "warning", 2500);
             return;
         }
 
-        var regex  = new RegExp("([a-fA-F0-9]+)");
-        var result = regex.exec(base_color.value);
-        if (result) {
-            settings.base_color = result[0];
-            cookie.create("settings", JSON.stringify(settings));
-            window.location.reload();
-        }
+        settings.base_color = result[0];
+        cookie.create("settings", JSON.stringify(settings));
+        window.location.reload(); 
     });
 
     background_color.addEventListener("blur", function(e) {
-        if(!(background_color.value.length == 3 || background_color.value.length == 6)) {
-            alert("not a valid color: " + text_color.value);
+        var regex  = new RegExp("([a-fA-F0-9]+)");
+        var result = regex.exec(background_color.value);
+
+        if(!result || !(result[0].length == 3 || result[0].length == 6)) {
+            new Notification("not a valid color: " + background_color.value, "warning", 2500);
             return;
         }
 
-        var regex  = new RegExp("([a-fA-f0-9]+)");
-        var result = regex.exec(background_color.value);
-        if (result) {
-            settings.background_color = result[0];
-            cookie.create("settings", JSON.stringify(settings));
-            window.location.reload();
-        }
+        settings.background_color = result[0];
+        cookie.create("settings", JSON.stringify(settings));
+        window.location.reload();
     });
 
     text_color.addEventListener("blur", function(e) {
-        if(!(text_color.value.length == 3 || text_color.value.length == 6)) {
-            alert("not a valid color: " + text_color.value);
+        var regex  = new RegExp("([a-fA-F0-9]+)");
+        var result = regex.exec(text_color.value);
+
+        if(!result || !(result[0].length == 3 || result[0].length == 6)) {
+            new Notification("not a valid color: " + text_color.value, "warning", 2500);
             return;
         }
 
-        var regex  = new RegExp("([a-fA-F0-9]+)");
-        var result = regex.exec(text_color.value);
-        if (result) {
-            settings.text_color = result[0];
-            cookie.create("settings", JSON.stringify(settings));
-            window.location.reload();
-        }
+        settings.text_color = result[0];
+        cookie.create("settings", JSON.stringify(settings));
+        window.location.reload();
     });
 
     document.querySelector("#base_reset").onclick = function() {
@@ -133,7 +129,7 @@
 
     // auto mute
     var mute_toggle = document.querySelector('.auto-mute').querySelectorAll('.bool');
-    if (settings.auto_mute == 0)
+    if (settings.auto_mute === 0)
         mute_toggle[0].classList.add('active');
     else
         mute_toggle[1].classList.add('active');
@@ -164,7 +160,7 @@
         // set active on pageload
         if (finish[i].id == settings.finish)
             finish[i].classList.add("active");
-            
+
     }
 
     base_color_hash.onchange = function() {
@@ -187,5 +183,5 @@
         cookie.create("settings", JSON.stringify(settings));
         window.location.reload();
     };
-    
+
 })();

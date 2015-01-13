@@ -1,20 +1,20 @@
 /*
- * Teachery is a web application to make the life of teachers easier.
- * Copyright (C) 2015 Terence Keur, Mirko van der Waal and Steven Oud
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, see <http://www.gnu.org/licenses/>.
- */
+* Teachery is a web application to make the life of teachers easier.
+* Copyright (C) 2015 Terence Keur, Mirko van der Waal and Steven Oud
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, see <http://www.gnu.org/licenses/>.
+*/
 
 function Clock(options){
 
@@ -22,12 +22,14 @@ function Clock(options){
     var self = this;
     var settings = JSON.parse(cookie.get("settings")) || {};
     var appendTo = options.appendTo || document.querySelector("main");
+
     // Copy the shadow clone and append it to the given node
     this.element = document.querySelector('.shadowTimer').cloneNode(true);
     this.element.classList.remove('shadowTimer');
     setTimeout(function(){
         self.element.classList.remove('offscreen');
     }, 100);
+
     //appendTo.insertBefore(this.element, appendTo.querySelector('.checkboxes'));
     appendTo.appendChild(this.element);
 
@@ -46,15 +48,17 @@ function Clock(options){
     this.sound = new Audio('sounds/hitmarker.mp3');
 
     this.title.value = options.name || 'Clock'+(Math.floor(Math.random()*200));
+
     // Create a default timer
     this.timer = new Timer({
         name: this.title.value,
         direction: options.direction || 'down',
         time: options.time || settings.clock || "00:10:00",
-        callback: function(){
+        callback: function() {
             self.endsound.play();
             self.stop();
-        },
+            new Notification("Clock " + options.name + " finished.", "normal", 3500);
+        }
     });
 
     this.getInfo = function() {
@@ -97,7 +101,7 @@ function Clock(options){
                                     self.updateCookie();
                                     break;
                             }
-                        }, 
+                        },
                     });
                     break;
             }
@@ -124,7 +128,7 @@ function Clock(options){
 
     this.updateDisplay = function(){
         var time = this.timer.getTime(),
-            times = time.split(':');
+        times = time.split(':');
         this.times[0].value = times[0];
         this.times[1].value = times[1];
         if (this.times[2].value != times[2] && !this.mute){
@@ -202,8 +206,8 @@ function Clock(options){
             // Cba to do it better atm
             // Recreate the above in a temporary function then call it with force or with confirm.
             new Confirm({
-                element:    document.querySelector('.checkbox-overlay'),
-                message:    'Are you sure u want to delete '+this.timer.getName()+'?',
+                element: document.querySelector('.checkbox-overlay'),
+                message: 'Are you sure u want to delete '+this.timer.getName()+'?',
                 confirm: function(){
                     self.render.stop();
                     self.element.remove();
@@ -228,7 +232,6 @@ function Clock(options){
         }
     };
 
-
     this.getInfo = function(){
         return {
             muted: this.mute,
@@ -246,17 +249,12 @@ function Clock(options){
 
     this.updateCookie();
     this.updateDisplay();
-
 }
 
 function fullScreenEnabled(){
-    if( document.fullscreenEnabled || document.webkitFullscreenEnabled || 
-        document.mozFullScreenEnabled || document.msFullscreenEnabled) 
-        return true;
-    return false;
+    return document.fullscreenEnabled || document.webkitFullscreenEnabled ||
+    document.mozFullScreenEnabled || document.msFullscreenEnabled;
 }
-
-
 
 function clockSettings(options){
     var self = this;
@@ -265,9 +263,9 @@ function clockSettings(options){
     this.callback = options.onChange || function(){};
     this.elm.onclick = function(e){
         if (e.target.classList.contains('settings-overlay')){
-            self.elm.style.display = "none";       
+            self.elm.style.display = "none";
         }
-    }
+    };
 
     for (var i = 0; i < this.settings.length; i++) {
         this.settings[i].onclick = function(){
