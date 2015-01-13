@@ -43,7 +43,7 @@
 
             </select>
             <div name="clear_all" id="clear_all" class="input-child input-remove-all">
-                <p>Remove all</p>
+                <p>Remove</p>
             </div>
 
             <div name="delete_name" id="delete_name" class="input-child input-remove-one">

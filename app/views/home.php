@@ -26,13 +26,23 @@
         <div class=clear-both></div>
 
         <div class="home-group">
-            <h2><a href="#pickery">Groupery</a><i class="icon ion-person-stalker"></i></h2> 
+            <h2><a href="#groupery">Groupery</a><i class="icon ion-person-stalker"></i></h2> 
             <p>
                Groupery allows you to sort into groups of set size easily. This tool works nearly the same as Pickery.
                It is however a little more specified to work with groups.
                <span><a href="#?">Learn more</a></span>
             </p>
         </div>
+
+
+        <div class="home-group">
+            <h2><a href="#settings">Settings</a><i class="icon ion-gear-b"></i></h2> 
+            <p>
+               Here you can costumize Teachery to your liking entirely and bend it to your will with costum colors and sounds.
+               <span><a href="#?">Learn more</a></span>
+            </p>
+        </div>
+
         <div class=clear-both></div>
 
         <p class="issue">Found an issue? Report it <a href="https://github.com/kendaru/Teachery/issues">here</a> or <a href="http://www.twitter.com/MMMvdw">contact</a> us.</p>
