@@ -16,16 +16,18 @@
     <script type="text/javascript" src="js/notification.js"></script>
 </head>
 <body>
+    <div class="cookie"></div>
+
     <!-- This is where the navigation resires. -->
     <nav>
         <a id="home_menu" class="menu" href="#home"><i class="icon ion-home"></i></a>
         <a id="timery_menu" class="menu" href="#timery"><i class="icon ion-clock"></i></a>
         <a id="pickery_menu" class="menu" href="#pickery"><i class="icon ion-person"></i></a>
-        <a id="groupery_menu" class="menu" href="#groupery"><i class="icon ion-group"></i></a>
+        <!-- <a id="groupery_menu" class="menu" href="#groupery"><i class="icon ion-group"></i></a>-->
         <a id="settings_menu" class="menu" href="#settings"><i class="icon ion-gear-b"></i></a>
     </nav>
 
-    <div class="cookie"></div>
+    <div class=navlay></div>
 
     <noscript>
          For full functionality of this site it is necessary to enable JavaScript.

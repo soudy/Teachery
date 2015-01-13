@@ -16,8 +16,6 @@
             <span class="ref"><i class="ion ion-refresh" id="base_reset"></i></span>
             <div class="clear-both"></div>
                 
-                
-
             <h2>Background color</h2>
             <div class="background_color_box color_box"></div>
             <label for="background_color_hash"><i class="icon ion-edit"></i></label><input type="color" id="background_color_hash" style="display:none">
@@ -61,15 +59,5 @@
                 <span class="opt finish" id="victory">Victory</span>
             </div>
         </div>
-
-        <!--<div class="setting-general">
-            <h1>General</h1>
-
-            <div class="boolcont">
-                <h2 class="h2bool">Enable cookies</h2>
-                <span class="bool">YES</span>
-                <span class="bool">NO</span>
-            </div>
-        </div>-->
     </div>
 </main>

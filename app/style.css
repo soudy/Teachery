@@ -1,4 +1,3 @@
-
 /*
 * Stylesheet
 * Author: Mirko van der Waal (God);
@@ -10,8 +9,9 @@
 
 /* Reset standard margins and apply standard fallback font + Background placement.*/
 html,
-body                {margin:0;padding:0;font-family: 'Tahoma', 'sans-serif';
-                    vertical-align:baseline;line-height:1;color:#191919;}
+body                {margin:0;padding:0;font-family: 'Montserrat', sans-serif;
+                    vertical-align:baseline;line-height:1;color:#191919;overflow-x:hidden;}
+
 
 /* Prevent padding to resize the element.*/
 *,
@@ -21,11 +21,52 @@ body                {margin:0;padding:0;font-family: 'Tahoma', 'sans-serif';
                              box-sizing: border-box;
                     outline:none;}
 
+/* Have a pointer on all buttons and a clearfix bound to a div. */
 .clear-both         {clear:both;}
 .ion-refresh        {cursor:pointer;}
 
+/* Small resest for chrome and user preferences. */
 a                   {color:inherit;text-decoration:inherit;}
+
 input               {outline:none;}
+input[disabled]     {background:#F2F2F2 !important;color:#000 !important}
+
+/* Default 'nav' */
+nav                 {width:100px;height:100%;position:fixed;left:0;background:#214E96;
+                    transition:width .3s;-webkit-transition:width .3s;color:#FFF}
+
+/* The 'nav' upon active/hover */
+nav:hover           {width:150px;}
+
+/* Place-- alignment of the child elements of the 'nav'. */
+nav a               {display: -webkit-box;
+                     display: -webkit-flex;
+                     display: flex;
+                    height:25vh;-webkit-align-items: center;align-items: center;
+                    justify-content: center;-webkit-justify-content: center;font-size:2em;
+                    transition:background .3s, color .3s;}
+
+/* The child element of the 'nav' upon active/hover. */
+nav a:hover,
+nav a:active,
+nav a.active        {background:#FFF;color:#214E96;}
+
+/* Hide others and re-asign default page upon active */
+.page {display:block;max-height:0px;opacity:0;min-height:0%;transition: 0.5s;overflow:scroll;overflow-x:hidden;}
+.page.show {display:block;max-height:100%;opacity:1;min-height:100%;}
+
+@-moz-document url-prefix() {
+    .page {transition: opacity .5s; overflow:auto;overflow-x:hidden;}
+}
+
+
+/* Invisible layer to have a minimal width for the 'nav'. */
+.navlay             {width:150px;height:100%;float:left;z-index:-100;}
+
+/* Main container to have all the content. */
+main                {height:100%;width:calc(100% - 150px);float:left;}
+
+/* The CSS regarding the cookie. */
 
 .cookie             {position:fixed;z-index:995;width:90%;text-align:center;background:rgba(0, 0, 0, .2);line-height:0.4em;
                     font-family: 'Montserrat', sans-serif;font-weight:300;right:0;transition:all .3s;display:block;
@@ -34,6 +75,7 @@ input               {outline:none;}
 .cookie p           {float:left;width:80%;margin-left:10%;}
 .cookie i           {float:left;width:10%;padding:7.5 0 0 0;font-size:150%;cursor:pointer;}
 
+
                     /*
                     ICON_COLOR: #F2F2F2;
                     BASECOLOR:  #214E96;
@@ -41,49 +83,33 @@ input               {outline:none;}
                     TEXT_COLOR: #191919;
                     */
 
-                    /* WIDTH: 100% */
-body                {widows:  100%;background:#F2F2F2;overflow-x:hidden;}
+.landing {width:100%;background:#214E96;height:100%;text-align:center;}
+.landing img {margin-top:100px;width:85%;}
+.landing div {font-family: 'Montserrat', sans-serif;text-align:center;margin-top:65px;}
+.landing div a {letter-spacing:.5em;color:#fff;border:2.5px solid #fff;padding:20 50;transition:background .3s, color .3s;}
+.landing div a:hover {color:#214E96;background:#fff;}
+.landing .devs {text-align:center;width:400px;position:fixed;left:50%;margin-left:-200px;bottom:10;color:white;font-size:70%;}
+.shadowTimer {display:none;}
+.checkboxes {transition: all .3s;width:100%;font-family: 'Montserrat', sans-serif;}
+.offscreen {-webkit-transform: translateX(100%);-moz-transform: translateX(100%);transform: translateX(100%);}
 
-
-.page               {display:block;max-height:0px;opacity:0;min-height:0%;transition: 0.5s;overflow:scroll;overflow-x:hidden;}
-.page.show          {display:block;max-height:100%;opacity:1;min-height:100%;}
-
-                    /* WIDTH: 10% */
-nav                 {width:   10%;z-index:10;
-                    float:left;background:#214E96;color:#F2F2F2;transition:width .3s ;overflow:none;position:fixed;}
-
-                    /* WIDTH: 15% */
-nav:hover           {width:   15%;}
-nav:hover + .cookie {width:   85%;}
-
-nav a               {display: -webkit-box;
-                     display: -webkit-flex;
-                     display: flex;
-                    height:20vh;-webkit-align-items: center;align-items: center;
-                    justify-content: center;-webkit-justify-content: center;font-size:2em;
-                    transition:background .3s, color .3s;}
-nav a:hover,
-nav a:active,
-nav a.active        {background:#F2F2F2;color:#214E96;}
-
-                    /* WIDTH: 100% */
-main                {width:   100%;
-                    float:left;background:#F2F2F2;transition:width .3s;font-family: 'Lato', sans-serif;padding-left:100px;margin-bottom:75px;}
-
-.landing                {width:100%;background:#214E96;height:100%;text-align:center;}
-.landing img            {margin-top:100px;width:85%;}
-.landing div            {font-family: 'Montserrat', sans-serif;text-align:center;margin-top:65px;}
-.landing div a          {letter-spacing:.5em;color:#fff;border:2.5px solid #fff;padding:20 50;transition:background .3s, color .3s;}
-.landing div a:hover    {color:#214E96;background:#fff;}
-.landing .devs          {text-align:center;width:400px;position:fixed;left:50%;margin-left:-200px;bottom:10;color:white;font-size:70%;}
-
-.shadowTimer            {display:none;}
-.checkboxes             {transition: all .3s;width:100%;font-family: 'Montserrat', sans-serif;}
-.offscreen              {-webkit-transform: translateX(100%);-moz-transform: translateX(100%);transform: translateX(100%);}
-
+/* All window headers */
 header                  {width:300px;margin:20 auto 50 auto}
-header h1               {font-family: 'Montserrat', sans-serif;text-align:center;font-size:385%;font-weight:100;border-bottom:5px solid #214E96;}
+header h1               {font-family: 'Montserrat', sans-serif;text-align:center;
+                        font-size:400%;font-weight:100;border-bottom:5px solid #214E96;}
 
+/* >Home */
+.home                   {margin:auto;width:100%;padding:0px 25px;}
+    .home-group         {margin:75px auto 50px auto;max-width:720px;}
+    .home-group h2      {font-size:200%;color:#214E96;min-width:280px;padding:0px 25px;}
+    .home-group i       {font-size:100%;width:10%;float:left;}
+    .home-group a       {width:90%;float:left;}
+    .home-group p       {padding-left:10px;border-left:10px solid #214E96;
+                        font-size:100%;line-height:1.25em;padding-top:50px;}
+    .home-group span    {line-height:2em;color:#214E96;}
+/* <Home */
+
+/* >Time */
 .checkbox-overlay       {display:none;height:100%;width:100%;background:rgba(255, 255, 255, .8);position:fixed;left:0;top:0;}
 .checkbox-overlay.active{display:block;}
 .checkbox-texts         {text-align:center;padding:25vh 0 0 0;font-size:150%;text-shadow:0px 2px 0px white;}
@@ -113,21 +139,68 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .checkbox-button        {width:50%;float:left;font-size:250%;margin:35 0px;text-align:center;}
 .checkbox-button i      {display:inline-block;transition:all .2s;color:#214E96;cursor:pointer;font-family: 'Montserrat', sans-serif;margin:0 15;}
 .checkbox-button i:hover{transform: scale(1.2,1.2);-moz-transform: scale(1.2,1.2);-webkit-transform: scale(1.2,1.2);}
+/* <Time */
 
-.pick                   {width:100%;font-family: 'Montserrat', sans-serif;padding-left:10.5%}
-.pick h3                {margin:25 0;font-size:100%;}
-.pick-form              {width:100%;height:100px;text-align:center;margin-left:-4.5%;}
-.pick-form label        {font-size:500%;color:#214E96;cursor:pointer;}
-.section-left,
-.section-right          {width:35%;float:left;text-align:center;}
-.section-middle         {width:20%;float:left;text-align:center;margin-top:25px;}
-.section-middle div     {width:100%;border:none;color:#FFF;text-align:center;
-                        font-family: 'Montserrat', sans-serif;font-size:250%;padding:17.5 25;cursor:pointer;}
-.section-middle i       {color:#214E96;}
-.pick select            {width:100%;}
+/* >Pickery */
+.pick                   {width:100%;font-family: 'Montserrat', sans-serif;padding:0px 25px;}
+    .pick input         {font-family: 'Montserrat', sans-serif;border:none;}
+    
+    /* The container for the button to upload. */
+    .class              {width:50%;float:left;max-height:40px;}
+    .div-class          {line-height:2.3em;text-align:center;font-size:100%;}
+    .div-class          {width:150px;border:3px solid #214E96;background:#214E96;min-width:175px;cursor:pointer;
+                        color:#FFF;margin:0 auto;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
+    .div-class:hover    {background:#FFF;color:#214E96;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
+    
+    /* The container for where the hash is to be entered for validation */
+    .hashkey            {width:50%;float:left;padding:0px 0px;max-height:40px;line-height:2.5em;}
+    
+    .hashtag            {width:15%;float:left;padding:7.5px 0px;max-height:40px;font-size:200%;
+                        color:#214E96;}
 
-.settings               {width:100%;font-family: 'Montserrat', sans-serif;padding-left:7.5%;transition:margin .5s;
-                        -webkit-transition:margin .5s;max-width:960px;}
+    .hashtext           {width:70%;float:left;}
+    .hashtext input     {border-bottom:5px solid #214E96;border-left:5px solid #214E96;min-width:175px;
+                        line-height:1em;font-size:125%;height:40px;padding:10px;width:100%;}
+    
+    .hashbutton         {width:15%;float:left;}
+    .hashbutton button  {padding:7.5px 0px;max-height:40px;font-size:200%;border:none;
+                        color:#214E96;background:none;float:right;cursor:pointer;}
+    
+    /* Results */
+    .put-result         {text-align:center;width:100%;float:left;}
+    .put-result div     {width:175px;margin:0 auto;}
+    .put-result div p   {border-bottom:3px solid #214E96;text-align:center;}
+
+    /* Sections */
+    .section-input,
+    .section-output     {width:50%;float:left;padding:0px 25px;font-family: 'Montserrat', sans-serif;}
+
+    .section-input select,
+    .section-output select {border:none;min-height:400px;max-height:500px;}
+
+    .section-input option,
+    .section-output option      {border-left:5px solid #214E96;font-size:150%;padding:0px 10px;margin:10px 0px;
+                                font-family: 'Montserrat', sans-serif;}
+
+    .section-input select       {width:100%;float:left;}
+    .section-input .input-child {float:left;width:33.3334%;text-align:center;padding:0px 10px;}
+    .section-input .input-child p   {background:#214E96;border:3px solid #214E96;padding:5px 0px;color:white;
+                                    -webkit-transition:background .3s, color .3s;transition:background .3s, color .3s;}
+    .section-input .input-child p:hover {background:#FFF;color:#214E96;cursor:pointer;
+                                        -webkit-transition:background .3s, color .3s;transition:background .3s, color .3s;}
+    
+    .section-output select     {width:100%;float:left;}
+    .section-output .output-child {float:left;width:100%;text-align:center;padding:0px 10px;}
+    .section-output .output-child p   {background:#214E96;border:3px solid #214E96;padding:5px 0px;color:white;
+                                    -webkit-transition:background .3s, color .3s;transition:background .3s, color .3s;}
+    .section-output .output-child p:hover {background:#FFF;color:#214E96;cursor:pointer;
+                                        -webkit-transition:background .3s, color .3s;transition:background .3s, color .3s;}
+
+/* <Pickery */
+
+/* >Settings */
+.settings               {width:100%;font-family: 'Montserrat', sans-serif;padding:0px 25px;
+                        max-width:960px;margin:0 auto;}
 .settings h1            {margin:50 0 25 0;}
 .settings h2            {font-weight:300;font-size:125%;}
 
@@ -143,7 +216,6 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .setting-color input    {width:70%;background:white;border:none;font-size:200%;height:60px;padding:15;color:#666;float:left;}
 .setting-color label    {width:15%;float:left;background:#214E96;font-size:2em;padding: 15 0;
                         text-align:center;color:white;font-weight:300;height:60px;cursor:pointer;}
-
 
 .color_box              {width:100%;height:10px;box-shadow:0 0 9px 0 #ccc}
 
@@ -164,26 +236,24 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .opt:hover              {background:white;color:#214E96;cursor:pointer;}
 .opt:active,
 .opt.active             {background:white;color:#214E96;color:#191919}
+/* <Settings */
 
-.setting-general .boolcont{margin:40 0 0 0;}
-.setting-general .h2bool  {width:60%;float:left;}
-.setting-general .bool    {width:20%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s, color .2s;}
-.bool:hover             {background:white;color:#214E96;cursor:pointer;}
-.bool:active,
-.bool.active            {background:white;color:#214E96;color:#191919}
+/* Overlays for pages. */
+.settings-overlay       {display:none;height:100%;width:100%;background:rgba(255, 255, 255, .8);position:fixed;left:0;top:0;}
+.settings-overlay.active{display:block;}
+.settings-texts         {text-align:center;padding:20px 0 0 0;font-size:150%;text-shadow:0px 2px 0px white;font-weight: bold;}
+.settings-bool          {margin:0 auto;display:table;}
+.settings-bool > div    {text-align:center;background:#fff;padding:20 0;width:100px;color:#214E96;float:left;margin:0 10;
+                        border:3px solid #214E96;font-size:125%;font-family: 'Montserrat', sans-serif;
+                        transition:background .3s, color .3s;cursor:pointer;}
+.settings-bool > div:hover  {background:#214E96;color:white;}
 
-input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
-
-.home                         {width:100%; margin:auto;font-family: 'Montserrat', sans-serif;padding:0 25;}
-.home .home-group             {margin-bottom:50px; max-width:700px; margin:auto;}
-.home .home-group h2          {font-size:200%;color:#214E96;margin-top:60px;}
-.home .home-group h2 a:hover  {text-decoration:underline}
-.home .home-group p           {padding-left:10px; border-left:10px solid #214E96;font-size:125%;}
-
+/* Default colors. */
 .base_color_box         {background:#214E96}
 .text_color_box         {background:#191919}
 .background_color_box   {background:#F2F2F2}
 
+/* Fullscreen support for both: Chrome, Firefox & Safari. (IE is depricated). */
 *:-webkit-full-screen {position: fixed;width: 100%;height:100%;top: 0;padding-top:10%;}
 
 *:-webkit-full-screen .checkbox-button {float:none;position: fixed; width:auto; top:5%; left:50%; -webkit-transform:translateX(-50%);}
@@ -207,21 +277,29 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
 *:-moz-full-screen .checkbox-input span {font-size:20vh;width:5%;}
 *:-moz-full-screen .checkbox-input input{font-size:20vh;width:30%;}
 
-@-moz-document url-prefix() {
-    .page               {transition: opacity .5s; overflow:auto;overflow-x:hidden;}
-}
-
 @media (max-width: 720px) {
+    body                {margin-bottom:35px;}
+
     /* CORE RESPONSIVE */
     .cookie             {width:100%;line-height:1em;}
-    body                {}
-    main                {padding:0;margin-top:65px;margin-bottom:85px;}
-    nav                 {display:block;position:fixed;width:100%;bottom:0;}
+    
+    /* Hides the invisible container and re-asign a normal width to the main container. */
+    .navlay             {display:none}
+    main                {width:100%;}
+
+    /* Forces the 'nav' to the bottom of the page. */
+    nav                 {position:fixed;width:100%;bottom:0;height:50px;}
+    
+    /* Fix that prevents a 'a' overlay. */
     nav:hover           {width:100%;}
-    nav a               {height:65px;width:20%;float:left;}
-    nav:hover + .cookie {width:   100%;}
+    
+    /* Single styling for each child element. */
+    nav a               {width:25%;float:left;height:50px;}
+    
+    nav:hover + .cookie {width:100%;}
 
     /* LANDING */
+    /* Styling for the names and the logo. */
     .landing div a,
     .landing div p      {width:100%;}
 
@@ -233,25 +311,15 @@ input[disabled]         {background:#F2F2F2  !important;color:#000  !important}
     .checkbox-button    {margin-top:0;}
 
     /* SETTINGS */
-    .settings           {padding:0;}
+    .settings           {padding:0;margin:0;left:0;}
     .setting-color,
     .setting-clock,
     .setting-general    {width:100%;padding:0 25;}
 
-
     /* PICKERY */
-    .section-middle div {padding:17.5 0;}
+    .hashkey, .class    {width:100%;margin:10px 0px;}
+    .hashkey            {padding:50px 0px;}
+    .section-output,
+    .section-input      {width:100%;padding:0;margin:25px 0px;}
+    
 }
-
-@media (min-width: 1280px) {
-    /* SETTINGS */
-    .settings   {margin-left:10%;}
-}
-.settings-overlay       {display:none;height:100%;width:100%;background:rgba(255, 255, 255, .8);position:fixed;left:0;top:0;}
-.settings-overlay.active{display:block;}
-.settings-texts         {text-align:center;padding:20px 0 0 0;font-size:150%;text-shadow:0px 2px 0px white;font-weight: bold;}
-.settings-bool          {margin:0 auto;display:table;}
-.settings-bool > div    {text-align:center;background:#fff;padding:20 0;width:100px;color:#214E96;float:left;margin:0 10;
-                        border:3px solid #214E96;font-size:125%;font-family: 'Montserrat', sans-serif;
-                        transition:background .3s, color .3s;cursor:pointer;}
-.settings-bool > div:hover  {background:#214E96;color:white;}

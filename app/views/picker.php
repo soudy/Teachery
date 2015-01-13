@@ -6,32 +6,78 @@
     <!-- /Sorting (Head) -->
 
     <div class="pick">
-        <div id="uploadcsv">
+
+        <div class="upkey" id="uploadcsv">
             <form  class="pick-form" action="" method="post">
-                <label for="class"><i class="icon ion-upload"></i></label>
+                <label for="class" class="class">
+                    <div class="div-class">Upload a CSV</div>
+                </label>
                 <input type="file" name="class" id="class" value="" accept=".csv" style="display:none" />
             </form>
         </div> 
 
+        <form class="hashkey">
+            <div class="hashtag">
+                <i class="icon ion-locked"></i>
+            </div>
+
+            <div class="hashtext">
+                <input type="password">
+            </div>
+
+            <div class="hashbutton">
+                <button><i class="icon ion-checkmark"></i></button>
+            </div>
+        </form>
+
         <div class="clear-both"></div>
         
-        <section class="section-left">
-        <h3 id="students">&nbsp;</h3>
-        <select size="20" id="all_names"></select>
+        <!-- input -->
+        <section class="section-input">
+            <div class="put-result">
+                <div id="students" class="input-result">
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+            <select size="20" id="all_names">
+
+            </select>
+            <div name="clear_all" id="clear_all" class="input-child input-remove-all">
+                <p>All</p>
+            </div>
+
+            <div name="delete_name" id="delete_name" class="input-child input-remove-one">
+                <p>Select</p>
+            </div>
+        
+            <div name="post_random" id="post_random" class="input-child input-random">
+                <p>Random</p>
+            </div>
         </section>
 
-        <section class="section-middle">    
-        <input type="checkbox" name="duplicates" id="allow_duplicates" style="" />
-        <label for="allow_duplicates">Duplicates</label>
-            <div name="post_random" id="post_random" ><i class="icon ion-shuffle"></i></div>
-            <div name="delete_name" id="delete_name" value="Remove" /><i class="icon ion-trash-a"></i></div>
-            <div name="clear_all" id="clear_all" value="Clear all" /><i class="icon ion-close"></i></div>
-            <div name="clear_history" id="clear_history" value="Clear history" /><i class="icon ion-refresh"></i></div>
-        </section>
+        <section class="section-output">
+            <div class="put-result">
+                <div id="random" class="output-result">
+                    <p></p>
+                </div>
+            </div>
 
-        <section class="section-right">
-            <h3 id="random">&nbsp;</h2>
-            <select size="20" id="chosen_names"></select>
-        </section>
+            <select size="20" id="chosen_names">
+            
+            </select>
+            <div name="clear_history" id="clear_history" class="output-child output-clear">
+                <p>Clear</p>
+            </div>
+        </section> 
+
+        <input style="display:none;" type="checkbox" name="duplicates" id="allow_duplicates" style="" />
+        <label style="display:none;" for="allow_duplicates">Duplicates</label>    
     </div>
 </main>
+
+<!-- 'remove all'
+'remove selected'
+'random'
+
+'clear'
+ -->

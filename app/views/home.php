@@ -1,27 +1,39 @@
-<main>
-     <!-- Home (Head) -->
+<main class=main>
     <header>
         <h1>Home</h1>
     </header>
-    <!-- /Home (Head) -->
+
     <div class="home">
-		<div class="home-group">
-			<h2><i class="icon ion-clock"></i> <a href="#timery">Timery</a></h2>
-            <p>With Timery you can create as many timers as you want, each with different duration, name and more.<br/><br/>
+        <div class="home-group">
+            <h2><a href="#timery">Timery</a><i class="icon ion-clock"></i></h2>
+            <p>
+                Timery is a easy to use time manager. You can creat any amount of timers and have them either count up or down.
+                You can have them start at any time and costumize the sounds for each. When required fullscreen mode is available.
+                <span><a href="#?">Learn more</a></span>
             </p>
-		</div>
-		<div class="home-group">
-			<h2><i class="icon ion-person"></i> <a href="#pickery">Pickery</a></h2>
-            <p>Pickery allows you to easily select a random name from a list of names. You can export a class as CSV in Magister and import it here by doing the following steps:
-                <ol>
-                    <li><a href="https://mediacollege.swp.nl/5.6.34/magister.aspx">Log into Magister.</a></li>
-                    <li>Go to the class you want to load in.</li>
-                    <li>Click on "Export" above.</li>
-                    <li>Choose the "comma seperated text" option.</li>
-                    <li>Go to Pickery and import the file you just exported from Magsiter. </li>
-                    <li>Done! You can now start generating random names.</li>
-                </ol>
+
+        </div>
+        <div class=clear-both></div>
+
+        <div class="home-group">
+            <h2><a href="#pickery">Pickery</a><i class="icon ion-person"></i></h2> 
+            <p>
+                Pickery is a managable way of sorting and randomizing groups of people. 
+                We tried to make it as easy as possible even including as much as possible, go see for yourself.
+                <span><a href="#?">Learn more</a></span>
             </p>
-		</div>
+        </div>
+        <div class=clear-both></div>
+
+        <div class="home-group">
+            <h2><a href="#pickery">Groupery</a><i class="icon ion-person-stalker"></i></h2> 
+            <p>
+               Groupery allows you to sort into groups of set size easily. This tool works nearly the same as Pickery.
+               It is however a little more specified to work with groups.
+               <span><a href="#?">Learn more</a></span>
+            </p>
+        </div>
+        <div class=clear-both></div>
+
     </div>
-</main>
+    </main>
