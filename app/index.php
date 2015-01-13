@@ -87,7 +87,9 @@
     <div id="settings"  class="page">
         <?php include('views/settings.php'); ?>
     </div>
+
     <div id="notlist"></div>
+
     <script type="text/javascript" src="js/timery.js"></script>
     <script type="text/javascript" src="js/settings.js"></script>
     <script type="text/javascript" src="js/pickery.js"></script>

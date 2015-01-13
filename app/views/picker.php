@@ -43,11 +43,11 @@
 
             </select>
             <div name="clear_all" id="clear_all" class="input-child input-remove-all">
-                <p>All</p>
+                <p>Remove all</p>
             </div>
 
             <div name="delete_name" id="delete_name" class="input-child input-remove-one">
-                <p>Select</p>
+                <p>Delete</p>
             </div>
         
             <div name="post_random" id="post_random" class="input-child input-random">
@@ -58,7 +58,7 @@
         <section class="section-output">
             <div class="put-result">
                 <div id="random" class="output-result">
-                    <p></p>
+                    <p>&nbsp;</p>
                 </div>
             </div>
 
