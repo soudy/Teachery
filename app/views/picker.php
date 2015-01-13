@@ -35,8 +35,8 @@
         <!-- input -->
         <section class="section-input">
             <div class="put-result">
-                <div id="students" class="input-result">
-                    <p>&nbsp;</p>
+                <div class="input-result">
+                    <p id="students" >&nbsp;</p>
                 </div>
             </div>
             <select size="20" id="all_names">
@@ -57,8 +57,8 @@
 
         <section class="section-output">
             <div class="put-result">
-                <div id="random" class="output-result">
-                    <p>&nbsp;</p>
+                <div class="output-result">
+                    <p id="random">&nbsp;</p>
                 </div>
             </div>
 

@@ -168,8 +168,8 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
     
     /* Results */
     .put-result         {text-align:center;width:100%;float:left;}
-    .put-result div     {width:175px;margin:0 auto;}
-    .put-result div p   {border-bottom:3px solid #214E96;text-align:center;}
+    .put-result div     {margin:0 auto;}
+    .put-result div p   {border-bottom:3px solid #214E96;text-align:center;min-height:25px;}
 
     /* Sections */
     .section-input,
@@ -281,6 +281,9 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 #notlist p          {transition: all .2s;transform:translateX(200%);-webkit-transform:translateX(200%);-moz-transform:translateX(200%);font-weight:bold;padding:10px;color:#fff; margin:4px 0px;}
 #notlist p.show     {transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);}
 #notlist p.hide     {transform:translateY(-200%);-webkit-transform:translateY(-200%);-moz-transform:translateY(-200%);}
+
+#notlist p.normal,
+#notlist p.warning  {font-weight:100;}
 #notlist p.normal   {background:#214E96;}
 #notlist p.warning  {background:#C0392B;}
 
