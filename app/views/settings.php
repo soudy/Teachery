@@ -45,8 +45,8 @@
 
             <div class="boolcont auto-mute">
                 <h2 class="h2bool">Auto mute</h2>
-                <span class="bool auto-mute">YES</span>
-                <span class="bool auto-mute">NO</span>
+                <span class="bool">YES</span>
+                <span class="bool">NO</span>
             </div>
 
             <div class="optcont">

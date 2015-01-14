@@ -230,7 +230,8 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .setting-clock .h2bool  {width:60%;float:left;}
 .setting-clock .bool    {width:20%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s, color .2s;}
 .bool:hover             {background:white;color:#214E96;cursor:pointer;}
-.bool:active            {background:white;color:#214E96;color:#191919}
+.bool:active,
+.bool.active            {background:white;color:#214E96;color:#191919}
 
 .setting-clock .optcont {margin: 40 0 0 0;}
 .setting-clock .h2opt   {width:100%;float:left;}
