@@ -129,7 +129,6 @@
 
     // auto mute
     var mute_toggle = document.querySelector('.auto-mute').querySelectorAll('.bool');
-    console.log(mute_toggle);
     if (settings.auto_mute === 0)
         mute_toggle[0].classList.add('active');
     else
