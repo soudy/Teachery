@@ -43,6 +43,12 @@
             <span class="ref"><i class="ion ion-refresh" id="time_reset"></i></span>
             <div class="clear-both"></div>
 
+            <div class="boolcont auto-mute">
+                <h2 class="h2bool">Auto mute</h2>
+                <span class="bool auto-mute">YES</span>
+                <span class="bool auto-mute">NO</span>
+            </div>
+
             <div class="optcont">
                 <h2 class="h2opt">Sound finish</h2>
                 <span class="opt finish" id="airhorn">Airhorn</span>

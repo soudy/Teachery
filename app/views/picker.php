@@ -14,7 +14,7 @@
                 </label>
                 <input type="file" name="class" id="class" value="" accept=".csv" style="display:none" />
             </form>
-        </div> 
+        </div>
 
         <form class="hashkey">
             <div class="hashtag">
@@ -31,7 +31,7 @@
         </form>
 
         <div class="clear-both"></div>
-        
+
         <!-- input -->
         <section class="section-input">
             <div class="put-result">
@@ -39,9 +39,8 @@
                     <p id="students">&nbsp;</p>
                 </div>
             </div>
-            <select size="20" id="all_names">
+            <select size="20" id="all_names"></select>
 
-            </select>
             <div name="clear_all" id="clear_all" class="input-child input-remove-all">
                 <p>Remove</p>
             </div>
@@ -49,7 +48,7 @@
             <div name="delete_name" id="delete_name" class="input-child input-remove-one">
                 <p>Delete</p>
             </div>
-        
+
             <div name="post_random" id="post_random" class="input-child input-random">
                 <p>Random</p>
             </div>
@@ -62,16 +61,15 @@
                 </div>
             </div>
 
-            <select size="20" id="chosen_names">
-            
-            </select>
+            <select size="20" id="chosen_names"></select>
+
             <div name="clear_history" id="clear_history" class="output-child output-clear">
                 <p>Clear</p>
             </div>
-        </section> 
+        </section>
 
         <input style="display:none;" type="checkbox" name="duplicates" id="allow_duplicates" style="" />
-        <label style="display:none;" for="allow_duplicates">Duplicates</label>    
+        <label style="display:none;" for="allow_duplicates">Duplicates</label>
     </div>
 </main>
 
