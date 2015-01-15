@@ -1,7 +1,7 @@
 <main>
      <!-- Sorting (Head) -->
     <header>
-        <h1>Pickery</h1>
+        <h1>Groupery</h1>
     </header>
     <!-- /Sorting (Head) -->
 
@@ -39,11 +39,10 @@
                     <p id="students">&nbsp;</p>
                 </div>
             </div>
-
             <select size="20" id="all_names"></select>
 
             <div name="clear_all" id="clear_all" class="input-child input-remove-all">
-                <p>Reset</p>
+                <p>Remove</p>
             </div>
 
             <div name="delete_name" id="delete_name" class="input-child input-remove-one">
@@ -73,10 +72,3 @@
         <label style="display:none;" for="allow_duplicates">Duplicates</label>
     </div>
 </main>
-
-<!-- 'remove all'
-'remove selected'
-'random'
-
-'clear'
- -->

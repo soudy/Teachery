@@ -74,20 +74,20 @@
     </noscript>
 
     <div id="home" class="page">
-        <?php include('views/home.php'); ?>
+        <?php include('views/home.html'); ?>
     </div>
     <div id="timery" class="page">
-        <?php include('views/time.php'); ?>
+        <?php include('views/time.html'); ?>
     </div>
     <div id="pickery" class="page">
-        <?php include('views/picker.php'); ?>
+        <?php include('views/picker.html'); ?>
     </div>
 
     <div id="groupery"  class="page">
-        <?php include('views/grouper.php'); ?>
+        <?php include('views/grouper.html'); ?>
     </div>
     <div id="settings"  class="page">
-        <?php include('views/settings.php'); ?>
+        <?php include('views/settings.html'); ?>
     </div>
 
     <div id="notlist"></div>
