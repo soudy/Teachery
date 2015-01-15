@@ -16,10 +16,10 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
+var cookie = new Cookies();
+
 (function()
 {
-    var cookie = new Cookies();
-
     if(!cookie.get("cookie_warn")) {
         document.querySelector(".cookie").innerHTML = 
         '<p>In order to function properly, this site uses cookies.</p> \
@@ -64,4 +64,34 @@
         if (menu_item)
             menu_item.classList.add("active");
     };
+
 })();
+
+function CSVtoJSON(csv)
+{
+    var lines  = csv.split("\n");
+    // Removing some useless space by trimming the last 2 rows.
+    var values = lines[0].split(",").splice(0, 5);
+    var obj = {};
+    var i;
+
+    for (var item in lines) {
+        lines[item] = lines[item].split(",").splice(0, 5);
+
+        // You can get all the classes of the students in the CSV file by
+        // uncommenting this
+        /* classes[lines[item][1]] = lines[item][1]; */
+
+        if (lines[item][0] == "Stamnr" || !lines[item][0])
+            continue;
+
+        for (i = 0; i <= lines[item].length - 1; ++i) {
+            obj["student" + lines[item][0]] = {};
+            for (i = 0; i <= values.length - 1; ++i) {
+                obj["student"+lines[item][0]][values[i]] = lines[item][i] || "";
+            }
+        }
+    }
+
+    return obj;
+}

@@ -20,39 +20,9 @@
 {
     "use strict";
 
-
-
     var inputFile = document.querySelector("#class");
-    var classes = [];
 
-    function CSVtoJSON(csv)
-    {
-        var lines  = csv.split("\n");
-        // Removing some useless space by trimming the last 2 rows.
-        var values = lines[0].split(",").splice(0, 5);
-        var obj = {};
-        var i;
-
-        for (var item in lines) {
-            lines[item] = lines[item].split(",").splice(0, 5);
-
-            classes[lines[item][1]] = lines[item][1];
-
-            if (lines[item][0] == "Stamnr" || !lines[item][0])
-                continue;
-
-            for (i = 0; i <= lines[item].length - 1; ++i) {
-                obj["student" + lines[item][0]] = {};
-                for (i = 0; i <= values.length - 1; ++i) {
-                    obj["student"+lines[item][0]][values[i]] = lines[item][i] || "";
-                }
-            }
-        }
-
-        return obj;
-    }
-
-    function loadInfo(students)
+    function Picker(students)
     {
         var student_count = 0;
         var blacklist =  [];
@@ -209,7 +179,7 @@
         r.onload = function(e) {
             var students = new CSVtoJSON(this.result);
 
-            loadInfo(students);
+            new Picker(students);
 
             // save all students to a cookie
             cookie.create("pickery", JSON.stringify(students));
@@ -217,6 +187,6 @@
     }, false);
 
     if (cookie.get("pickery"))
-        loadInfo(JSON.parse(cookie.get("pickery")));
+        new Picker(JSON.parse(cookie.get("pickery")));
 
 })();

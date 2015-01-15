@@ -6,9 +6,6 @@
     <link rel="stylesheet" href="style.php" id="stylesheet">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
     <script type="text/javascript" src="js/cookies.js"></script>
-    <script type="text/javascript" >
-        var cookie = new Cookies();
-    </script>
     <script type="text/javascript" src="js/notification.js"></script>
     <script type="text/javascript" src="js/confirm.js"></script>
     <script type="text/javascript" src="js/timer.js"></script>
@@ -63,7 +60,7 @@
         <a id="home_menu" class="menu" href="#home"><i class="icon ion-home"></i></a>
         <a id="timery_menu" class="menu" href="#timery"><i class="icon ion-clock"></i></a>
         <a id="pickery_menu" class="menu" href="#pickery"><i class="icon ion-person"></i></a>
-        <!-- <a id="groupery_menu" class="menu" href="#groupery"><i class="icon ion-group"></i></a>-->
+        <!--<a id="groupery_menu" class="menu" href="#groupery"><i class="icon ion-group"></i></a>-->
         <a id="settings_menu" class="menu" href="#settings"><i class="icon ion-gear-b"></i></a>
     </nav>
 
@@ -84,15 +81,20 @@
     <div id="pickery" class="page">
         <?php include('views/picker.php'); ?>
     </div>
+
+    <div id="groupery"  class="page">
+        <?php include('views/grouper.php'); ?>
+    </div>
     <div id="settings"  class="page">
         <?php include('views/settings.php'); ?>
     </div>
 
     <div id="notlist"></div>
 
+    <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/timery.js"></script>
     <script type="text/javascript" src="js/settings.js"></script>
     <script type="text/javascript" src="js/pickery.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/groupery.js"></script>
 </body>
 </html>
