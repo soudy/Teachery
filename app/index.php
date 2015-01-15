@@ -11,6 +11,7 @@
     <script type="text/javascript" src="js/timer.js"></script>
     <script type="text/javascript" src="js/render.js"></script>
     <script type="text/javascript" src="js/clock.js"></script>
+    <script type="text/javascript" src="js/picker.js"></script>
     <style type="text/css" media="all">
         @-webkit-keyframes shake {
           0%, 100% {
@@ -82,6 +83,9 @@
         <?php include('views/picker.php'); ?>
     </div>
 
+    <div id="groupery"  class="page">
+        <?php include('views/grouper.php'); ?>
+    </div>
     <div id="settings"  class="page">
         <?php include('views/settings.php'); ?>
     </div>
