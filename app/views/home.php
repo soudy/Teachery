@@ -34,7 +34,6 @@
             </p>
         </div>
 
-
         <div class="home-group">
             <h2><a href="#settings">Settings</a><i class="icon ion-gear-b"></i></h2> 
             <p>

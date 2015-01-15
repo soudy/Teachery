@@ -33,7 +33,7 @@ input[disabled]     {background:#F2F2F2 !important;color:#000 !important}
 
 /* Default 'nav' */
 nav                 {width:100px;height:100%;position:fixed;left:0;background:#214E96;
-                    transition:width .3s;-webkit-transition:width .3s;color:#FFF}
+                    transition:width .3s;-webkit-transition:width .3s;color:#FFF;z-index:1000;}
 
 /* The 'nav' upon active/hover */
 nav:hover           {width:150px;}
@@ -42,7 +42,7 @@ nav:hover           {width:150px;}
 nav a               {display: -webkit-box;
                      display: -webkit-flex;
                      display: flex;
-                    height:25vh;-webkit-align-items: center;align-items: center;
+                    height:20vh;-webkit-align-items: center;align-items: center;
                     justify-content: center;-webkit-justify-content: center;font-size:2em;
                     transition:background .3s, color .3s;}
 
@@ -308,7 +308,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
     nav:hover           {width:100%;}
     
     /* Single styling for each child element. */
-    nav a               {width:25%;float:left;height:50px;}
+    nav a               {width:20%;float:left;height:50px;}
     
     nav:hover + .cookie {width:100%;}
 
