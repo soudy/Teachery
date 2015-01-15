@@ -82,9 +82,6 @@
         <?php include('views/picker.php'); ?>
     </div>
 
-    <div id="groupery"  class="page">
-        <?php include('views/grouper.php'); ?>
-    </div>
     <div id="settings"  class="page">
         <?php include('views/settings.php'); ?>
     </div>
@@ -95,6 +92,6 @@
     <script type="text/javascript" src="js/timery.js"></script>
     <script type="text/javascript" src="js/settings.js"></script>
     <script type="text/javascript" src="js/pickery.js"></script>
-    <script type="text/javascript" src="js/groupery.js"></script>
+    <!--<script type="text/javascript" src="js/groupery.js"></script>-->
 </body>
 </html>
