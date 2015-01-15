@@ -68,7 +68,7 @@ main                {height:100%;width:calc(100% - 150px);float:left;}
 
 /* The CSS regarding the cookie. */
 
-.cookie             {position:fixed;z-index:995;width:90%;text-align:center;background:rgba(0, 0, 0, .2);line-height:0.4em;
+.cookie             {position:fixed;z-index:995;width:100%;text-align:center;background:rgba(0, 0, 0, .2);line-height:0.4em;
                     font-family: 'Montserrat', sans-serif;font-weight:300;right:0;transition:all .3s;display:block;
                     overflow:hidden;}
 .cookie.hidden      {-webkit-transform: translateY(-100%);-moz-transform: translateY(-100%);transform: translateY(-100%);}
