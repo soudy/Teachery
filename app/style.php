@@ -27,7 +27,7 @@ $content = file_get_contents('style.css');
 $colors = array(
     /* array('821031', 'base_color'), */
     array('214E96', 'base_color'),
-    array('F2F2F2', 'background_color'),
+    array('FFF', 'background_color'),
     array('191919', 'text_color'),
 );
 

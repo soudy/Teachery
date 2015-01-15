@@ -10,7 +10,8 @@
 /* Reset standard margins and apply standard fallback font + Background placement.*/
 html,
 body                {margin:0;padding:0;font-family: 'Montserrat', sans-serif;
-                    vertical-align:baseline;line-height:1;color:#191919;overflow-x:hidden;}
+                    vertical-align:baseline;line-height:1;color:#191919;overflow-x:hidden;
+                    background:#FFF}
 
 /* Prevent padding to resize the element.*/
 *,
@@ -85,8 +86,8 @@ main                {height:100%;width:calc(100% - 150px);float:left;}
 .landing {width:100%;background:#214E96;height:100%;text-align:center;}
 .landing img {margin-top:100px;width:85%;}
 .landing div {font-family: 'Montserrat', sans-serif;text-align:center;margin-top:65px;}
-.landing div a {letter-spacing:.5em;color:#fff;border:2.5px solid #fff;padding:20 50;transition:background .3s, color .3s;}
-.landing div a:hover {color:#214E96;background:#fff;}
+.landing div a {letter-spacing:.5em;color:#FFF;border:2.5px solid #FFF;padding:20 50;transition:background .3s, color .3s;}
+.landing div a:hover {color:#214E96;background:#FFF;}
 .landing .devs {text-align:center;width:400px;position:fixed;left:50%;margin-left:-200px;bottom:10;color:white;font-size:70%;}
 .shadowTimer {display:none;}
 .checkboxes {transition: all .3s;width:100%;font-family: 'Montserrat', sans-serif;}
@@ -117,7 +118,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .checkbox-texts         {text-align:center;padding:25vh 0 0 0;font-size:150%;text-shadow:0px 2px 0px white;}
 .checkbox-bool          {width:190px;margin:0 auto;}
 .checkbox-confirm,
-.checkbox-cancel        {text-align:center;background:#fff;padding:20 0;width:75px;color:#214E96;float:left;margin:0 10;
+.checkbox-cancel        {text-align:center;background:#FFF;padding:20 0;width:75px;color:#214E96;float:left;margin:0 10;
                         border:3px solid #214E96;font-size:125%;font-family: 'Montserrat', sans-serif;
                         transition:background .3s, color .3s;cursor:pointer;}
 .checkbox-confirm:hover,
@@ -246,7 +247,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .settings-overlay.active{display:block;}
 .settings-texts         {text-align:center;padding:20px 0 0 0;font-size:150%;text-shadow:0px 2px 0px white;font-weight: bold;}
 .settings-bool          {margin:0 auto;display:table;}
-.settings-bool > div    {text-align:center;background:#fff;padding:20 0;width:100px;color:#214E96;float:left;margin:0 10;
+.settings-bool > div    {text-align:center;background:#FFF;padding:20 0;width:100px;color:#214E96;float:left;margin:0 10;
                         border:3px solid #214E96;font-size:125%;font-family: 'Montserrat', sans-serif;
                         transition:background .3s, color .3s;cursor:pointer;}
 .settings-bool > div:hover  {background:#214E96;color:white;}
@@ -254,7 +255,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 /* Default colors. */
 .base_color_box         {background:#214E96}
 .text_color_box         {background:#191919}
-.background_color_box   {background:#F2F2F2}
+.background_color_box   {background:#FFF}
 
 /* Fullscreen support for both: Chrome, Firefox & Safari. (IE is depricated). */
 *:-webkit-full-screen {position: fixed;width: 100%;height:100%;top: 0;padding-top:10%;}
@@ -266,10 +267,10 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 *:-webkit-full-screen .checkbox-input {width:100%;}
 *:-webkit-full-screen .checkbox-input span {font-size:20vh;width:5%;}
 *:-webkit-full-screen .checkbox-input input{font-size:20vh;width:25%;}
-*:-webkit-full-screen input[disabled] {background:#fff!important;}
+*:-webkit-full-screen input[disabled] {background:#FFF!important;}
 
 
-*:-moz-full-screen input[disabled] {background:#fff!important;}
+*:-moz-full-screen input[disabled] {background:#FFF!important;}
 *:-moz-full-screen {position: fixed;width:100%;height:100%;top:0;padding-top:10%;background-color:rgba(255,255,255,1);}
 
 *:-moz-full-screen .checkbox-button {float:none;position: fixed; width:auto; top:5%; left:50%; -moz-transform:translateX(-50%);}
@@ -281,7 +282,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 *:-moz-full-screen .checkbox-input input{font-size:20vh;width:30%;}
  
 #notlist            {position:fixed; top:0;right:10px;z-index:20;width:100%; max-width:220px;padding:10px;}   
-#notlist p          {transition: all .2s;transform:translateX(200%);-webkit-transform:translateX(200%);-moz-transform:translateX(200%);font-weight:bold;padding:10px;color:#fff; margin:4px 0px;}
+#notlist p          {transition: all .2s;transform:translateX(200%);-webkit-transform:translateX(200%);-moz-transform:translateX(200%);font-weight:bold;padding:10px;color:#FFF; margin:4px 0px;}
 #notlist p.show     {transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);}
 #notlist p.hide     {transform:translateY(-200%);-webkit-transform:translateY(-200%);-moz-transform:translateY(-200%);}
 

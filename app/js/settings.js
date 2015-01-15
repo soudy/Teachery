@@ -18,10 +18,9 @@
 
 (function()
 {
-
     var base_default = "214E98";
     var text_default = "191919";
-    var background_default = "F2F2F2";
+    var background_default = "FFFFFF";
     var mute_default = 1;
     var clock_default = '00:10:00';
     var finish_default = "airhorn";
@@ -49,26 +48,26 @@
     background_color.value = settings.background_color;
     text_color.value       = settings.text_color;
 
-    base_color.addEventListener("blur", function(e) {
+    base_color.addEventListener("blur", function() {
         var regex  = new RegExp("([a-fA-F0-9]+)");
         var result = regex.exec(base_color.value);
 
         if(!result || !(result[0].length == 3 || result[0].length == 6)) {
-            new Notification("not a valid color: " + base_color.value, "warning", 2500);
+            new Notification("Not a valid color: " + base_color.value, "warning", 2500);
             return;
         }
 
         settings.base_color = result[0];
         cookie.create("settings", JSON.stringify(settings));
-        window.location.reload(); 
+        window.location.reload();
     });
 
-    background_color.addEventListener("blur", function(e) {
+    background_color.addEventListener("blur", function() {
         var regex  = new RegExp("([a-fA-F0-9]+)");
         var result = regex.exec(background_color.value);
 
         if(!result || !(result[0].length == 3 || result[0].length == 6)) {
-            new Notification("not a valid color: " + background_color.value, "warning", 2500);
+            new Notification("Not a valid color: " + background_color.value, "warning", 2500);
             return;
         }
 
@@ -77,12 +76,12 @@
         window.location.reload();
     });
 
-    text_color.addEventListener("blur", function(e) {
+    text_color.addEventListener("blur", function() {
         var regex  = new RegExp("([a-fA-F0-9]+)");
         var result = regex.exec(text_color.value);
 
         if(!result || !(result[0].length == 3 || result[0].length == 6)) {
-            new Notification("not a valid color: " + text_color.value, "warning", 2500);
+            new Notification("Not a valid color: " + text_color.value, "warning", 2500);
             return;
         }
 
