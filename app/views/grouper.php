@@ -15,7 +15,7 @@
                 <input type="file" name="class" id="class" value="" accept=".csv" style="display:none" />
             </form>
         </div>
-
+<!--
         <form class="hashkey">
             <div class="hashtag">
                 <i class="icon ion-locked"></i>
@@ -29,7 +29,7 @@
                 <button><i class="icon ion-checkmark"></i></button>
             </div>
         </form>
-
+-->
         <div class="clear-both"></div>
 
         <!-- input -->
