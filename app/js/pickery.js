@@ -23,8 +23,8 @@
     var picker;
     var input_file = document.querySelector("#pickery_class");
 
-    if (cookie.get("pickery"))
-        picker = new Picker(JSON.parse(cookie.get("pickery")));
+    if (store.get("pickery"))
+        picker = new Picker(JSON.parse(store.get("pickery")));
 
     if (!window.FileReader) {
         document.querySelector("#uploadcsv").innerHTML =
@@ -58,8 +58,8 @@
             new Notification("Imported " + file.name.replace(".csv", ""), 
                              "normal", 4000);
 
-            // save all students to a cookie
-            cookie.create("pickery", JSON.stringify(students));
+            // save all students to local storage
+            store.set("pickery", JSON.stringify(students));
         };
     }, false);
 

@@ -22,8 +22,9 @@ function Picker(students)
     this.student_count = 0;
     this.blacklist =  [];
 
-    if (cookie.get("pickery_blacklist"))
-        this.blacklist = cookie.get("pickery_blacklist").split(",");
+    if (store.get("pickery_blacklist")) {
+        this.blacklist = store.get("pickery_blacklist");
+    }
 
     // set and show student count
     for (var student in students) {
@@ -50,10 +51,12 @@ function Picker(students)
              fullname + "</option>\n";
     }
 
-    // can't save that much in a cookie
-    if (this.student_count > 35)
+    // don't want to save too much
+    if (this.student_count > 200) {
         new Notification("Due to the large number of imported names, these names won't be saved.",
-                         "warning", 3000);
+                "warning", 3000);
+        return false;
+    }
 
 
     // set and show amount of names imported
@@ -78,13 +81,13 @@ function Picker(students)
         this.student_count--;
         document.querySelector("#pickery_students").innerHTML = "Count: " + this.student_count;
 
-        // update cookie with deleted user
-        cookie.create("pickery", JSON.stringify(students));
+        // update storage with deleted user
+        store.set("pickery", JSON.stringify(students));
     };
 
     this.clear_history = function()
     {
-        cookie.remove("pickery_blacklist");
+        store.remove("pickery_blacklist");
         document.querySelector("#pickery_chosen_names").innerHTML = "";
         this.blacklist = [];
     };
@@ -92,7 +95,7 @@ function Picker(students)
     this.clear_all = function()
     {
         this.clear_history();
-        cookie.remove("pickery");
+        store.remove("pickery");
         students = [];
         document.querySelector("#pickery_random").innerHTML = "";
         document.querySelector("#pickery_all_names").innerHTML = "";
@@ -136,7 +139,7 @@ function Picker(students)
         if (!allow_duplicates.checked) {
             this.blacklist[this.blacklist.length] = students[random_key].Stamnr;
 
-            cookie.create("pickery_blacklist", this.blacklist);
+            store.set("pickery_blacklist", this.blacklist);
         }
 
         random.innerHTML = fullname;

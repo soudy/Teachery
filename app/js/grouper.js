@@ -22,8 +22,8 @@ function Grouper(students)
     this.student_count = 0;
     this.groups = [];
 
-    if (cookie.get("groupery_groups"))
-        this.groups = cookie.get("groupery_groups").split(",");
+    if (store.get("groupery_groups"))
+        this.groups = store.get("groupery_groups").split(",");
 
     for (var student in students) {
         this.student_count++;
@@ -33,26 +33,18 @@ function Grouper(students)
               (students[student].Tussenv === "" ? "" : " " ) +
               students[student].Achternaam;
 
-        for (var filtered in this.blacklist) {
-            if (students[student].Stamnr == this.blacklist[filtered]) {
-                document.querySelector("#groupery_chosen_names").innerHTML +=
-                    "<option value=\"" + "student" + students[student].Stamnr +
-                      "\"id=\"" + "student" + students[student].Stamnr + "\">" +
-                     fullname + "</option>\n";
-                continue;
-            }
-        }
-
         document.querySelector("#groupery_all_names").innerHTML +=
             "<option value=\"" + "student" + students[student].Stamnr +
-              "\"id=\"" + "student" + students[student].Stamnr + "\">" +
-             fullname + "</option>\n";
+              "\"id=\"" + "student" + students[student].Stamnr + "\">[" +
+             students[student].Klas + "] " + fullname + "</option>\n";
     }
 
-    // can't save that much in a cookie
-    if (this.student_count > 35)
+    // don't want to save too much
+    if (this.student_count > 200) {
         new Notification("Due to the large number of imported names, these names won't be saved.",
-                         "warning", 3000);
+                "warning", 3000);
+        return false;
+    }
 
 
     // set and show amount of names imported
@@ -73,18 +65,22 @@ function Grouper(students)
         selected_id.parentElement.removeChild(selected_id);
 
         // update count
-        student_count--;
-        document.querySelector("#groupery_students").innerHTML = "Count: " + student_count;
+        this.student_count--;
+        document.querySelector("#groupery_students").innerHTML = "Count: " + this.student_count;
 
-        // update cookie with deleted user
-        cookie.create("pickery", JSON.stringify(students));
+        // update storage with deleted user
+        store.set("groupery", JSON.stringify(students));
     };
 
     this.clear_all = function()
     {
-        cookie.remove("pickery");
+        store.remove("groupery");
         students = [];
         document.querySelector("#groupery_all_names").innerHTML = "";
         document.querySelector("#groupery_students").innerHTML = "";
+    };
+
+    this.generate_groups = function()
+    {
     };
 }
