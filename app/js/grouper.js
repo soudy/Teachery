@@ -20,17 +20,11 @@ function Grouper(students)
 {
     var self = this;
     this.student_count = 0;
-    this.blacklist =  [];
+    this.groups = [];
 
-    if (cookie.get("pickery_blacklist"))
-        this.blacklist = cookie.get("pickery_blacklist").split(",");
+    if (cookie.get("groupery_groups"))
+        this.groups = cookie.get("groupery_groups").split(",");
 
-    // can't save that much in a cookie
-    if (this.student_count > 40)
-        new Notification("Due to the large number of imported names, these names won't be saved.",
-                         "warning", 3000);
-
-    // set and show student count
     for (var student in students) {
         this.student_count++;
         var fullname =
@@ -41,7 +35,7 @@ function Grouper(students)
 
         for (var filtered in this.blacklist) {
             if (students[student].Stamnr == this.blacklist[filtered]) {
-                document.querySelector("#chosen_names").innerHTML +=
+                document.querySelector("#groupery_chosen_names").innerHTML +=
                     "<option value=\"" + "student" + students[student].Stamnr +
                       "\"id=\"" + "student" + students[student].Stamnr + "\">" +
                      fullname + "</option>\n";
@@ -49,20 +43,25 @@ function Grouper(students)
             }
         }
 
-        document.querySelector("#all_names").innerHTML +=
+        document.querySelector("#groupery_all_names").innerHTML +=
             "<option value=\"" + "student" + students[student].Stamnr +
               "\"id=\"" + "student" + students[student].Stamnr + "\">" +
              fullname + "</option>\n";
     }
 
-    // set and show amount of names imported
-    document.querySelector("#students").innerHTML = "Count: " + this.student_count;
+    // can't save that much in a cookie
+    if (this.student_count > 35)
+        new Notification("Due to the large number of imported names, these names won't be saved.",
+                         "warning", 3000);
 
+
+    // set and show amount of names imported
+    document.querySelector("#groupery_students").innerHTML = "Count: " + this.student_count;
 
     // delete a name
     this.delete_name = function()
     {
-        var selected = document.querySelector("#all_names").value;
+        var selected = document.querySelector("#groupery_all_names").value;
         var selected_id = document.getElementById(selected);
 
         if (!selected) {
@@ -75,25 +74,17 @@ function Grouper(students)
 
         // update count
         student_count--;
-        document.querySelector("#students").innerHTML = "Count: " + student_count;
+        document.querySelector("#groupery_students").innerHTML = "Count: " + student_count;
 
         // update cookie with deleted user
         cookie.create("pickery", JSON.stringify(students));
     };
 
-    this.clear_history = function()
-    {
-        cookie.remove("pickery_blacklist");
-        document.querySelector("#chosen_names").innerHTML = "";
-        blacklist = [];
-    };
-
     this.clear_all = function()
     {
-        this.clear_history();
         cookie.remove("pickery");
         students = [];
-        document.querySelector("#all_names").innerHTML = "";
-        document.querySelector("#students").innerHTML = "";
+        document.querySelector("#groupery_all_names").innerHTML = "";
+        document.querySelector("#groupery_students").innerHTML = "";
     };
 }

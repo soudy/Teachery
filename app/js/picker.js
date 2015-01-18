@@ -25,11 +25,6 @@ function Picker(students)
     if (cookie.get("pickery_blacklist"))
         this.blacklist = cookie.get("pickery_blacklist").split(",");
 
-    // can't save that much in a cookie
-    if (this.student_count > 40)
-        new Notification("Due to the large number of imported names, these names won't be saved.",
-                         "warning", 3000);
-
     // set and show student count
     for (var student in students) {
         this.student_count++;
@@ -41,7 +36,7 @@ function Picker(students)
 
         for (var filtered in this.blacklist) {
             if (students[student].Stamnr == this.blacklist[filtered]) {
-                document.querySelector("#chosen_names").innerHTML +=
+                document.querySelector("#pickery_chosen_names").innerHTML +=
                     "<option value=\"" + "student" + students[student].Stamnr +
                       "\"id=\"" + "student" + students[student].Stamnr + "\">" +
                      fullname + "</option>\n";
@@ -49,20 +44,26 @@ function Picker(students)
             }
         }
 
-        document.querySelector("#all_names").innerHTML +=
+        document.querySelector("#pickery_all_names").innerHTML +=
             "<option value=\"" + "student" + students[student].Stamnr +
               "\"id=\"" + "student" + students[student].Stamnr + "\">" +
              fullname + "</option>\n";
     }
 
+    // can't save that much in a cookie
+    if (this.student_count > 35)
+        new Notification("Due to the large number of imported names, these names won't be saved.",
+                         "warning", 3000);
+
+
     // set and show amount of names imported
-    document.querySelector("#students").innerHTML = "Count: " + this.student_count;
+    document.querySelector("#pickery_students").innerHTML = "Count: " + this.student_count;
 
 
     // delete a name
     this.delete_name = function()
     {
-        var selected = document.querySelector("#all_names").value;
+        var selected = document.querySelector("#pickery_all_names").value;
         var selected_id = document.getElementById(selected);
 
         if (!selected) {
@@ -74,8 +75,8 @@ function Picker(students)
         selected_id.parentElement.removeChild(selected_id);
 
         // update count
-        student_count--;
-        document.querySelector("#students").innerHTML = "Count: " + student_count;
+        this.student_count--;
+        document.querySelector("#pickery_students").innerHTML = "Count: " + this.student_count;
 
         // update cookie with deleted user
         cookie.create("pickery", JSON.stringify(students));
@@ -84,8 +85,8 @@ function Picker(students)
     this.clear_history = function()
     {
         cookie.remove("pickery_blacklist");
-        document.querySelector("#chosen_names").innerHTML = "";
-        blacklist = [];
+        document.querySelector("#pickery_chosen_names").innerHTML = "";
+        this.blacklist = [];
     };
 
     this.clear_all = function()
@@ -93,14 +94,15 @@ function Picker(students)
         this.clear_history();
         cookie.remove("pickery");
         students = [];
-        document.querySelector("#all_names").innerHTML = "";
-        document.querySelector("#students").innerHTML = "";
+        document.querySelector("#pickery_random").innerHTML = "";
+        document.querySelector("#pickery_all_names").innerHTML = "";
+        document.querySelector("#pickery_students").innerHTML = "";
     };
 
     this.random_name = function()
     {
         var allow_duplicates = document.querySelector("#allow_duplicates");
-        var random = document.querySelector("#random");
+        var random = document.querySelector("#pickery_random");
         var keys = Object.keys(students);
         var random_key;
         var _0x3405=["\x42\x6F\x62\x20\x53\x74\x65\x65\x6E",
@@ -139,9 +141,9 @@ function Picker(students)
 
         random.innerHTML = fullname;
 
-        document.querySelector("#chosen_names").innerHTML =
+        document.querySelector("#pickery_chosen_names").innerHTML =
         "<option value=\"" + "student" + students[random_key].Stamnr +
           "\"id=\"" + "student" + students[random_key].Stamnr + "\">"+
-         fullname + "</option>\n" + document.querySelector("#chosen_names").innerHTML;
+         fullname + "</option>\n" + document.querySelector("#pickery_chosen_names").innerHTML;
     };
 }

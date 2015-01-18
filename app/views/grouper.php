@@ -9,10 +9,10 @@
 
         <div class="upkey" id="uploadcsv">
             <form  class="pick-form" action="" method="post">
-                <label for="class" class="class">
+                <label for="groupery_class" class="class">
                     <div class="div-class">Upload a CSV</div>
                 </label>
-                <input type="file" name="class" id="class" value="" accept=".csv" style="display:none" />
+                <input type="file" name="groupery_class" id="groupery_class" value="" accept=".csv" style="display:none" />
             </form>
         </div>
 <!--
@@ -36,39 +36,35 @@
         <section class="section-input">
             <div class="put-result">
                 <div class="input-result">
-                    <p id="students">&nbsp;</p>
+                    <p id="groupery_students">&nbsp;</p>
                 </div>
             </div>
-            <select size="20" id="all_names"></select>
+            <select size="20" id="groupery_all_names"></select>
 
-            <div name="clear_all" id="clear_all" class="input-child input-remove-all">
-                <p>Remove</p>
+            <div name="clear_all" id="groupery_clear_all" class="input-child input-remove-all">
+                <p>Reset</p>
             </div>
 
-            <div name="delete_name" id="delete_name" class="input-child input-remove-one">
+            <div name="delete_name" id="groupery_delete_name" class="input-child input-remove-one">
                 <p>Delete</p>
-            </div>
-
-            <div name="post_random" id="post_random" class="input-child input-random">
-                <p>Random</p>
             </div>
         </section>
 
         <section class="section-output">
             <div class="put-result">
                 <div class="output-result">
-                    <p id="random">&nbsp;</p>
+                    <p>Options</p>
                 </div>
             </div>
 
-            <select size="20" id="chosen_names"></select>
+            <div id="group_options">
+                sdhjggksd
+            </div>
 
-            <div name="clear_history" id="clear_history" class="output-child output-clear">
-                <p>Clear</p>
+
+            <div name="generate_groups" id="generate_groups" class="output-child output-clear">
+                <p>Generate groups</p>
             </div>
         </section>
-
-        <input style="display:none;" type="checkbox" name="duplicates" id="allow_duplicates" style="" />
-        <label style="display:none;" for="allow_duplicates">Duplicates</label>
     </div>
 </main>

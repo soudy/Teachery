@@ -19,4 +19,62 @@
 (function()
 {
     "use strict";
+
+    var grouper;
+    var input_file = document.querySelector("#groupery_class");
+
+    if (cookie.get("groupery"))
+        grouper = new Grouper(JSON.parse(cookie.get("groupery")));
+
+    if (!window.FileReader) {
+        document.querySelector("#uploadcsv").innerHTML =
+        "Your browser does not support window.FileReader. Uploading files will not be possible.";
+        return false;
+    }
+
+    // importing csv
+    input_file.addEventListener("change", function(e)
+    {
+        var file = this.files[0];
+
+        if(file.size > 100000) {
+            new Notification("File size too large.", "warning", 4000);
+            return false;
+        }
+
+        if (!file) {
+            new Notification("Failed to load file.", "warning", 4000);
+            return false;
+        }
+
+        var r = new FileReader();
+
+        r.readAsText(file);
+
+        // what happens when a file gets selected
+        r.onload = function(e) {
+            var students = new CSVtoJSON(this.result);
+            grouper = new Grouper(students);
+            new Notification("Imported " + file.name.replace(".csv", ""),
+                             "normal", 4000);
+
+            // save all students to a cookie
+            cookie.create("groupery", JSON.stringify(students));
+        };
+    }, false);
+
+    document.querySelector("#groupery_delete_name").onclick = function() {
+        grouper.delete_name();
+    };
+
+    /*
+     * document.querySelector("#groupery_clear_groups").onclick = function() {
+     *     grouper.clear_groups();
+     * };
+     */
+
+    // clear all
+    document.querySelector("#groupery_clear_all").onclick = function() {
+        grouper.clear_all();
+    };
 })();

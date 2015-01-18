@@ -12,6 +12,7 @@
     <script type="text/javascript" src="js/render.js"></script>
     <script type="text/javascript" src="js/clock.js"></script>
     <script type="text/javascript" src="js/picker.js"></script>
+    <script type="text/javascript" src="js/grouper.js"></script>
     <style type="text/css" media="all">
         @-webkit-keyframes shake {
           0%, 100% {
@@ -96,6 +97,6 @@
     <script type="text/javascript" src="js/timery.js"></script>
     <script type="text/javascript" src="js/settings.js"></script>
     <script type="text/javascript" src="js/pickery.js"></script>
-    <!--<script type="text/javascript" src="js/groupery.js"></script>-->
+    <script type="text/javascript" src="js/groupery.js"></script>
 </body>
 </html>

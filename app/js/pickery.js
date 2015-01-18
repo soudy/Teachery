@@ -21,7 +21,7 @@
     "use strict";
 
     var picker;
-    var inputFile = document.querySelector("#class");
+    var input_file = document.querySelector("#pickery_class");
 
     if (cookie.get("pickery"))
         picker = new Picker(JSON.parse(cookie.get("pickery")));
@@ -33,7 +33,7 @@
     }
 
     // importing csv
-    inputFile.addEventListener("change", function(e) 
+    input_file.addEventListener("change", function(e) 
     {
         var file = this.files[0];
 
@@ -53,7 +53,6 @@
 
         // what happens when a file gets selected
         r.onload = function(e) {
-            console.log(file.name.replace(".csv", ""));
             var students = new CSVtoJSON(this.result);
             picker = new Picker(students);
             new Notification("Imported " + file.name.replace(".csv", ""), 
@@ -64,12 +63,12 @@
         };
     }, false);
 
-    document.querySelector("#delete_name").onclick = function() {
+    document.querySelector("#pickery_delete_name").onclick = function() {
         picker.delete_name();
     };
 
-    document.querySelector("#clear_history").onclick = function() {
-        if (!document.querySelector("#chosen_names").children.length) {
+    document.querySelector("#pickery_clear_history").onclick = function() {
+        if (!document.querySelector("#pickery_chosen_names").children.length) {
             new Notification("Nothing to clear", "normal", 4000);
             return false;
         }
@@ -78,12 +77,12 @@
     };
 
     // clear all
-    document.querySelector("#clear_all").onclick = function() {
+    document.querySelector("#pickery_clear_all").onclick = function() {
         picker.clear_all();
     };
 
     // get random name
-    document.querySelector("#post_random").onclick = function() {
+    document.querySelector("#pickery_post_random").onclick = function() {
         picker.random_name();
     };
 })();

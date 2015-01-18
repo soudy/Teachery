@@ -74,13 +74,14 @@ function CSVtoJSON(csv)
     var values = lines[0].split(",").splice(0, 5);
     var obj = {};
     var i;
+    var classes = [];
 
     for (var item in lines) {
         lines[item] = lines[item].split(",").splice(0, 5);
 
         // You can get all the classes of the students in the CSV file by
         // uncommenting this
-        /* classes[lines[item][1]] = lines[item][1]; */
+        classes[lines[item][1]] = lines[item][1]; 
 
         if (lines[item][0] == "Stamnr" || !lines[item][0])
             continue;
