@@ -25,18 +25,23 @@ function Grouper(students)
 
     var group_container = document.querySelector("#groupery_options");
     var groupery_groups = document.querySelector("#groupery_groups");
+    var groupery_title  = document.querySelector("#groupery_title");
 
     this.set_groups = function()
     {
+        groupery_title.innerHTML = "Groups";
         group_container.style.display = "none";
+        groupery_groups.innerHTML = "";
         groupery_groups.style.display = "inline";
 
         for (var group in this.groups) {
+            this.group_count++;
             var group_number = group;
             group = this.groups[group];
 
             groupery_groups.innerHTML += "<div class=\"group\" id=\"" +
-                                 group_number + "\"><h4>" + group_number + "</h4><hr />";
+                                          group_number + "\"><h4>" + group_number +
+                                          "</h4><hr />";
             for (var i = 0; i < group.length; ++i) {
                 if (group[i])
                     document.getElementById(group_number).innerHTML += group[i] + "<br />";
@@ -45,11 +50,6 @@ function Grouper(students)
         }
 
     };
-
-    if (store.get("groupery_groups")) {
-        this.groups = JSON.parse(store.get("groupery_groups").split(","));
-        this.set_groups();
-    }
 
     this.set_students = function()
     {
@@ -100,6 +100,7 @@ function Grouper(students)
 
     this.clear_groups = function()
     {
+        groupery_title.innerHTML = "Options";
         group_container.style.display = "inherit";
         groupery_groups.style.display = "none";
         groupery_groups.innerHTML = "";
@@ -159,6 +160,7 @@ function Grouper(students)
             return false;
         }
 
+        // if the number of groups is specified
         if (n_groups) {
             var students_per_group = Math.floor(this.student_count / n_groups);
 
@@ -174,6 +176,8 @@ function Grouper(students)
                 for (i = 0; i <= students_per_group + this.student_keys.length; ++i)
                     this.groups["Group" + n_groups][i] = this.random_name();
             }
+            new Notification("Created " + n_groups + " groups.", "normal", 3000);
+        // if the number of students per group is specified
         } else if (n_students) {
             var num_groups = Math.floor(this.student_count / n_students);
 
@@ -189,9 +193,17 @@ function Grouper(students)
                 for (i = 0; i <= n_students + this.student_keys.length; ++i)
                     this.groups["Group" + num_groups][i] = this.random_name();
             }
+            new Notification("Created " + num_groups + " groups.", "normal", 3000);
         }
 
         this.set_groups();
         store.set("groupery_groups", JSON.stringify(this.groups));
     };
+
+
+    if (store.get("groupery_groups")) {
+        this.groups = JSON.parse(store.get("groupery_groups").split(","));
+        this.set_groups();
+    }
+
 }

@@ -53,7 +53,7 @@
         <section class="section-output">
             <div class="put-result">
                 <div class="output-result">
-                    <p>Options</p>
+                    <p id="groupery_title">Options</p>
                 </div>
             </div>
 
