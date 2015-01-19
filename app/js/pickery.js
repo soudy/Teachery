@@ -21,10 +21,11 @@
     "use strict";
 
     var picker;
-    var input_file = document.querySelector("#pickery_class");
 
-    if (store.get("pickery"))
+    if (store.get("pickery")) {
         picker = new Picker(JSON.parse(store.get("pickery")));
+        picker.set_students();
+    }
 
     if (!window.FileReader) {
         document.querySelector("#uploadcsv").innerHTML =
@@ -32,8 +33,7 @@
         return false;
     }
 
-    // importing csv
-    input_file.addEventListener("change", function(e) 
+    document.querySelector("#pickery_class").addEventListener("change", function(e)
     {
         var file = this.files[0];
 
@@ -54,8 +54,11 @@
         // what happens when a file gets selected
         r.onload = function(e) {
             var students = new CSVtoJSON(this.result);
+
             picker = new Picker(students);
-            new Notification("Imported " + file.name.replace(".csv", ""), 
+            picker.set_students();
+
+            new Notification("Imported " + file.name.replace(".csv", ""),
                              "normal", 4000);
 
             // save all students to local storage
@@ -72,16 +75,14 @@
             new Notification("Nothing to clear", "normal", 4000);
             return false;
         }
-        
+
         picker.clear_history();
     };
 
-    // clear all
     document.querySelector("#pickery_clear_all").onclick = function() {
         picker.clear_all();
     };
 
-    // get random name
     document.querySelector("#pickery_post_random").onclick = function() {
         picker.random_name();
     };

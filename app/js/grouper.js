@@ -18,46 +18,72 @@
 
 function Grouper(students)
 {
-    var self = this;
-    this.student_count = 0;
-    this.groups = [];
+    var self              = this;
+    this.student_count    = 0;
+    this.groups           = {};
+    this.student_keys     = Object.keys(students);
 
-    if (store.get("groupery_groups"))
-        this.groups = store.get("groupery_groups").split(",");
+    var group_container = document.querySelector("#groupery_options");
+    var groupery_groups = document.querySelector("#groupery_groups");
+    var groupery_title  = document.querySelector("#groupery_title");
 
-    for (var student in students) {
-        this.student_count++;
-        var fullname =
-              students[student].Roepnaam + " " +
-              students[student].Tussenv +
-              (students[student].Tussenv === "" ? "" : " " ) +
-              students[student].Achternaam;
+    this.set_groups = function()
+    {
+        groupery_title.innerHTML = "Groups";
+        group_container.style.display = "none";
+        groupery_groups.innerHTML = "";
+        groupery_groups.style.display = "inline";
 
-        document.querySelector("#groupery_all_names").innerHTML +=
+        for (var group in this.groups) {
+            this.group_count++;
+            var group_number = group;
+            group = this.groups[group];
+
+            groupery_groups.innerHTML += "<div class=\"group\" id=\"" +
+                                          group_number + "\"><h4>" + group_number +
+                                          "</h4><hr />";
+            for (var i = 0; i < group.length; ++i) {
+                if (group[i])
+                    document.getElementById(group_number).innerHTML += group[i] + "<br />";
+            }
+            groupery_groups.innerHTML += "</div>";
+        }
+
+    };
+
+    this.set_students = function()
+    {
+        for (var student in students) {
+            this.student_count++;
+            var fullname =
+            students[student].Roepnaam + " " +
+                students[student].Tussenv +
+                (students[student].Tussenv === "" ? "" : " " ) +
+                students[student].Achternaam;
+
+            document.querySelector("#groupery_all_names").innerHTML +=
             "<option value=\"" + "student" + students[student].Stamnr +
-              "\"id=\"" + "student" + students[student].Stamnr + "\">[" +
-             students[student].Klas + "] " + fullname + "</option>\n";
-    }
+                "\"id=\"" + "student" + students[student].Stamnr + "\">[" +
+                    students[student].Klas + "] " + fullname + "</option>\n";
+        }
 
-    // don't want to save too much
-    if (this.student_count > 200) {
-        new Notification("Due to the large number of imported names, these names won't be saved.",
-                "warning", 3000);
-        return false;
-    }
+        if (this.student_count > 200) {
+            new Notification("Due to the large number of imported names, these names won't be saved.",
+            "warning", 3000);
+            return false;
+        }
+
+        document.querySelector("#groupery_students").innerHTML = "Count: " + this.student_count;
+    };
 
 
-    // set and show amount of names imported
-    document.querySelector("#groupery_students").innerHTML = "Count: " + this.student_count;
-
-    // delete a name
     this.delete_name = function()
     {
         var selected = document.querySelector("#groupery_all_names").value;
         var selected_id = document.getElementById(selected);
 
         if (!selected) {
-            new Notification("Nothing to remove.", "normal", 2500);
+            new Notification("No name selected.", "normal", 2500);
             return false;
         }
 
@@ -72,15 +98,112 @@ function Grouper(students)
         store.set("groupery", JSON.stringify(students));
     };
 
+    this.clear_groups = function()
+    {
+        groupery_title.innerHTML = "Options";
+        group_container.style.display = "inherit";
+        groupery_groups.style.display = "none";
+        groupery_groups.innerHTML = "";
+        store.remove("groupery_groups");
+        this.groups = {};
+    };
+
     this.clear_all = function()
     {
-        store.remove("groupery");
+        this.clear_groups();
+
         students = [];
+        store.remove("groupery");
+
         document.querySelector("#groupery_all_names").innerHTML = "";
         document.querySelector("#groupery_students").innerHTML = "";
     };
 
+    this.random_name = function()
+    {
+        var random_key = this.student_keys[Math.floor(Math.random() * this.student_keys.length)];
+
+        if (!random_key)
+            return false;
+
+        var fullname =
+              students[random_key].Roepnaam + " " +
+              students[random_key].Tussenv +
+             (students[random_key].Tussenv === "" ? "" : " " ) +
+              students[random_key].Achternaam;
+
+
+        this.student_keys.splice(this.student_keys.indexOf(random_key), 1);
+
+        return fullname;
+    };
+
     this.generate_groups = function()
     {
+        // resetting student keys so you can keep on generating groups
+        this.student_keys = Object.keys(students);
+
+        var n_students    = document.querySelector("#n_students").value || null;
+        var n_groups      = document.querySelector("#n_groups").value || null;
+        var i, j;
+
+        if (Object.keys(this.groups).length) {
+            this.clear_groups();
+            n_students = "";
+            n_groups = "";
+            return;
+        }
+
+        if (!n_students && !n_groups) {
+            new Notification("Please select an option for creating groups.",
+                             "normal", 3000);
+            return false;
+        }
+
+        // if the number of groups is specified
+        if (n_groups) {
+            var students_per_group = Math.floor(this.student_count / n_groups);
+
+            for (i = 1; i < n_groups; ++i) {
+                this.groups["Group" + i] = [];
+                for (j = 0; j < students_per_group; ++j) {
+                    this.groups["Group" + i][j] = this.random_name();
+                }
+            }
+
+            if (this.student_keys) {
+                this.groups["Group" + n_groups] = [];
+                for (i = 0; i <= students_per_group + this.student_keys.length; ++i)
+                    this.groups["Group" + n_groups][i] = this.random_name();
+            }
+            new Notification("Created " + n_groups + " groups.", "normal", 3000);
+        // if the number of students per group is specified
+        } else if (n_students) {
+            var num_groups = Math.floor(this.student_count / n_students);
+
+            for (i = 1; i < num_groups; ++i) {
+                this.groups["Group" + i] = [];
+                for (j = 0; j < n_students; ++j) {
+                    this.groups["Group" + i][j] = this.random_name();
+                }
+            }
+
+            if (this.student_keys) {
+                this.groups["Group" + num_groups] = [];
+                for (i = 0; i <= n_students + this.student_keys.length; ++i)
+                    this.groups["Group" + num_groups][i] = this.random_name();
+            }
+            new Notification("Created " + num_groups + " groups.", "normal", 3000);
+        }
+
+        this.set_groups();
+        store.set("groupery_groups", JSON.stringify(this.groups));
     };
+
+
+    if (store.get("groupery_groups")) {
+        this.groups = JSON.parse(store.get("groupery_groups").split(","));
+        this.set_groups();
+    }
+
 }

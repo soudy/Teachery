@@ -53,14 +53,23 @@
         <section class="section-output">
             <div class="put-result">
                 <div class="output-result">
-                    <p>Options</p>
+                    <p id="groupery_title">Options</p>
                 </div>
             </div>
 
-            <div id="group_options">
-                sdhjggksd
+            <div id="groupery_options">
+                Create
+                <input type="text" name="n_groups" id="n_groups" value="" />
+                groups
+
+                <hr>
+
+                Groups consist of
+                <input type="text" name="n_students" id="n_students" value="" />
+                students
             </div>
 
+            <div id="groupery_groups"></div>
 
             <div name="generate_groups" id="generate_groups" class="output-child output-clear">
                 <p>Generate groups</p>

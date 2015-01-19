@@ -52,7 +52,7 @@
         <h1>Timery</h1>
     </header>
     <!-- /Timer (Head) -->
-    
+
     <!-- Timer + -->
     <div class="checkbox-plus">
         <a class="addTimer" href="#AddTimer"><i class="icon ion-plus"></i></a>
@@ -67,15 +67,15 @@
                <input placeholder="Title" type="text">
             </div>
 
-            <div class="checkbox-input"> 
+            <div class="checkbox-input">
                 <input maxlength="2" placeholder="HH" value="00" type="text">
                 <span>:</span>
                 <input maxlength="2" placeholder="MM" value="10" type="text">
                 <span>:</span>
-                <input maxlength="2" placeholder="SS" value="00" type="text"> 
+                <input maxlength="2" placeholder="SS" value="00" type="text">
             </div>
 
-            <div class="checkbox-button"> 
+            <div class="checkbox-button">
                 <a href="#Play"><i class="icon ion-play"></i></a> <!-- <i class="icon ion-pause"></i> -->
                 <a class="remove" href="#Fullscreen"><i class="icon ion-monitor"></i> </a>
                 <a class="remove" href="#Remove"><i class="icon ion-trash-b"></i></a>

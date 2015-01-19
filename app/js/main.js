@@ -20,8 +20,14 @@ var cookie = new Cookies();
 
 (function()
 {
+    if (!store.enabled) {
+        document.querySelector(".pick-form").innerHTML +=
+            "Local support is not supported by your browser. Disable Private \
+            Browsing or update to a modern browser.";
+    }
+
     if(!cookie.get("cookie_warn")) {
-        document.querySelector(".cookie").innerHTML = 
+        document.querySelector(".cookie").innerHTML =
         '<p>In order to function properly, this site uses cookies.</p> \
          <i class="icon ion-close" id="close-cookie"></i>';
         document.querySelector("#close-cookie").onclick = function(e) {
@@ -44,13 +50,13 @@ var cookie = new Cookies();
     var menu_item = document.querySelector(window.location.hash + "_menu");
     if (menu_item)
         menu_item.classList.add("active");
-    
+
     // On button click
     window.onhashchange = function() {
         var showing = document.querySelectorAll('.page.show');
         var menu_items = document.querySelectorAll(".menu");
 
-        for (i=0;i<showing.length;i++) 
+        for (i=0;i<showing.length;i++)
             showing[i].classList.remove('show');
 
         for (var i = 0; i < menu_items.length; ++i)
@@ -79,7 +85,7 @@ function CSVtoJSON(csv)
     for (var item in lines) {
         lines[item] = lines[item].split(",").splice(0, 5);
 
-        classes[lines[item][1]] = lines[item][1]; 
+        classes[lines[item][1]] = lines[item][1];
 
         if (lines[item][0] == "Stamnr" || !lines[item][0])
             continue;
