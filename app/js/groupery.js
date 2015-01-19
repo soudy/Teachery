@@ -21,10 +21,11 @@
     "use strict";
 
     var grouper;
-    var input_file = document.querySelector("#groupery_class");
 
-    if (store.get("groupery"))
+    if (store.get("groupery")) {
         grouper = new Grouper(JSON.parse(store.get("groupery")));
+        grouper.set_students();
+    }
 
     if (!window.FileReader) {
         document.querySelector("#uploadcsv").innerHTML =
@@ -33,7 +34,7 @@
     }
 
     // importing csv
-    input_file.addEventListener("change", function(e)
+    document.querySelector("#groupery_class").addEventListener("change", function(e)
     {
         var file = this.files[0];
 
@@ -54,20 +55,43 @@
         // what happens when a file gets selected
         r.onload = function(e) {
             var students = new CSVtoJSON(this.result);
+
             grouper = new Grouper(students);
+            grouper.set_students();
+
             new Notification("Imported " + file.name.replace(".csv", ""),
                              "normal", 4000);
 
-            // save all students to local storage
             store.set("groupery", JSON.stringify(students));
         };
     }, false);
+
+    // can only choose one of the two options for generating groups
+    document.querySelector("#n_students").onblur = function() {
+        if (document.querySelector("#n_students").value.replace(" ", "")) {
+            document.querySelector("#n_groups").disabled = true;
+        } else {
+            document.querySelector("#n_groups").disabled = false;
+        }
+    };
+
+    document.querySelector("#n_groups").onblur = function() {
+        if (document.querySelector("#n_groups").value.replace(" ", "")) {
+            document.querySelector("#n_students").disabled = true;
+        } else {
+            document.querySelector("#n_students").disabled = false;
+        }
+    };
+
+    // buttons
+    document.querySelector("#groupery_clear_all").onclick = function() {
+        grouper.clear_all();
+    };
 
     document.querySelector("#groupery_delete_name").onclick = function() {
         grouper.delete_name();
     };
 
-    // generate groups
     document.querySelector("#generate_groups").onclick = function() {
         grouper.generate_groups();
     };

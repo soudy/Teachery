@@ -147,28 +147,28 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 /* >Pickery */
 .pick                   {width:100%;font-family: 'Montserrat', sans-serif;padding:0px 25px;}
     .pick input         {font-family: 'Montserrat', sans-serif;border:none;}
-    
+
     /* The container for the button to upload. */
     .class              {width:50%;float:left;max-height:40px;}
     .div-class          {line-height:2.3em;text-align:center;font-size:100%;}
     .div-class          {width:150px;border:3px solid #214E96;background:#214E96;min-width:175px;cursor:pointer;
                         color:#FFF;margin:0 auto;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
     .div-class:hover    {background:#FFF;color:#214E96;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
-    
+
     /* The container for where the hash is to be entered for validation */
     .hashkey            {width:50%;float:left;padding:0px 0px;max-height:40px;line-height:2.5em;}
-    
+
     .hashtag            {width:15%;float:left;padding:7.5px 0px;max-height:40px;font-size:200%;
                         color:#214E96;}
 
     .hashtext           {width:70%;float:left;}
     .hashtext input     {border-bottom:5px solid #214E96;border-left:5px solid #214E96;min-width:175px;
                         line-height:1em;font-size:125%;height:40px;padding:10px;width:100%;}
-    
+
     .hashbutton         {width:15%;float:left;}
     .hashbutton button  {padding:7.5px 0px;max-height:40px;font-size:200%;border:none;
                         color:#214E96;background:none;float:right;cursor:pointer;}
-    
+
     /* Results */
     .put-result         {text-align:center;width:100%;float:left;}
     .put-result div     {margin:0 auto;}
@@ -191,7 +191,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
                                     -webkit-transition:background .3s, color .3s;transition:background .3s, color .3s;}
     .section-input .input-child p:hover {background:#FFF;color:#214E96;cursor:pointer;
                                         -webkit-transition:background .3s, color .3s;transition:background .3s, color .3s;}
-    
+
     .section-output select     {width:100%;float:left;}
     .section-output .output-child {float:left;width:100%;text-align:center;padding:0px 10px;}
     .section-output .output-child p   {background:#214E96;border:3px solid #214E96;padding:5px 0px;color:white;
@@ -257,7 +257,27 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 .text_color_box         {background:#191919}
 .background_color_box   {background:#FFF}
 
-/* Fullscreen support for both: Chrome, Firefox & Safari. (IE is depricated). */
+#notlist            {position:fixed; top:0;right:10px;z-index:20;width:100%; max-width:220px;padding:10px;}
+#notlist p          {transition: all .2s;transform:translateX(200%);-webkit-transform:translateX(200%);-moz-transform:translateX(200%);font-weight:bold;padding:10px;color:#FFF; margin:4px 0px;}
+#notlist p.show     {transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);}
+#notlist p.hide     {transform:translateY(-200%);-webkit-transform:translateY(-200%);-moz-transform:translateY(-200%);}
+
+#notlist p.normal,
+#notlist p.warning  {font-weight:100;}
+#notlist p.normal   {background:#214E96;}
+#notlist p.warning  {background:#C0392B;}
+
+#groupery_options                    {font-size:1.3em;text-align:center;}
+#groupery_options hr                 {color:#214E96;height:1px;}
+#groupery_options input[type="text"] {background:#f0f0f0;display:table;width:60px;
+                                      height:40px;font-size:1.3em;padding:5px;margin:0 auto;
+                                      text-align:center;}
+#groupery_options input[disabled]   {background:#FFF !important;}
+
+#groupery_groups        {display:none;margin:0 auto;}
+#groupery_groups .group {float:left;margin: 0 5px;}
+
+/* Fullscreen support for both: Chrome, Firefox & Safari. (IE is deprecated). */
 *:-webkit-full-screen {position: fixed;width: 100%;height:100%;top: 0;padding-top:10%;}
 
 *:-webkit-full-screen .checkbox-button {float:none;position: fixed; width:auto; top:5%; left:50%; -webkit-transform:translateX(-50%);}
@@ -265,8 +285,8 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 *:-webkit-full-screen .checkbox-button a:nth-child(1) {display:block; font-size:200%;}
 
 *:-webkit-full-screen .checkbox-input {width:100%;}
-*:-webkit-full-screen .checkbox-input span {font-size:20vh;width:5%;}
-*:-webkit-full-screen .checkbox-input input{font-size:20vh;width:25%;}
+*:-webkit-full-screen .checkbox-input span {font-size:15vh;width:5%;}
+*:-webkit-full-screen .checkbox-input input{font-size:15vh;width:20%;}
 *:-webkit-full-screen input[disabled] {background:#FFF!important;}
 
 
@@ -280,36 +300,26 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 *:-moz-full-screen .checkbox-input{width:100%;line-height: 100%;}
 *:-moz-full-screen .checkbox-input span {font-size:20vh;width:5%;}
 *:-moz-full-screen .checkbox-input input{font-size:20vh;width:30%;}
- 
-#notlist            {position:fixed; top:0;right:10px;z-index:20;width:100%; max-width:220px;padding:10px;}   
-#notlist p          {transition: all .2s;transform:translateX(200%);-webkit-transform:translateX(200%);-moz-transform:translateX(200%);font-weight:bold;padding:10px;color:#FFF; margin:4px 0px;}
-#notlist p.show     {transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);}
-#notlist p.hide     {transform:translateY(-200%);-webkit-transform:translateY(-200%);-moz-transform:translateY(-200%);}
-
-#notlist p.normal,
-#notlist p.warning  {font-weight:100;}
-#notlist p.normal   {background:#214E96;}
-#notlist p.warning  {background:#C0392B;}
 
 @media (max-width: 720px) {
     body                {margin-bottom:35px;}
 
     /* CORE RESPONSIVE */
     .cookie             {width:100%;line-height:1em;}
-    
+
     /* Hides the invisible container and re-asign a normal width to the main container. */
     .navlay             {display:none}
     main                {width:100%;}
 
     /* Forces the 'nav' to the bottom of the page. */
     nav                 {position:fixed;width:100%;bottom:0;height:50px;}
-    
+
     /* Fix that prevents a 'a' overlay. */
     nav:hover           {width:100%;}
-    
+
     /* Single styling for each child element. */
     nav a               {width:20%;float:left;height:50px;}
-    
+
     nav:hover + .cookie {width:100%;}
 
     /* LANDING */
@@ -335,5 +345,4 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
     .hashkey            {padding:50px 0px;}
     .section-output,
     .section-input      {width:100%;padding:0;margin:25px 0px;}
-    
 }

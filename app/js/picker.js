@@ -18,59 +18,57 @@
 
 function Picker(students)
 {
-    var self = this;
+    var self           = this;
     this.student_count = 0;
-    this.blacklist =  [];
+    this.blacklist     =  [];
 
     if (store.get("pickery_blacklist")) {
         this.blacklist = store.get("pickery_blacklist");
     }
 
-    // set and show student count
-    for (var student in students) {
-        this.student_count++;
-        var fullname =
-              students[student].Roepnaam + " " +
-              students[student].Tussenv +
-              (students[student].Tussenv === "" ? "" : " " ) +
-              students[student].Achternaam;
+    this.set_students = function ()
+    {
+        for (var student in students) {
+            this.student_count++;
+            var fullname =
+            students[student].Roepnaam + " " +
+                students[student].Tussenv +
+                (students[student].Tussenv === "" ? "" : " " ) +
+                students[student].Achternaam;
 
-        for (var filtered in this.blacklist) {
-            if (students[student].Stamnr == this.blacklist[filtered]) {
-                document.querySelector("#pickery_chosen_names").innerHTML +=
+            for (var filtered in this.blacklist) {
+                if (students[student].Stamnr == this.blacklist[filtered]) {
+                    document.querySelector("#pickery_chosen_names").innerHTML +=
                     "<option value=\"" + "student" + students[student].Stamnr +
-                      "\"id=\"" + "student" + students[student].Stamnr + "\">" +
-                     fullname + "</option>\n";
-                continue;
+                        "\"id=\"" + "student" + students[student].Stamnr + "\">" +
+                        fullname + "</option>\n";
+                    continue;
+                }
             }
+
+            document.querySelector("#pickery_all_names").innerHTML +=
+            "<option value=\"" + "student" + students[student].Stamnr +
+                "\"id=\"" + "student" + students[student].Stamnr + "\">" +
+                fullname + "</option>\n";
         }
 
-        document.querySelector("#pickery_all_names").innerHTML +=
-            "<option value=\"" + "student" + students[student].Stamnr +
-              "\"id=\"" + "student" + students[student].Stamnr + "\">" +
-             fullname + "</option>\n";
-    }
+        if (this.student_count > 200) {
+            new Notification("Due to the large number of imported names, these names won't be saved.",
+            "warning", 3000);
+            return false;
+        }
 
-    // don't want to save too much
-    if (this.student_count > 200) {
-        new Notification("Due to the large number of imported names, these names won't be saved.",
-                "warning", 3000);
-        return false;
-    }
+        document.querySelector("#pickery_students").innerHTML = "Count: " + this.student_count;
+    };
 
 
-    // set and show amount of names imported
-    document.querySelector("#pickery_students").innerHTML = "Count: " + this.student_count;
-
-
-    // delete a name
     this.delete_name = function()
     {
         var selected = document.querySelector("#pickery_all_names").value;
         var selected_id = document.getElementById(selected);
 
         if (!selected) {
-            new Notification("Nothing to remove.", "normal", 2500);
+            new Notification("No name selected.", "normal", 2500);
             return false;
         }
 
