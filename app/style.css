@@ -156,14 +156,13 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
     .div-class:hover    {background:#FFF;color:#214E96;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
 
     /* The container for where the hash is to be entered for validation */
-    .hashkey            {width:50%;float:left;}
+    .hashkey            {width:50%;float:left;text-align:center;}
     
-    .hashkey label      {width:50%;float:left;padding:0px 50px;}
-    
-    .hashkey label div  {text-align:center;line-height:2.3em;;border:3px solid #214E96;background:#214E96;min-width:175px;cursor:pointer;
+    .hashkey label      {width:Calc(49% - 50px);display:inline-block;padding: 0 15px; min-width:120px;}
+    .hashkey label div  {text-align:center;line-height:2.3em;border:3px solid #214E96;background:#214E96;min-width:100%;cursor:pointer;
                         color:#FFF;margin:0 auto;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
 
-    /.hashkey label:first-child div{border-left:10px solid black;}
+    /*.hashkey label:first-child div{border-left:10px solid black;}*/
 
     .hashkey label div:hover  {background:#FFF;color:#214E96;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
 
@@ -274,8 +273,9 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
                                       text-align:center;}
 #groupery_options input[disabled]   {background:#FFF !important;}
 
-#groupery_groups        {display:none;margin:0 auto;}
-#groupery_groups .group {float:left;margin: 0 5px;}
+#groupery_groups            {display:none;margin:0 auto;}
+#groupery_groups .group     {display:inline-block;margin: 0 5px 20px 5px;}
+#groupery_groups .group h4  {padding:0 0 5px 0;margin:5px 0;border-bottom: 2px solid #214E96;}
 
 /* Fullscreen support for both: Chrome, Firefox & Safari. (IE is deprecated). */
 *:-webkit-full-screen {position: fixed;width: 100%;height:100%;top: 0;padding-top:10%;}

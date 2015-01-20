@@ -43,7 +43,7 @@ function Grouper(students)
 
             groupery_groups.innerHTML += "<div class=\"group\" id=\"" +
                                           group_number + "\"><h4>" + group_number +
-                                          "</h4><hr />";
+                                          "</h4>";
             for (var i = 0; i < group.length; ++i) {
                 if (group[i])
                     document.getElementById(group_number).innerHTML += group[i] + "<br />";

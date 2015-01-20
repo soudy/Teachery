@@ -19,7 +19,7 @@
         <form class="hashkey">
             <label class="dupes-cont" for="allow_duplicates">
                 <div class="dupes">
-                    Duplicates
+                    Duplicate
                 </div>
             </label>
             <input style="display:none" type="checkbox" name="duplicates" id="allow_duplicates" style="" />
