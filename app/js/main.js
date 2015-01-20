@@ -20,12 +20,6 @@ var cookie = new Cookies();
 
 (function()
 {
-    if (!store.enabled) {
-        document.querySelector(".pick-form").innerHTML +=
-            "Local support is not supported by your browser. Disable Private \
-            Browsing or update to a modern browser.";
-    }
-
     if(!cookie.get("cookie_warn")) {
         document.querySelector(".cookie").innerHTML =
         '<p>In order to function properly, this site uses cookies.</p> \

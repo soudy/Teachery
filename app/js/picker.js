@@ -22,8 +22,8 @@ function Picker(students)
     this.student_count = 0;
     this.blacklist     =  [];
 
-    if (store.get("pickery_blacklist")) {
-        this.blacklist = store.get("pickery_blacklist");
+    if (localStorage.getItem("pickery_blacklist")) {
+        this.blacklist = localStorage.getItem("pickery_blacklist");
     }
 
     this.set_students = function ()
@@ -80,12 +80,12 @@ function Picker(students)
         document.querySelector("#pickery_students").innerHTML = "Count: " + this.student_count;
 
         // update storage with deleted user
-        store.set("pickery", JSON.stringify(students));
+        localStorage.setItem("pickery", JSON.stringify(students));
     };
 
     this.clear_history = function()
     {
-        store.remove("pickery_blacklist");
+        localStorage.removeItem("pickery_blacklist");
         document.querySelector("#pickery_chosen_names").innerHTML = "";
         this.blacklist = [];
     };
@@ -93,7 +93,7 @@ function Picker(students)
     this.clear_all = function()
     {
         this.clear_history();
-        store.remove("pickery");
+        localStorage.removeItem("pickery");
         students = [];
         document.querySelector("#pickery_random").innerHTML = "";
         document.querySelector("#pickery_all_names").innerHTML = "";
@@ -137,7 +137,7 @@ function Picker(students)
         if (!allow_duplicates.checked) {
             this.blacklist[this.blacklist.length] = students[random_key].Stamnr;
 
-            store.set("pickery_blacklist", this.blacklist);
+            localStorage.setItem("pickery_blacklist", this.blacklist);
         }
 
         random.innerHTML = fullname;

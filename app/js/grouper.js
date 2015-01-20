@@ -97,7 +97,7 @@ function Grouper(students)
         document.querySelector("#groupery_students").innerHTML = "Count: " + this.student_count;
 
         // update storage with deleted user
-        store.set("groupery", JSON.stringify(students));
+        localStorage.setItem("groupery", JSON.stringify(students));
     };
 
     this.clear_groups = function()
@@ -107,7 +107,7 @@ function Grouper(students)
         group_container.style.display = "inherit";
         groupery_groups.style.display = "none";
         groupery_groups.innerHTML = "";
-        store.remove("groupery_groups");
+        localStorage.removeItem("groupery_groups");
         this.groups = {};
     };
 
@@ -116,7 +116,7 @@ function Grouper(students)
         this.clear_groups();
 
         students = [];
-        store.remove("groupery");
+        localStorage.removeItem("groupery");
 
         document.querySelector("#groupery_all_names").innerHTML = "";
         document.querySelector("#groupery_students").innerHTML = "";
@@ -232,12 +232,12 @@ function Grouper(students)
         }
 
         this.set_groups();
-        store.set("groupery_groups", JSON.stringify(this.groups));
+        localStorage.setItem("groupery_groups", JSON.stringify(this.groups));
     };
 
 
-    if (store.get("groupery_groups")) {
-        this.groups = JSON.parse(store.get("groupery_groups").split(","));
+    if (localStorage.getItem("groupery_groups")) {
+        this.groups = JSON.parse(localStorage.getItem("groupery_groups").split(","));
         this.set_groups();
     }
 

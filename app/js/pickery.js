@@ -22,8 +22,8 @@
 
     var picker;
 
-    if (store.get("pickery")) {
-        picker = new Picker(JSON.parse(store.get("pickery")));
+    if (localStorage.getItem("pickery")) {
+        picker = new Picker(JSON.parse(localStorage.getItem("pickery")));
         picker.set_students();
     }
 
@@ -62,7 +62,7 @@
                              "normal", 4000);
 
             // save all students to local storage
-            store.set("pickery", JSON.stringify(students));
+            localStorage.setItem("pickery", JSON.stringify(students));
         };
     }, false);
 

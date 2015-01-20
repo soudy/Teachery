@@ -21,9 +21,10 @@
     "use strict";
 
     var grouper;
+    var student_count = 0;
 
-    if (store.get("groupery")) {
-        grouper = new Grouper(JSON.parse(store.get("groupery")));
+    if (localStorage.getItem("groupery")) {
+        grouper = new Grouper(JSON.parse(localStorage.getItem("groupery")));
         grouper.set_students();
     }
 
@@ -62,7 +63,9 @@
             new Notification("Imported " + file.name.replace(".csv", ""),
                              "normal", 4000);
 
-            store.set("groupery", JSON.stringify(students));
+            localStorage.setItem("groupery", JSON.stringify(students));
+            student_count += grouper.student_count;
+            document.querySelector("#groupery_students").innerHTML = "Count: " + student_count;
         };
     }, false);
 
