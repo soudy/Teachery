@@ -56,8 +56,8 @@
 
             <div id="groupery_groups"></div>
 
-            <div name="generate_groups" id="generate_groups" class="output-child output-clear">
-                <p>Generate groups</p>
+            <div name="generate_groups" class="output-child output-clear">
+                <p id="generate_groups">Generate groups</p>
             </div>
         </section>
     </div>

@@ -26,9 +26,11 @@ function Grouper(students)
     var group_container = document.querySelector("#groupery_options");
     var groupery_groups = document.querySelector("#groupery_groups");
     var groupery_title  = document.querySelector("#groupery_title");
+    var generate_groups = document.querySelector("#generate_groups");
 
     this.set_groups = function()
     {
+        generate_groups.innerHTML = "Reset";
         groupery_title.innerHTML = "Groups";
         group_container.style.display = "none";
         groupery_groups.innerHTML = "";
@@ -100,6 +102,7 @@ function Grouper(students)
 
     this.clear_groups = function()
     {
+        generate_groups.innerHTML = "Generate groups";
         groupery_title.innerHTML = "Options";
         group_container.style.display = "inherit";
         groupery_groups.style.display = "none";
