@@ -164,6 +164,22 @@ function Grouper(students)
         if (n_groups) {
             var students_per_group = Math.floor(this.student_count / n_groups);
 
+            // checking for valid input
+            if (n_groups > Math.floor(this.student_count / 2)) {
+                new Notification("Can't create " + n_groups + " groups. " +
+                                 "Maximum amount possible to create is " +
+                                 Math.floor(this.student_count / 2),
+                                 "warning", 3000);
+                return false;
+            }
+
+            if (n_groups <= 0) {
+                new Notification("Please enter a valid number above zero.",
+                                 "normal", 3000);
+                return false;
+            }
+
+            // creating the groups
             for (i = 1; i < n_groups; ++i) {
                 this.groups["Group" + i] = [];
                 for (j = 0; j < students_per_group; ++j) {
@@ -179,9 +195,25 @@ function Grouper(students)
             new Notification("Created " + n_groups + " groups.", "normal", 3000);
         // if the number of students per group is specified
         } else if (n_students) {
-            var num_groups = Math.floor(this.student_count / n_students);
+            n_groups = Math.floor(this.student_count / n_students);
 
-            for (i = 1; i < num_groups; ++i) {
+            // checking for valid input
+            if (n_students > Math.floor(this.student_count / 2)) {
+                new Notification("Can't create groups with " + n_students +
+                                 " students. Maximum amount students per group is " +
+                                 Math.floor(this.student_count / 2),
+                                 "warning", 3000);
+                return false;
+            }
+
+            if (n_students <= 0) {
+                new Notification("Please enter a valid number above zero.",
+                                 "normal", 3000);
+                return false;
+            }
+
+            // creating the groups
+            for (i = 1; i < n_groups; ++i) {
                 this.groups["Group" + i] = [];
                 for (j = 0; j < n_students; ++j) {
                     this.groups["Group" + i][j] = this.random_name();
@@ -189,11 +221,11 @@ function Grouper(students)
             }
 
             if (this.student_keys) {
-                this.groups["Group" + num_groups] = [];
+                this.groups["Group" + n_groups] = [];
                 for (i = 0; i <= n_students + this.student_keys.length; ++i)
-                    this.groups["Group" + num_groups][i] = this.random_name();
+                    this.groups["Group" + n_groups][i] = this.random_name();
             }
-            new Notification("Created " + num_groups + " groups.", "normal", 3000);
+            new Notification("Created " + n_groups + " groups.", "normal", 3000);
         }
 
         this.set_groups();
