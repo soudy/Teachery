@@ -139,7 +139,7 @@ function Picker(students)
 
             store.set("pickery_blacklist", this.blacklist);
         }
-        
+
         random.innerHTML = fullname;
 
         document.querySelector("#pickery_chosen_names").innerHTML =
