@@ -82,8 +82,15 @@
     document.querySelector("#pickery_clear_all").onclick = function() {
         picker.clear_all();
     };
-
+    
     document.querySelector("#pickery_post_random").onclick = function() {
         picker.random_name();
+    };
+    document.querySelector("#allow_duplicates").onclick = function() {
+        if (this.checked){
+            new Notification('Duplicates enabled', 'normal');
+        } else {
+            new Notification('Duplicates disabled', 'warning');
+        }
     };
 })();

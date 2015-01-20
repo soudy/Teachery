@@ -17,7 +17,7 @@
         </div>
 
         <form class="hashkey">
-            <label class="dupes-cont" for="allow_duplicates">
+            <label class="dupes-cont" id="label_duplicates" for="allow_duplicates">
                 <div class="dupes">
                     Duplicate
                 </div>
