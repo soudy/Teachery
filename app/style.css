@@ -156,18 +156,18 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
     .div-class:hover    {background:#FFF;color:#214E96;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
 
     /* The container for where the hash is to be entered for validation */
-    .hashkey            {width:50%;float:left;padding:0px 0px;max-height:40px;line-height:2.5em;}
+    .hashkey            {width:50%;float:left;}
+    
+    .hashkey label      {width:50%;float:left;padding:0px 50px;}
+    
+    .hashkey label div  {text-align:center;line-height:2.3em;;border:3px solid #214E96;background:#214E96;min-width:175px;cursor:pointer;
+                        color:#FFF;margin:0 auto;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
 
-    .hashtag            {width:15%;float:left;padding:7.5px 0px;max-height:40px;font-size:200%;
-                        color:#214E96;}
+    /.hashkey label:first-child div{border-left:10px solid black;}
 
-    .hashtext           {width:70%;float:left;}
-    .hashtext input     {border-bottom:5px solid #214E96;border-left:5px solid #214E96;min-width:175px;
-                        line-height:1em;font-size:125%;height:40px;padding:10px;width:100%;}
+    .hashkey label div:hover  {background:#FFF;color:#214E96;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
 
-    .hashbutton         {width:15%;float:left;}
-    .hashbutton button  {padding:7.5px 0px;max-height:40px;font-size:200%;border:none;
-                        color:#214E96;background:none;float:right;cursor:pointer;}
+
 
     /* Results */
     .put-result         {text-align:center;width:100%;float:left;}
@@ -186,7 +186,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
                                 font-family: 'Montserrat', sans-serif;}
 
     .section-input select       {width:100%;float:left;}
-    .section-input .input-child {float:left;width:33.3334%;text-align:center;padding:0px 10px;}
+    .section-input .input-child {float:left;width:50%;text-align:center;padding:0px 10px;}
     .section-input .input-child p   {background:#214E96;border:3px solid #214E96;padding:5px 0px;color:white;
                                     -webkit-transition:background .3s, color .3s;transition:background .3s, color .3s;}
     .section-input .input-child p:hover {background:#FFF;color:#214E96;cursor:pointer;
@@ -269,8 +269,8 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 
 #groupery_options                    {font-size:1.3em;text-align:center;}
 #groupery_options hr                 {color:#214E96;height:1px;}
-#groupery_options input[type="text"] {background:#f0f0f0;display:table;width:60px;
-                                      height:40px;font-size:1.3em;padding:5px;margin:0 auto;
+#groupery_options input[type="text"] {background:#FFF;width:50px;border-bottom:5px solid #214E96; 
+                                      font-size:1em;padding:2.5px;
                                       text-align:center;}
 #groupery_options input[disabled]   {background:#FFF !important;}
 

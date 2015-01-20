@@ -15,21 +15,22 @@
                 <input type="file" name="pickery_class" id="pickery_class" value="" accept=".csv" style="display:none" />
             </form>
         </div>
-<!--
+
         <form class="hashkey">
-            <div class="hashtag">
-                <i class="icon ion-locked"></i>
-            </div>
-
-            <div class="hashtext">
-                <input type="password">
-            </div>
-
-            <div class="hashbutton">
-                <button><i class="icon ion-checkmark"></i></button>
-            </div>
+            <label class="dupes-cont" for="allow_duplicates">
+                <div class="dupes">
+                    Duplicates
+                </div>
+            </label>
+            <input style="display:none" type="checkbox" name="duplicates" id="allow_duplicates" style="" />
+            
+            <label class="random-cont" for="">
+                <div name="post_random" id="pickery_post_random" class="random">
+                    Random
+                </div>
+            </label>
         </form>
--->
+
         <div class="clear-both"></div>
 
         <!-- input -->
@@ -49,10 +50,6 @@
             <div name="delete_name" id="pickery_delete_name" class="input-child input-remove-one">
                 <p>Delete</p>
             </div>
-
-            <div name="post_random" id="pickery_post_random" class="input-child input-random">
-                <p>Random</p>
-            </div>
         </section>
 
         <section class="section-output">
@@ -69,8 +66,7 @@
             </div>
         </section>
 
-        <input style="display:none;" type="checkbox" name="duplicates" id="allow_duplicates" style="" />
-        <label style="display:none;" for="allow_duplicates">Duplicates</label>
+        
     </div>
 </main>
 

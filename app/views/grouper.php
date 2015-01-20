@@ -15,21 +15,7 @@
                 <input type="file" name="groupery_class" id="groupery_class" value="" accept=".csv" style="display:none" />
             </form>
         </div>
-<!--
-        <form class="hashkey">
-            <div class="hashtag">
-                <i class="icon ion-locked"></i>
-            </div>
 
-            <div class="hashtext">
-                <input type="password">
-            </div>
-
-            <div class="hashbutton">
-                <button><i class="icon ion-checkmark"></i></button>
-            </div>
-        </form>
--->
         <div class="clear-both"></div>
 
         <!-- input -->
@@ -58,9 +44,8 @@
             </div>
 
             <div id="groupery_options">
-                Create
-                <input type="text" name="n_groups" id="n_groups" value="" />
-                groups
+                <span> Create <input type="text" name="n_groups" id="n_groups" value="" /> groups </span>
+                
 
                 <hr>
 
