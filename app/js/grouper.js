@@ -226,6 +226,7 @@ function Grouper(students)
                     this.groups["Group" + n_groups][i] = this.random_name();
             }
             new Notification("Created " + n_groups + " groups.", "normal", 3000);
+
         // if the number of students per group is specified
         } else if (n_students) {
             n_groups = Math.floor(this.student_count / n_students);
@@ -254,9 +255,10 @@ function Grouper(students)
             }
 
             if (this.student_keys) {
-                this.groups["Group" + n_groups] = [];
-                for (i = 0; i <= n_students + this.student_keys.length; ++i)
-                    this.groups["Group" + n_groups][i] = this.random_name();
+                var last_group = "Group" + n_groups;
+                this.groups[last_group] = [];
+                for (i = 0; i < n_groups + this.student_keys.length; ++i)
+                    this.groups[last_group][i] = this.random_name();
             }
             new Notification("Created " + n_groups + " groups.", "normal", 3000);
         }
