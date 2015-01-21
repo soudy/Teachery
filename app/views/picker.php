@@ -69,10 +69,3 @@
         
     </div>
 </main>
-
-<!-- 'remove all'
-'remove selected'
-'random'
-
-'clear'
- -->
