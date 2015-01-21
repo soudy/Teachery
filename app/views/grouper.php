@@ -45,7 +45,7 @@
 
             <div id="groupery_options">
                 <span> Create <input type="text" name="n_groups" id="n_groups" value="" /> groups </span>
-                
+
 
                 <hr>
 
@@ -56,9 +56,24 @@
 
             <div id="groupery_groups"></div>
 
-            <div name="generate_groups" class="output-child output-clear">
+            <div id="group_buttons" class="output-child output-clear">
                 <p id="generate_groups">Generate groups</p>
             </div>
+
+            <div id="format">
+                <button type="button" id="set_default">
+                    <p>Default</p>
+                </button>
+
+                <button type="button" id="set_json">
+                    <p>JSON</p>
+                </button>
+
+                <button type="button" id="set_plain">
+                    <p>Plain Text</p>
+                </button>
+            </div>
+
         </section>
     </div>
 </main>

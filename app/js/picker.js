@@ -52,12 +52,6 @@ function Picker(students)
                 fullname + "</option>\n";
         }
 
-        if (this.student_count > 200) {
-            new Notification("Due to the large number of imported names, these names won't be saved.",
-            "warning", 3000);
-            return false;
-        }
-
         document.querySelector("#pickery_students").innerHTML = "Count: " + this.student_count;
     };
 

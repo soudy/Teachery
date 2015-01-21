@@ -18,23 +18,42 @@
 
 function Grouper(students)
 {
-    var self              = this;
-    this.student_count    = 0;
-    this.groups           = {};
-    this.student_keys     = Object.keys(students);
+    var self           = this;
+    this.student_count = 0;
+    this.groups        = {};
+    this.student_keys  = Object.keys(students);
 
     var group_container = document.querySelector("#groupery_options");
     var groupery_groups = document.querySelector("#groupery_groups");
     var groupery_title  = document.querySelector("#groupery_title");
     var generate_groups = document.querySelector("#generate_groups");
+    var groupery_format = document.querySelector("#format");
+
+    var formats = {
+        "default" : document.querySelector("#set_default"),
+        "json":     document.querySelector("#set_json"),
+        "plain":    document.querySelector("#set_plain")
+    };
+
+    this.clear_active = function()
+    {
+        for (var format in formats)
+            formats[format].className -= "active";
+    };
 
     this.set_groups = function()
     {
+        this.clear_active();
+        formats.default.className = "active";
+        groupery_groups.style.cssText -= "white-space:pre;";
+
         generate_groups.innerHTML = "Reset";
-        groupery_title.innerHTML = "Groups";
-        group_container.style.display = "none";
+        groupery_title.innerHTML  = "Groups";
         groupery_groups.innerHTML = "";
+
+        group_container.style.display = "none";
         groupery_groups.style.display = "inline";
+        groupery_format.style.display = "block";
 
         for (var group in this.groups) {
             this.group_count++;
@@ -50,7 +69,22 @@ function Grouper(students)
             }
             groupery_groups.innerHTML += "</div>";
         }
+    };
 
+    this.set_json = function()
+    {
+        this.clear_active();
+        formats.json.className = "active";
+        groupery_groups.style.cssText += "white-space:pre;";
+        groupery_groups.innerHTML = JSON.stringify(this.groups, null, 4);
+    };
+
+    this.set_plain = function()
+    {
+        this.clear_active();
+        formats.plain.className = "active";
+        groupery_groups.style.cssText += "white-space:pre;";
+        groupery_groups.innerHTML = JSON.stringify(this.groups, null, "\0").replace(/\{|\}|\[|\]|\"|\,/g, "");
     };
 
     this.set_students = function()
@@ -69,19 +103,12 @@ function Grouper(students)
                     students[student].Klas + "] " + fullname + "</option>\n";
         }
 
-        if (this.student_count > 200) {
-            new Notification("Due to the large number of imported names, these names won't be saved.",
-            "warning", 3000);
-            return false;
-        }
-
         document.querySelector("#groupery_students").innerHTML = "Count: " + this.student_count;
     };
 
-
     this.delete_name = function()
     {
-        var selected = document.querySelector("#groupery_all_names").value;
+        var selected    = document.querySelector("#groupery_all_names").value;
         var selected_id = document.getElementById(selected);
 
         if (!selected) {
@@ -102,11 +129,14 @@ function Grouper(students)
 
     this.clear_groups = function()
     {
-        generate_groups.innerHTML = "Generate groups";
-        groupery_title.innerHTML = "Options";
+        generate_groups.innerHTML     = "Generate groups";
+        groupery_title.innerHTML      = "Options";
+        groupery_groups.innerHTML     = "";
+
         group_container.style.display = "inherit";
         groupery_groups.style.display = "none";
-        groupery_groups.innerHTML = "";
+        groupery_format.style.display = "none";
+
         localStorage.removeItem("groupery_groups");
         this.groups = {};
     };
@@ -146,8 +176,8 @@ function Grouper(students)
         // resetting student keys so you can keep on generating groups
         this.student_keys = Object.keys(students);
 
-        var n_students    = document.querySelector("#n_students").value || null;
-        var n_groups      = document.querySelector("#n_groups").value || null;
+        var n_students = document.querySelector("#n_students").value || null;
+        var n_groups   = document.querySelector("#n_groups").value || null;
         var i, j;
 
         if (Object.keys(this.groups).length) {

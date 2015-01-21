@@ -98,4 +98,18 @@
     document.querySelector("#generate_groups").onclick = function() {
         grouper.generate_groups();
     };
+
+    // formatting options (default, json, plain)
+    document.querySelector("#set_default").onclick = function() {
+        grouper.set_groups();
+    };
+
+    document.querySelector("#set_json").onclick = function() {
+        grouper.set_json();
+    };
+
+    document.querySelector("#set_plain").onclick = function() {
+        grouper.set_plain();
+    };
+
 })();

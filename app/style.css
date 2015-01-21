@@ -277,6 +277,18 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 #groupery_groups .group     {display:inline-block;margin: 0 5px 20px 5px;}
 #groupery_groups .group h4  {padding:0 0 5px 0;margin:5px 0;border-bottom: 2px solid #214E96;}
 
+#groupery #format        {display:none;}
+#groupery #format button {outline:none;;background:#214E96;border:3px solid #214E96;
+                          padding:0;color:white; -webkit-transition:background .3s, color .3s;
+                          transition:background .3s, color .3s;width:calc(33% - 2px);
+                          font-family: 'Monsterrat', sans-serif;font-weight:600;}
+
+#groupery #format button:hover {background:#FFF;color:#214E96;cursor:pointer;
+                                -webkit-transition:background .3s, color .3s;transition:
+                                background .3s, color .3s;}
+
+#groupery #format .active {background:#FFF;color:#214E96;}
+
 /* Fullscreen support for both: Chrome, Firefox & Safari. (IE is deprecated). */
 *:-webkit-full-screen {position: fixed;width: 100%;height:100%;top: 0;padding-top:10%;}
 
