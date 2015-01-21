@@ -5,5 +5,5 @@ by giving teachers a small set of handy tools.
 
 Live preview
 -----------
-http://www.useapp.nl/
+http://teachery.useapp.nl/
 

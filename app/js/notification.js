@@ -26,15 +26,11 @@ function Notification(txt, level, time) {
 
     for (var i = 0; i < this.allnots.length; ++i) {
         if (this.allnots[i].innerHTML === txt) {
-            document.querySelector("#notlist").removeChild(this.allnots[i]);
+            this.allnots[i].remove();
 
             setTimeout(self.elm.classList.add('show'), false);
 
             self.elm.classList.add("shake");
-
-            setTimeout(function(){
-                self.elm.parentNode.removeChild(self.elm);
-            }, time+300 || 2300);
         }
     }
 
@@ -47,6 +43,7 @@ function Notification(txt, level, time) {
     }, time+100 || 2100);
 
     setTimeout(function(){
+        if (!self.elm || !self.elm.parentNode) return;
         self.elm.parentNode.removeChild(self.elm);
     }, time+300 || 2300);
 }
