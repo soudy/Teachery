@@ -22,8 +22,13 @@ function Picker(students)
     this.student_count = 0;
     this.blacklist     =  [];
 
-    if (localStorage.getItem("pickery_blacklist")) {
+    if (localStorage.getItem("pickery_blacklist"))
         this.blacklist = localStorage.getItem("pickery_blacklist");
+
+    if (this.student_count > 300) {
+        new Notification("The maximum amount of importable names is 300.",
+                         "warning", 3000);
+        return false;
     }
 
     this.set_students = function ()
@@ -84,14 +89,19 @@ function Picker(students)
         this.blacklist = [];
     };
 
-    this.clear_all = function()
+    this.clear_students = function()
     {
-        this.clear_history();
         localStorage.removeItem("pickery");
         students = [];
         document.querySelector("#pickery_random").innerHTML = "";
         document.querySelector("#pickery_all_names").innerHTML = "";
         document.querySelector("#pickery_students").innerHTML = "";
+    };
+
+    this.clear_all = function()
+    {
+        this.clear_history();
+        this.clear_students();
     };
 
     this.random_name = function()

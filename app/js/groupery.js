@@ -57,6 +57,9 @@
         r.onload = function(e) {
             var students = new CSVtoJSON(this.result);
 
+            if (grouper)
+                grouper.clear_students();
+
             grouper = new Grouper(students);
             grouper.set_students();
 

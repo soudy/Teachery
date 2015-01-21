@@ -35,6 +35,12 @@ function Grouper(students)
         "plain":    document.querySelector("#set_plain")
     };
 
+    if (this.student_count > 300) {
+        new Notification("The maximum amount of importable names is 300.",
+                         "warning", 3000);
+        return false;
+    }
+
     this.clear_active = function()
     {
         for (var format in formats)
@@ -141,15 +147,19 @@ function Grouper(students)
         this.groups = {};
     };
 
-    this.clear_all = function()
+    this.clear_students = function()
     {
-        this.clear_groups();
-
         students = [];
         localStorage.removeItem("groupery");
 
         document.querySelector("#groupery_all_names").innerHTML = "";
         document.querySelector("#groupery_students").innerHTML = "";
+    };
+
+    this.clear_all = function()
+    {
+        this.clear_groups();
+        this.clear_students();
     };
 
     this.random_name = function()

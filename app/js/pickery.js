@@ -55,6 +55,9 @@
         r.onload = function(e) {
             var students = new CSVtoJSON(this.result);
 
+            if (picker)
+                picker.clear_students();
+
             picker = new Picker(students);
             picker.set_students();
 
