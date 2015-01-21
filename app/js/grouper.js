@@ -58,7 +58,7 @@ function Grouper(students)
         groupery_groups.innerHTML = "";
 
         group_container.style.display = "none";
-        groupery_groups.style.display = "inline";
+        groupery_groups.style.display = "block";
         groupery_format.style.display = "block";
 
         for (var group in this.groups) {
@@ -81,16 +81,14 @@ function Grouper(students)
     {
         this.clear_active();
         formats.json.className = "active";
-        groupery_groups.style.cssText += "white-space:pre;";
-        groupery_groups.innerHTML = JSON.stringify(this.groups, null, 4);
+        groupery_groups.innerHTML = '<pre>'+JSON.stringify(this.groups, null, 4)+'</pre>';
     };
 
     this.set_plain = function()
     {
         this.clear_active();
         formats.plain.className = "active";
-        groupery_groups.style.cssText += "white-space:pre;";
-        groupery_groups.innerHTML = JSON.stringify(this.groups, null, "\0").replace(/\{|\}|\[|\]|\"|\,/g, "");
+        groupery_groups.innerHTML = '<pre>'+JSON.stringify(this.groups, null, "\0").replace(/\{|\}|\[|\]|\"|\,/g, "")+'</pre>';
     };
 
     this.set_students = function()
@@ -226,14 +224,16 @@ function Grouper(students)
             for (i = 1; i < n_groups; ++i) {
                 this.groups["Group" + i] = [];
                 for (j = 0; j < students_per_group; ++j) {
-                    this.groups["Group" + i][j] = this.random_name();
+                    if(name = this.random_name())
+                        this.groups["Group" + i][j] = name;
                 }
             }
 
             if (this.student_keys) {
                 this.groups["Group" + n_groups] = [];
                 for (i = 0; i <= students_per_group + this.student_keys.length; ++i)
-                    this.groups["Group" + n_groups][i] = this.random_name();
+                    if(name = this.random_name())
+                        this.groups["Group" + n_groups][i] = name;
             }
             new Notification("Created " + n_groups + " groups.", "normal", 3000);
 
@@ -260,7 +260,8 @@ function Grouper(students)
             for (i = 1; i < n_groups; ++i) {
                 this.groups["Group" + i] = [];
                 for (j = 0; j < n_students; ++j) {
-                    this.groups["Group" + i][j] = this.random_name();
+                    if(name = this.random_name())
+                        this.groups["Group" + i][j] = name;
                 }
             }
 
@@ -268,7 +269,8 @@ function Grouper(students)
                 var last_group = "Group" + n_groups;
                 this.groups[last_group] = [];
                 for (i = 0; i < n_groups + this.student_keys.length; ++i)
-                    this.groups[last_group][i] = this.random_name();
+                    if(name = this.random_name())
+                        this.groups[last_group][i] = name;
             }
             new Notification("Created " + n_groups + " groups.", "normal", 3000);
         }

@@ -11,7 +11,7 @@
 html,
 body                {margin:0;padding:0;font-family: 'Montserrat', sans-serif;
                     vertical-align:baseline;line-height:1;color:#191919;overflow-x:hidden;
-                    background:#FFF}
+                    background:#FFF;}
 
 /* Prevent padding to resize the element.*/
 *,
@@ -53,7 +53,7 @@ nav a.active        {background:#FFF;color:#214E96;}
 
 /* Hide others and re-asign default page upon active */
 .page {display:block;max-height:0px;opacity:0;min-height:0%;transition: 0.5s;overflow:scroll;overflow-x:hidden;}
-.page.show {display:block;max-height:100%;opacity:1;min-height:100%;}
+.page.show {padding-bottom:50px;display:block;max-height:100%;opacity:1;min-height:100%;}
 
 @-moz-document url-prefix() {
     .page {transition: opacity .5s; overflow:auto;overflow-x:hidden;}
@@ -64,7 +64,7 @@ nav a.active        {background:#FFF;color:#214E96;}
 .navlay             {width:150px;height:100%;float:left;z-index:-100;}
 
 /* Main container to have all the content. */
-main                {height:100%;width:calc(100% - 150px);float:left;}
+main                {height:100%;width:calc(100% - 150px);display:block;}
 
 /* The CSS regarding the cookie. */
 
@@ -169,7 +169,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 
 
     /* Results */
-    .put-result         {text-align:center;width:100%;float:left;}
+    .put-result         {display:block;text-align:center;width:100%;}
     .put-result div     {margin:0 auto;}
     .put-result div p   {border-bottom:3px solid #214E96;text-align:center;min-height:25px;}
 
@@ -192,9 +192,9 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
                                         -webkit-transition:background .3s, color .3s;transition:background .3s, color .3s;}
 
     .section-output select     {width:100%;float:left;}
-    .section-output .output-child {float:left;width:100%;text-align:center;padding:0px 10px;}
-    .section-output .output-child p   {background:#214E96;border:3px solid #214E96;padding:5px 0px;color:white;
-                                    -webkit-transition:background .3s, color .3s;transition:background .3s, color .3s;}
+    .section-output .output-child       {float:left;width:100%;text-align:center;padding:0px;}
+    .section-output .output-child p     {background:#214E96;border:3px solid #214E96;padding:5px 0px;color:white;
+                                        -webkit-transition:background .3s, color .3s;transition:background .3s, color .3s;}
     .section-output .output-child p:hover {background:#FFF;color:#214E96;cursor:pointer;
                                         -webkit-transition:background .3s, color .3s;transition:background .3s, color .3s;}
 
@@ -266,15 +266,16 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 #notlist p.normal   {background:#214E96;}
 #notlist p.warning  {background:#C0392B;}
 
-#groupery_options                    {font-size:1.3em;text-align:center;}
+#groupery_options                    {font-size:1.3em;text-align:left;}
 #groupery_options hr                 {color:#214E96;height:1px;}
 #groupery_options input[type="text"] {background:#FFF;width:50px;border-bottom:5px solid #214E96; 
                                       font-size:1em;padding:2.5px;
                                       text-align:center;}
-#groupery_options input[disabled]   {background:#FFF !important;}
+#groupery_options input[disabled]   {background:#fff !important;border:none;}
 
-#groupery_groups            {display:none;margin:0 auto;}
-#groupery_groups .group     {display:inline-block;margin: 0 5px 20px 5px;}
+#groupery_groups            {display:none;background:white;max-height:400px;overflow:auto;width:100%;margin:0 auto;}
+#groupery_groups pre        {float:none;display:block;}
+#groupery_groups .group     {display:block;max-height:500px;margin: 0 5px 20px 5px;}
 #groupery_groups .group h4  {padding:0 0 5px 0;margin:5px 0;border-bottom: 2px solid #214E96;}
 
 #groupery #format        {display:none;}

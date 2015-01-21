@@ -49,7 +49,7 @@
 
                 <hr>
 
-                Groups consist of
+                Groups of
                 <input type="text" name="n_students" id="n_students" value="" />
                 students
             </div>
@@ -70,7 +70,7 @@
                 </button>
 
                 <button type="button" id="set_plain">
-                    <p>Plain Text</p>
+                    <p>TEXT</p>
                 </button>
             </div>
 
