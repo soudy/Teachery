@@ -64,7 +64,7 @@ function Grouper(students)
                                           group_number + "\"><h4>" + group_number +
                                           "</h4>";
             for (var i = 0; i < group.length; ++i) {
-                if (group[i])
+                if (group[i]) 
                     document.getElementById(group_number).innerHTML += group[i] + "<br />";
             }
             groupery_groups.innerHTML += "</div>";
@@ -98,9 +98,9 @@ function Grouper(students)
                 students[student].Achternaam;
 
             document.querySelector("#groupery_all_names").innerHTML +=
-            "<option value=\"" + "student" + students[student].Stamnr +
+                "<option value=\"" + "student" + students[student].Stamnr +
                 "\"id=\"" + "student" + students[student].Stamnr + "\">[" +
-                    students[student].Klas + "] " + fullname + "</option>\n";
+                students[student].Klas + "] " + fullname + "</option>\n";
         }
 
         document.querySelector("#groupery_students").innerHTML = "Count: " + this.student_count;
@@ -113,7 +113,7 @@ function Grouper(students)
 
         if (!selected) {
             new Notification("No name selected.", "normal", 2500);
-            return false;
+            return aalse;
         }
 
         delete students[selected];
@@ -157,7 +157,7 @@ function Grouper(students)
         var random_key = this.student_keys[Math.floor(Math.random() * this.student_keys.length)];
 
         if (!random_key)
-            return false;
+            return null;
 
         var fullname =
               students[random_key].Roepnaam + " " +
@@ -184,7 +184,7 @@ function Grouper(students)
             this.clear_groups();
             n_students = "";
             n_groups = "";
-            return;
+            return false;
         }
 
         if (!n_students && !n_groups) {
@@ -264,7 +264,6 @@ function Grouper(students)
         this.set_groups();
         localStorage.setItem("groupery_groups", JSON.stringify(this.groups));
     };
-
 
     if (localStorage.getItem("groupery_groups")) {
         this.groups = JSON.parse(localStorage.getItem("groupery_groups").split(","));
