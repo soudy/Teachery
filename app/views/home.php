@@ -16,9 +16,9 @@
         <div class=clear-both></div>
 
         <div class="home-group">
-            <h2><a href="#pickery">Pickery</a><i class="icon ion-person"></i></h2> 
+            <h2><a href="#pickery">Pickery</a><i class="icon ion-person"></i></h2>
             <p>
-                Pickery is a managable way of sorting and randomizing groups of people. 
+                Pickery is a managable way of sorting and randomizing groups of people.
                 We tried to make it as easy as possible even including as much as possible, go see for yourself.
                 <span><a href="#pickery">Learn more</a></span>
             </p>
@@ -26,16 +26,16 @@
         <div class=clear-both></div>
 
         <div class="home-group">
-            <h2><a href="http://www.useapp.nl">Groupery</a><i class="icon ion-person-stalker"></i></h2> 
+            <h2><a href="#groupery">Groupery</a><i class="icon ion-person-stalker"></i></h2>
             <p>
                Groupery allows you to sort into groups of set size easily. This tool works nearly the same as Pickery.
                It is however a little more specified to work with groups.
-               <span><a href="http://www.useapp.nl">Learn more</a></span>
+               <span><a href="#groupery">Learn more</a></span>
             </p>
         </div>
 
         <div class="home-group">
-            <h2><a href="#settings">Settings</a><i class="icon ion-gear-b"></i></h2> 
+            <h2><a href="#settings">Settings</a><i class="icon ion-gear-b"></i></h2>
             <p>
                Here you can costumize Teachery to your liking entirely and bend it to your will with costum colors and sounds.
                <span><a href="#settings">Learn more</a></span>
