@@ -72,8 +72,8 @@
         }
 
         new Confirm({
-            element:    document.querySelector('.checkbox-overlay'),
-            message:    'Are you sure u want to delete all clocks?',
+            element: document.querySelector('.checkbox-overlay'),
+            message: 'Are you sure u want to delete all clocks?',
             confirm: function(){
                 for (key in clocks){
                     clocks[key].remove(true);

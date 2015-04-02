@@ -16,9 +16,9 @@
 * along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-function Clock(options){
-
-    // We need this to work in events
+var Clock = function(options)
+{
+    var i;
     var self = this;
     var settings = JSON.parse(cookie.get("settings")) || {};
     var appendTo = options.appendTo || document.querySelector("main");
@@ -27,15 +27,15 @@ function Clock(options){
     this.element = document.querySelector('.shadowTimer').cloneNode(true);
     this.element.classList.remove('shadowTimer');
     setTimeout(function(){
-        self.element.classList.remove('offscreen');
-    }, 100);
+        this.element.classList.remove('offscreen');
+    }.bind(this), 100);
 
     //appendTo.insertBefore(this.element, appendTo.querySelector('.checkboxes'));
     appendTo.appendChild(this.element);
 
     // Get all objects we need
-    this.title = this.element.querySelector('.checkbox-title input');
-    this.times = this.element.querySelectorAll('.checkbox-input input');
+    this.title   = this.element.querySelector('.checkbox-title input');
+    this.times   = this.element.querySelectorAll('.checkbox-input input');
     this.buttons = this.element.querySelectorAll('.checkbox-button a');
 
     this.started = false;
@@ -55,25 +55,21 @@ function Clock(options){
         direction: options.direction || 'down',
         time: options.time || settings.clock || "00:10:00",
         callback: function() {
-            self.endsound.play();
-            self.stop();
+            this.endsound.play();
+            this.stop();
             new Notification("Clock " + options.name + " finished.", "normal", 3500);
-        }
+        }.bind(this)
     });
-
-    this.getInfo = function() {
-        return JSON.stringify(this);
-    };
 
     // Create the render
     this.render = new Render({
         callback: function(){
-            self.updateDisplay();
-        },
+            this.updateDisplay();
+        }.bind(this),
         timeout: 10,
     });
 
-    for (var i = 0; i < this.buttons.length; i++) {
+    for (i = 0, l = this.buttons.length; i < l; i++) {
         this.buttons[i].addEventListener('click', function(e){
             e.preventDefault();
             this.hash = this.hash.toLowerCase();
@@ -108,148 +104,168 @@ function Clock(options){
         });
     }
 
-    this.updateTimer = function(){
-        this.timer.setName(this.title.value);
-        this.updateCookie();
-    };
-
-    this.updateTime = function(){
-        this.timer.reset();
-        this.timer.setTime(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
-        this.updateCookie();
-    };
-
-    for (i = 0; i < this.times.length; i++) {
+    for (i = 0, l = this.times.length; i < l; i++) {
         this.times[i].addEventListener('blur', function(e){
-            self.updateTime();
-            self.updateCookie();
-        });
-    }
-
-    this.updateDisplay = function(){
-        var time = this.timer.getTime(),
-        times = time.split(':');
-        this.times[0].value = times[0];
-        this.times[1].value = times[1];
-        if (this.times[2].value != times[2] && !this.mute){
-            /* this.sound.currentTime = 0; */
-            this.sound.play();
+            this.updateTime();
             this.updateCookie();
-        }
-        this.times[2].value = times[2];
-    };
-
-    this.start = function(){
-        if (this.started){
-            this.setReadOnly(false);
-            this.setPlaying(false);
-            this.timer.pause();
-            this.render.stop();
-            this.started = false;
-            this.checkSound();
-        } else {
-            this.setReadOnly(true);
-            this.setPlaying(true);
-            this.updateTimer();
-            this.timer.start();
-            this.render.start();
-            this.started = true;
-            this.checkSound();
-        }
-        this.updateCookie();
-    };
-
-    this.stop = function(){
-        this.started = true;
-        this.start();
-    };
-
-    this.setPlaying = function(bool){
-        var button = this.buttons[0].querySelector('i');
-        if (bool){
-            button.classList.remove('ion-play');
-            button.classList.add('ion-pause');
-        } else {
-            button.classList.add('ion-play');
-            button.classList.remove('ion-pause');
-        }
-    };
-
-    this.setMuted = function(bool){
-        this.mute = bool;
-        this.checkSound();
-        this.updateCookie();
-    };
-
-    this.checkSound = function(){
-        if (!this.started || this.mute){
-            this.sound.pause();
-        }
-    };
-
-    this.setReadOnly = function(bool){
-        this.title.readOnly = bool;
-        this.title.readOnly = bool;
-        for (var i = 0; i < this.times.length; i++) {
-            this.times[i].readOnly = bool;
-            this.times[i].disabled = bool;
-        }
-    };
-
-    this.remove = function(force){
-        if (force) {
-            this.render.stop();
-            this.element.remove();
-            var event = new CustomEvent('removeClock', { 'detail': this.id });
-            document.dispatchEvent(event);
-        }  else {
-            // Cba to do it better atm
-            // Recreate the above in a temporary function then call it with force or with confirm.
-            new Confirm({
-                element: document.querySelector('.checkbox-overlay'),
-                message: 'Are you sure u want to delete '+this.timer.getName()+'?',
-                confirm: function(){
-                    self.render.stop();
-                    self.element.remove();
-                    var event = new CustomEvent('removeClock', { 'detail': self.id });
-                    document.dispatchEvent(event);
-                }
-            }).show();
-        }
-    };
-
-    this.fullscreen = function(force){
-        if (fullScreenEnabled()){
-            if (this.element.requestFullscreen) {
-                this.element.requestFullscreen();
-            } else if (this.element.webkitRequestFullscreen) {
-                this.element.webkitRequestFullscreen();
-            } else if (this.element.mozRequestFullScreen) {
-                this.element.mozRequestFullScreen();
-            } else if (this.element.msRequestFullscreen) {
-                this.element.msRequestFullscreen();
-            }
-        }
-    };
-
-    this.getInfo = function(){
-        return {
-            muted: this.mute,
-            id: this.id,
-            name: this.timer.name,
-            direction: this.timer.direction,
-            time: this.timer.timeLeft(),
-        };
-    };
-
-    this.updateCookie = function(){
-        cookie.create("clock__"+this.id, JSON.stringify(this.getInfo()));
-        return true;
-    };
+        }.bind(this));
+    }
 
     this.updateCookie();
     this.updateDisplay();
-}
+};
+
+Clock.prototype.getInfo = function()
+{
+    return JSON.stringify(this);
+};
+
+
+Clock.prototype.updateTimer = function()
+{
+    this.timer.setName(this.title.value);
+    this.updateCookie();
+};
+
+Clock.prototype.updateTime = function()
+{
+    this.timer.reset();
+    this.timer.setTime(this.times[0].value+':'+this.times[1].value+':'+this.times[2].value);
+    this.updateCookie();
+};
+
+
+Clock.prototype.updateDisplay = function()
+{
+    var time = this.timer.getTime(),
+    times = time.split(':');
+    this.times[0].value = times[0];
+    this.times[1].value = times[1];
+    if (this.times[2].value != times[2] && !this.mute){
+        /* this.sound.currentTime = 0; */
+        this.sound.play();
+        this.updateCookie();
+    }
+    this.times[2].value = times[2];
+};
+
+Clock.prototype.start = function()
+{
+    if (this.started){
+        this.setReadOnly(false);
+        this.setPlaying(false);
+        this.timer.pause();
+        this.render.stop();
+        this.started = false;
+        this.checkSound();
+    } else {
+        this.setReadOnly(true);
+        this.setPlaying(true);
+        this.updateTimer();
+        this.timer.start();
+        this.render.start();
+        this.started = true;
+        this.checkSound();
+    }
+    this.updateCookie();
+};
+
+Clock.prototype.stop = function()
+{
+    this.started = true;
+    this.start();
+};
+
+Clock.prototype.setPlaying = function(bool)
+{
+    var button = this.buttons[0].querySelector('i');
+    if (bool){
+        button.classList.remove('ion-play');
+        button.classList.add('ion-pause');
+    } else {
+        button.classList.add('ion-play');
+        button.classList.remove('ion-pause');
+    }
+};
+
+Clock.prototype.setMuted = function(bool)
+{
+    this.mute = bool;
+    this.checkSound();
+    this.updateCookie();
+};
+
+Clock.prototype.checkSound = function()
+{
+    if (!this.started || this.mute){
+        this.sound.pause();
+    }
+};
+
+Clock.prototype.setReadOnly = function(bool){
+    var i, l;
+
+    this.title.readOnly = bool;
+    this.title.readOnly = bool;
+
+    for (i = 0, l = this.times.length; i < l; i++) {
+        this.times[i].readOnly = bool;
+        this.times[i].disabled = bool;
+    }
+};
+
+Clock.prototype.remove = function(force)
+{
+    if (force) {
+        this.render.stop();
+        this.element.remove();
+        var event = new CustomEvent('removeClock', { 'detail': this.id });
+        document.dispatchEvent(event);
+    }  else {
+        // Cba to do it better atm
+        // Recreate the above in a temporary function then call it with force or with confirm.
+        new Confirm({
+            element: document.querySelector('.checkbox-overlay'),
+            message: 'Are you sure u want to delete '+this.timer.getName()+'?',
+            confirm: function(){
+                this.render.stop();
+                this.element.remove();
+                var event = new CustomEvent('removeClock', { 'detail': this.id });
+                document.dispatchEvent(event);
+            }.bind(this)
+        }).show();
+    }
+};
+
+Clock.prototype.fullscreen = function(force)
+{
+    if (fullScreenEnabled())
+        if (this.element.requestFullscreen)
+            this.element.requestFullscreen();
+        else if (this.element.webkitRequestFullscreen)
+            this.element.webkitRequestFullscreen();
+        else if (this.element.mozRequestFullScreen)
+            this.element.mozRequestFullScreen();
+        else if (this.element.msRequestFullscreen)
+            this.element.msRequestFullscreen();
+};
+
+Clock.prototype.getInfo = function()
+{
+    return {
+        muted: this.mute,
+        id: this.id,
+        name: this.timer.name,
+        direction: this.timer.direction,
+        time: this.timer.timeLeft(),
+    };
+};
+
+Clock.prototype.updateCookie = function()
+{
+    cookie.create("clock__"+this.id, JSON.stringify(this.getInfo()));
+    return true;
+};
 
 function fullScreenEnabled(){
     return document.fullscreenEnabled || document.webkitFullscreenEnabled ||
@@ -263,9 +279,9 @@ function clockSettings(options){
     this.callback = options.onChange || function(){};
     this.elm.onclick = function(e){
         if (e.target.classList.contains('settings-overlay')){
-            self.elm.style.display = "none";
+            this.elm.style.display = "none";
         }
-    };
+    }.bind(this);
 
     for (var i = 0; i < this.settings.length; i++) {
         this.settings[i].onclick = function(){

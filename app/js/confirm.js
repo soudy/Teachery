@@ -16,46 +16,50 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-function Confirm(options){
-	var self = this;
-	this.element = options.element;
-	this.cancelCall = options.cancel || function(){};
+var Confirm = function(options)
+{
+	this.element     = options.element;
+	this.cancelCall  = options.cancel || function(){};
 	this.confirmCall = options.confirm || function(){};
-	this.message = options.message || 'N/A';
+	this.message     = options.message || 'N/A';
 
-	this.yes = this.element.querySelector('.checkbox-confirm'),
-	this.no = this.element.querySelector('.checkbox-cancel'),
-	this.msg = this.element.querySelector('.checkbox-message');
-    
-	this.show = function(){
-		this.msg.innerHTML = this.message;
-		this.element.classList.add('active');
-	};
+    this.yes = this.element.querySelector('.checkbox-confirm');
+    this.no  = this.element.querySelector('.checkbox-cancel');
+    this.msg = this.element.querySelector('.checkbox-message');
 
-	this.hide = function(){
-		this.msg.innerHTML = '';
-		this.element.classList.remove('active');
-	};
+    this.element.onclick = function(e) {
+        if (e.target == this.yes){
+            this.hide();
+            this.confirmCall();
+        } else {
+            if (e.target === this.msg)
+                return;
+            this.hide();
+            this.cancelCall();
+        }
+    }.bind(this);
 
-    document.onkeydown = function(e){
+    document.onkeydown = function(e) {
         if (e.keyCode == 27){
-            self.hide();
-            cancelCall();
+            this.hide();
+            this.cancelCall();
         }
         if (e.keyCode == 13){
-            self.hide();
-            self.confirmCall();
+            this.hide();
+            this.confirmCall();
         }
-    }
+    }.bind(this);
+};
 
-    this.element.onclick = function(e){
-        if (e.target == self.yes){
-            self.hide();
-            self.confirmCall();
-        } else {
-            if (e.target == self.msg) return;
-            self.hide();
-            self.cancelCall();
-        }
-    }
-}
+
+Confirm.prototype.show = function()
+{
+    this.msg.innerHTML = this.message;
+    this.element.classList.add('active');
+};
+
+Confirm.prototype.hide = function()
+{
+    this.msg.innerHTML = '';
+    this.element.classList.remove('active');
+};

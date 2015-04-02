@@ -16,7 +16,8 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-function Timer(settings){
+var Timer = function(settings)
+{
 
 	this.name = settings.name;
 	this.direction = settings.direction || 'up';
@@ -29,117 +30,136 @@ function Timer(settings){
 	this.lastTick = false;
 	this.pauseBool = false;
 
-	this.start = function(){
-		this.lastTick = new Date();
-		this.pauseBool = false;
-		return this;
-	};
+    if (settings.time)
+        this.setTime(settings.time);
+};
 
-	this.reset = function(){
-		this.duration = 0;
-		this.time = false;
-		this.pauseBool = false;
-		this.lastTick = false;
-		return this;
-	};
+Timer.prototype.start = function()
+{
+    this.lastTick = new Date();
+    this.pauseBool = false;
 
-	this.pause = function(){
-		this.pauseBool = true;
-		return this;
-	};
+    return this;
+};
 
-	this.setName = function(name){
-		this.name = name;
-		return this;
-	};
+Timer.prototype.reset = function()
+{
+    this.duration = 0;
+    this.time = false;
+    this.pauseBool = false;
+    this.lastTick = false;
 
-	this.setTime = function(time){
-		if (time.toString().match(':')){
-			var t = time.split(':');
-			this.time = parseInt(t[2]);
-			this.time += parseInt(t[1]) * 60;
-			this.time += parseInt(t[0]) * (3600);
-			this.time *=  1000;
-		} else {
-			this.time = time;
-		}
-	};
+    return this;
+};
 
-	this.setDirection = function(direction){
-		if (direction == 'up' || direction == 'down'){
-			this.direction = direction;
-			if (this.direction == 'down')
-				this.time = null;
-		}
-		return this;
-	};
+Timer.prototype.pause = function()
+{
+    this.pauseBool = true;
 
-	this.getDirection = function(){
-		return this.direction;
-	};
+    return this;
+};
 
-	this.getName = function(){
-		return this.name;
-	};
+Timer.prototype.setName = function(name)
+{
+    this.name = name;
 
-	this.getTime = function(){
-		if (!this.lastTick) return this.timeLeft();
-		var currentTick = new Date();
-		var added;
-		if (this.pauseBool)
-			added = 0;
-		else
-			added = currentTick - this.lastTick;
+    return this;
+};
 
-		this.duration += added;
-		var display = this.duration;
-		this.lastTick = new Date();
+Timer.prototype.setTime = function(time)
+{
+    if (time.toString().match(':')){
+        var t = time.split(':');
+        this.time = parseInt(t[2]);
+        this.time += parseInt(t[1]) * 60;
+        this.time += parseInt(t[0]) * (3600);
+        this.time *=  1000;
+    } else {
+        this.time = time;
+    }
+};
 
-		if (this.time && this.direction == 'down')
-			display = this.time - this.duration;
+Timer.prototype.setDirection = function(direction)
+{
+    if (direction == 'up' || direction == 'down'){
+        this.direction = direction;
+        if (this.direction == 'down')
+            this.time = null;
+    }
 
-		if (display < 0){
-			this.callback();
-			this.duration = 0;
-		}
+    return this;
+};
 
-		var milliseconds = parseInt((display%1000)/100),
-			seconds = parseInt((display/1000)%60),
-			minutes = parseInt((display/(1000*60))%60),
-			hours = parseInt((display/(1000*60*60))%24);
+Timer.prototype.getDirection = function()
+{
+    return this.direction;
+};
 
-		hours = (hours < 10) ? "0" + hours : hours;
-		minutes = (minutes < 10) ? "0" + minutes : minutes;
-		seconds = (seconds < 10) ? "0" + seconds : seconds;
-		return hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
-	};
+Timer.prototype.getName = function()
+{
+    return this.name;
+};
 
-	this.isPaused = function(){
-		if (!this.pauseBool)
-			return false;
-		return true;
-	};
+Timer.prototype.getTime = function()
+{
+    if (!this.lastTick)
+        return this.timeLeft();
 
-	this.timeLeft = function(){
-		var display = this.duration;
-		if (this.time && this.direction == 'down')
-			display = this.time - this.duration;
+    var currentTick = new Date();
+    var added;
 
-		if (display < 0){
-			this.duration = 0;
-		}
-		var milliseconds = parseInt((display%1000)/100),
-			seconds = parseInt((display/1000)%60),
-			minutes = parseInt((display/(1000*60))%60),
-			hours = parseInt((display/(1000*60*60))%24);
+    if (this.pauseBool)
+        added = 0;
+    else
+        added = currentTick - this.lastTick;
 
-		hours = (hours < 10) ? "0" + hours : hours;
-		minutes = (minutes < 10) ? "0" + minutes : minutes;
-		seconds = (seconds < 10) ? "0" + seconds : seconds;
-		return hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
-	};
+    this.duration += added;
+    var display = this.duration;
+    this.lastTick = new Date();
 
-	if (settings.time){
-		this.setTime(settings.time);
-	}
-}
+    if (this.time && this.direction == 'down')
+        display = this.time - this.duration;
+
+    if (display < 0){
+        this.callback();
+        this.duration = 0;
+    }
+
+    var milliseconds = parseInt((display%1000)/100),
+    seconds = parseInt((display/1000)%60),
+    minutes = parseInt((display/(1000*60))%60),
+    hours = parseInt((display/(1000*60*60))%24);
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+    return hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
+};
+
+Timer.prototype.isPaused = function()
+{
+    return this.pauseBool;
+};
+
+Timer.prototype.timeLeft = function()
+{
+    var display = this.duration;
+
+    if (this.time && this.direction == 'down')
+        display = this.time - this.duration;
+
+    if (display < 0)
+        this.duration = 0;
+
+    var milliseconds = parseInt((display%1000)/100),
+
+    seconds = parseInt((display/1000)%60),
+    minutes = parseInt((display/(1000*60))%60),
+    hours = parseInt((display/(1000*60*60))%24);
+
+    hours   = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
+};

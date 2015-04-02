@@ -16,6 +16,22 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
+var Settings = {
+    set_color: function(category, color)
+    {
+        var regex  = new RegExp("([a-fA-F0-9]+)");
+        var result = regex.exec(color);
+
+        if(!result || !(result[0].length == 3 || result[0].length == 6)) {
+            new Notification("Not a valid color: " + base_color.value, "warning", 2500);
+            return false;
+        }
+
+        settings[category] = result[0];
+        cookie.create("settings", JSON.stringify(settings));
+    }
+};
+
 (function()
 {
     var base_default = "214E98";
@@ -35,14 +51,14 @@
         finish: finish_default
     };
 
-    var base_color_hash  = document.querySelector("#base_color_hash");
-    var background_color_hash  = document.querySelector("#background_color_hash");
-    var text_color_hash  = document.querySelector("#text_color_hash");
-    var base_color       = document.querySelector("#base_color");
-    var background_color = document.querySelector("#background_color");
-    var text_color       = document.querySelector("#text_color");
-    var clocks           = document.querySelectorAll('.clock_default');
-    var finish           = document.querySelectorAll(".finish");
+    var background_color_hash = document.querySelector("#background_color_hash");
+    var base_color_hash       = document.querySelector("#base_color_hash");
+    var text_color_hash       = document.querySelector("#text_color_hash");
+    var background_color      = document.querySelector("#background_color");
+    var base_color            = document.querySelector("#base_color");
+    var text_color            = document.querySelector("#text_color");
+    var clocks                = document.querySelectorAll('.clock_default');
+    var finish                = document.querySelectorAll(".finish");
 
     base_color.value       = settings.base_color;
     background_color.value = settings.background_color;

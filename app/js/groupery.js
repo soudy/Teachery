@@ -74,11 +74,10 @@
 
     // can only choose one of the two options for generating groups
     document.querySelector("#n_students").onblur = function() {
-        if (document.querySelector("#n_students").value.replace(" ", "")) {
+        if (document.querySelector("#n_students").value.replace(" ", ""))
             document.querySelector("#n_groups").disabled = true;
-        } else {
+        else
             document.querySelector("#n_groups").disabled = false;
-        }
     };
 
     document.querySelector("#n_groups").onblur = function() {
@@ -114,5 +113,4 @@
     document.querySelector("#set_plain").onclick = function() {
         grouper.set_plain();
     };
-
 })();
