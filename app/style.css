@@ -65,6 +65,7 @@ nav a.active        {background:#FFF;color:#214E96;}
 
 /* Main container to have all the content. */
 main                {height:90%;width:calc(100% - 150px);display:block;}
+.hidden             {display:none}
 
 /* The CSS regarding the cookie. */
 
@@ -145,10 +146,13 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 /* <Time */
 
 /* >Pickery */
-.pick                   {width:100%;font-family: 'Montserrat', sans-serif;padding:0px 25px;}
-    #uploadcsv h3       {width:50%;}
-    #uploadcsv          {text-align:center;}
-    .pick input         {font-family: 'Montserrat', sans-serif;border:none;}
+.pick                    {width:100%;font-family: 'Montserrat', sans-serif;padding:0px 25px;}
+    #all_fields          {width:100%;text-align:center;}
+    #all_fields input    {display:block;margin:0 auto;}
+    #all_fields td,tr,th {border:2px solid black;margin:0;padding:7px;}
+    #uploadcsv h3        {width:50%;}
+    #uploadcsv           {text-align:center;}
+    .pick input          {font-family: 'Montserrat', sans-serif;border:none;}
 
     /* The container for the button to upload. */
     .class              {width:25%;float:left;max-height:40px;}

@@ -43,6 +43,15 @@
             </label>
         </form>
 
+        <section class="fields">
+            <h4 id="all_fields_info"></h4>
+            <table id="all_fields"></table>
+            <div id="pickery_fields_submit" class="div-class hidden">
+                Go!
+            </div>
+            <h4 id="all_fields_result"></h4>
+        </section>
+
         <div class="clear-both"></div>
 
         <!-- input -->
