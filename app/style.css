@@ -4,8 +4,8 @@
 */
 
 
-@import url(http://fonts.googleapis.com/css?family=Lato:400,100,300);
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(//fonts.googleapis.com/css?family=Lato:400,100,300);
+@import url(//fonts.googleapis.com/css?family=Montserrat:400,700);
 
 /* Reset standard margins and apply standard fallback font + Background placement.*/
 html,
@@ -146,25 +146,27 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 
 /* >Pickery */
 .pick                   {width:100%;font-family: 'Montserrat', sans-serif;padding:0px 25px;}
+    #uploadcsv h3       {width:50%;}
+    #uploadcsv          {text-align:center;}
     .pick input         {font-family: 'Montserrat', sans-serif;border:none;}
 
     /* The container for the button to upload. */
-    .class              {width:50%;float:left;max-height:40px;}
+    .class              {width:25%;float:left;max-height:40px;}
     .div-class          {line-height:2.3em;text-align:center;font-size:100%;}
-    .div-class          {width:150px;border:3px solid #214E96;background:#214E96;min-width:175px;cursor:pointer;
-                        color:#FFF;margin:0 auto;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
+    .div-class          {width:60%;border:3px solid #214E96;background:#214E96;min-width:60%;cursor:pointer;
+                         color:#FFF;margin:0 auto;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
     .div-class:hover    {background:#FFF;color:#214E96;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
 
     /* The container for where the hash is to be entered for validation */
     .hashkey            {width:50%;float:left;text-align:center;}
-    
+
     .hashkey label      {width:Calc(49% - 50px);display:inline-block;padding: 0 15px; min-width:120px;}
     .hashkey label div  {text-align:center;line-height:2.3em;border:3px solid #214E96;background:#214E96;min-width:100%;cursor:pointer;
                         color:#FFF;margin:0 auto;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
 
     /*.hashkey label:first-child div{border-left:10px solid black;}*/
 
-    .hashkey label div:hover  {background:#FFF;color:#214E96;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
+    .hashkey label div:hover  {background:#FFF !important;color:#214E96;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
 
 
 
@@ -266,9 +268,18 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 #notlist p.normal   {background:#214E96;}
 #notlist p.warning  {background:#C0392B;}
 
+/* Dupes */
+.enabled        {background:#369E21 !important;border: 3px solid #369E21 !important;}
+.enabled:hover  {background:#fff !important;color:#369E21 !important;}
+.disabled       {background:#214E96 !important;border: 3px solid #214E96 !important;}
+.disabled:hover {background:#fff !important;color:#214E96 !important;}
+
+#chosen_name   {position:absolute;}
+#chosen_name p {text-align:center;}
+
 #groupery_options                    {font-size:1.3em;text-align:left;}
 #groupery_options hr                 {color:#214E96;height:1px;}
-#groupery_options input[type="text"] {background:#FFF;width:50px;border-bottom:5px solid #214E96; 
+#groupery_options input[type="text"] {background:#FFF;width:50px;border-bottom:5px solid #214E96;
                                       font-size:1em;padding:2.5px;
                                       text-align:center;}
 #groupery_options input[disabled]   {background:#fff !important;border:none;}
@@ -354,6 +365,8 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
     .setting-general    {width:100%;padding:0 25;}
 
     /* PICKERY */
+    .class              {width:100%;}
+    .div-class          {}
     .hashkey, .class    {width:100%;margin:10px 0px;}
     .hashkey            {padding:50px 0px;}
     .section-output,

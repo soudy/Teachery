@@ -1,157 +1,160 @@
 /*
-* Teachery is a web application to make the life of teachers easier.
-* Copyright (C) 2015 Terence Keur, Mirko van der Waal and Steven Oud
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, see <http://www.gnu.org/licenses/>.
-*/
+ * Teachery is a web application to make the life of teachers easier.
+ * Copyright (C) 2015 Terence Keur, Mirko van der Waal and Steven Oud
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, see <http://www.gnu.org/licenses/>.
+ */
 
 var Picker = function(students)
 {
-    this.students      = students;
-    this.student_count = 0;
-    this.blacklist     = [];
+    "use strict";
 
-    this.chosen_names = document.querySelector("#pickery_chosen_names");
-    this.all_names    = document.querySelector("#pickery_all_names");
+    this.chosen_names_elm = document.querySelector("#pickery_chosen_names");
+    this.all_names_elm    = document.querySelector("#pickery_all_names");
+    this.chosen_name_elm  = document.querySelector("#chosen_name p");
 
-    if (localStorage.getItem("pickery_blacklist"))
-        this.blacklist = localStorage.getItem("pickery_blacklist");
+    this.students     = students;
+    this.blacklist    = [];
+    this.chosen_names = [];
 
-    if (this.student_count > 1000) {
-        new Notification("The maximum amount of importable names is 1000.",
-                         "warning", 3000);
-        return false;
+    if (localStorage.getItem("pickery_blacklist")) {
+        this.blacklist = JSON.parse(localStorage.getItem("pickery_blacklist"));
+        this.set_chosen_names();
     }
 };
 
-Picker.prototype.set_students = function ()
+Picker.prototype.set = function()
 {
-    for (var student in this.students) {
-        this.student_count++;
+    /*
+     * This show method is fit for Magister's CSV structure and will most likely
+     * not work on other CSV files because it will grab the wrong fields.
+     */
 
-        var option       = document.createElement('option');
-        var fullname     = this.students[student].Roepnaam + " " +
-                           this.students[student].Tussenv +
-                           (this.students[student].Tussenv === "" ? "" : " " ) +
-                           this.students[student].Achternaam;
+    for (var i = 0, l = this.students.cells.length; i < l; ++i) {
+        var student  = this.students.cells[i];
+        var option   = document.createElement("option");
+        var fullname = student[2] + " " +
+                       student[3] + " " +
+                       student[4];
 
-        for (var filtered in this.blacklist) {
-            if (this.students[student].Stamnr == this.blacklist[filtered]) {
-
-                option.value = 'student' + this.students[student].Stamnr;
-                option.id    = 'student' + this.students[student].Stamnr;
-                option.innerHTML = fullname;
-
-                this.chosen_names.appendChild(option);
-
-                continue;
-            }
-        }
-
-        option.value = 'students' + this.students[student].Stamnr;
-        option.id    = 'students' + this.students[student].Stamnr;
         option.innerHTML = fullname;
+        option.id        = i;
 
-        this.all_names.appendChild(option);
+        this.all_names_elm.appendChild(option);
     }
-
-    document.querySelector("#pickery_students").innerHTML = "Count: " + this.student_count;
 };
 
-
-Picker.prototype.delete_name = function()
+Picker.prototype.set_chosen_names = function()
 {
-    var selected    = this.all_names.value;
-    var selected_id = document.getElementById(selected);
+    for (var i = 0, l = this.blacklist.length; i < l; ++i) {
+        var student = this.students.cells[this.blacklist[i]];
+        var option  = document.createElement("option");
+        var fullname = student[2] + " " +
+                       student[3] + " " +
+                       student[4];
+
+        this.chosen_names.push(fullname);
+
+        option.innerHTML = fullname;
+        option.id        = i;
+
+        this.chosen_names_elm.insertBefore(
+            option,
+            document.querySelector("#pickery_chosen_names > option:first-of-type")
+        );
+    }
+};
+
+Picker.prototype.remove = function()
+{
+    var element  = this.all_names_elm;
+    var selected = element.options[element.selectedIndex];
 
     if (!selected) {
-        new Notification("No name selected.", "normal", 2500);
+        new Notification("No name selected.", "warning");
         return false;
     }
 
-    delete this.students[selected];
-    selected_id.parentElement.removeChild(selected_id);
+    var selected_id = parseInt(selected.id);
 
-    // update count
-    this.student_count--;
-    document.querySelector("#pickery_students").innerHTML = "Count: " + this.student_count;
+    this.students.cells.splice(selected_id, 1);
+    this.all_names_elm.removeChild(document.getElementById(selected_id));
 
-    // update storage with deleted user
     localStorage.setItem("pickery", JSON.stringify(this.students));
+};
+
+Picker.prototype.random = function()
+{
+    var allow_duplicates = document.querySelector("#allow_duplicates").checked;
+    var randint;
+
+    if (!allow_duplicates) {
+        if (this.blacklist.length >= this.students.cells.length) {
+            new Notification("You've looped through all names.");
+            return false;
+        }
+    }
+
+    randint = Math.floor(Math.random() * (this.students.cells.length - 0));
+
+    if (!allow_duplicates) {
+        // No duplicates allowed
+        while (this.blacklist.indexOf(randint) >= 0)
+            randint = Math.floor(Math.random() * (this.students.cells.length - 0));
+
+        this.blacklist.push(randint);
+    }
+
+    var student = this.students.cells[randint];
+    var option  = document.createElement("option");
+    var fullname = student[2] + " " +
+                   student[3] + " " +
+                   student[4];
+
+    this.chosen_names.push(fullname);
+
+    option.innerHTML = fullname;
+    option.id        = randint;
+
+    this.chosen_name_elm.innerHTML = fullname;
+
+    this.chosen_names_elm.insertBefore(
+        option,
+        document.querySelector("#pickery_chosen_names > option:first-of-type")
+    );
+
+    localStorage.setItem("pickery_blacklist", JSON.stringify(this.blacklist));
 };
 
 Picker.prototype.clear_history = function()
 {
     localStorage.removeItem("pickery_blacklist");
-    this.chosen_names.innerHTML = "";
     this.blacklist = [];
+    this.chosen_names_elm.innerHTML = "";
+    this.chosen_name_elm.innerHTML = "";
 };
 
 Picker.prototype.clear_students = function()
 {
     localStorage.removeItem("pickery");
+
     this.students = [];
-    document.querySelector("#pickery_random").innerHTML = "";
-    document.querySelector("#pickery_all_names").innerHTML = "";
-    document.querySelector("#pickery_students").innerHTML = "";
+    this.all_names_elm.innerHTML = "";
 };
 
 Picker.prototype.clear_all = function()
 {
     this.clear_history();
     this.clear_students();
-};
-
-Picker.prototype.random_name = function()
-{
-    var allow_duplicates = document.querySelector("#allow_duplicates");
-    var random = document.querySelector("#pickery_random");
-    var keys = Object.keys(this.students);
-    var random_key;
-
-    if (!allow_duplicates.checked)
-        for (var filtered in this.blacklist)
-            for (var key in keys)
-                if (keys[key] === "student" + this.blacklist[filtered])
-                    keys.splice(key, 1);
-
-    random_key = keys[Math.floor(Math.random() * keys.length)];
-
-    if (!this.students[random_key]) {
-        new Notification("You've looped through all names.", "normal", 2000);
-        return false;
-    }
-
-    var fullname =
-          this.students[random_key].Roepnaam + " " +
-          this.students[random_key].Tussenv +
-         (this.students[random_key].Tussenv === "" ? "" : " " ) +
-          this.students[random_key].Achternaam;
-
-    if (!allow_duplicates.checked) {
-        this.blacklist[this.blacklist.length] = this.students[random_key].Stamnr;
-
-        localStorage.setItem("pickery_blacklist", this.blacklist);
-    }
-
-    random.innerHTML = fullname;
-
-    var option = document.createElement('option');
-
-    option.value = this.students[random_key].Stamnr;
-    option.id = this.students[random_key].Stamnr;
-    option.innerHTML = fullname;
-
-    this.chosen_names.appendChild(option);
 };

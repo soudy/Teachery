@@ -28,7 +28,7 @@ var Confirm = function(options)
     this.msg = this.element.querySelector('.checkbox-message');
 
     this.element.onclick = function(e) {
-        if (e.target == this.yes){
+        if (e.target === this.yes){
             this.hide();
             this.confirmCall();
         } else {
@@ -40,11 +40,11 @@ var Confirm = function(options)
     }.bind(this);
 
     document.onkeydown = function(e) {
-        if (e.keyCode == 27){
+        if (e.keyCode === 27){
             this.hide();
             this.cancelCall();
         }
-        if (e.keyCode == 13){
+        if (e.keyCode === 13){
             this.hide();
             this.confirmCall();
         }

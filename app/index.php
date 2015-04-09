@@ -4,7 +4,7 @@
     <title>Teachery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.php" id="stylesheet">
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+    <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
     <script type="text/javascript" src="js/cookies.js"></script>
     <script type="text/javascript" src="js/notification.js"></script>
     <script type="text/javascript" src="js/confirm.js"></script>
@@ -94,6 +94,7 @@
     <div id="notlist"></div>
 
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/CSV.js"></script>
     <script type="text/javascript" src="js/timery.js"></script>
     <script type="text/javascript" src="js/settings.js"></script>
     <script type="text/javascript" src="js/pickery.js"></script>

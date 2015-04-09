@@ -24,7 +24,7 @@
 
     if (localStorage.getItem("pickery")) {
         picker = new Picker(JSON.parse(localStorage.getItem("pickery")));
-        picker.set_students();
+        picker.set();
     }
 
     if (!window.FileReader) {
@@ -33,11 +33,11 @@
         return false;
     }
 
-    document.querySelector("#pickery_class").addEventListener("change", function(e)
+    document.querySelector("#pickery_class_magister").addEventListener("change", function()
     {
         var file = this.files[0];
 
-        if(file.size > 100000) {
+        if(file.size > 1000000) {
             new Notification("File size too large.", "warning", 4000);
             return false;
         }
@@ -51,26 +51,20 @@
 
         r.readAsText(file);
 
-        // what happens when a file gets selected
-        r.onload = function(e) {
-            var students = new CSVtoJSON(this.result);
-
-            if (picker)
-                picker.clear_students();
-
-            picker = new Picker(students);
-            picker.set_students();
+        // What happens when a file gets selected
+        r.onload = function() {
+            picker = new Picker(CSV.to_json(this.result));
+            picker.set();
 
             new Notification("Imported " + file.name.replace(".csv", ""),
                              "normal", 4000);
 
-            // save all students to local storage
-            localStorage.setItem("pickery", JSON.stringify(students));
+            localStorage.setItem("pickery", JSON.stringify(picker.students));
         };
     }, false);
 
     document.querySelector("#pickery_delete_name").onclick = function() {
-        picker.delete_name();
+        picker.remove();
     };
 
     document.querySelector("#pickery_clear_history").onclick = function() {
@@ -87,12 +81,20 @@
     };
 
     document.querySelector("#pickery_post_random").onclick = function() {
-        picker.random_name();
+        picker.random("#pickery_chosen_names");
     };
+
     document.querySelector("#allow_duplicates").onclick = function() {
-        if (this.checked)
-            new Notification('Duplicates enabled', 'normal');
-        else
-            new Notification('Duplicates disabled', 'warning');
+        var button = document.querySelector(".dupes");
+
+        if (this.checked) {
+            new Notification("Duplicates enabled", "normal");
+            button.classList.remove("disabled");
+            button.classList.add("enabled");
+        } else {
+            new Notification("Duplicates disabled", "warning");
+            button.classList.remove("enabled");
+            button.classList.add("disabled");
+        }
     };
 })();

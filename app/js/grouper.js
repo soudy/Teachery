@@ -1,20 +1,20 @@
 /*
-* Teachery is a web application to make the life of teachers easier.
-* Copyright (C) 2015 Terence Keur, Mirko van der Waal and Steven Oud
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, see <http://www.gnu.org/licenses/>.
-*/
+ * Teachery is a web application to make the life of teachers easier.
+ * Copyright (C) 2015 Terence Keur, Mirko van der Waal and Steven Oud
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, see <http://www.gnu.org/licenses/>.
+ */
 
 var Grouper = function(students)
 {
@@ -76,10 +76,14 @@ Grouper.prototype.set_groups = function()
         group = this.groups[group];
 
         var group_elm = document.createElement("div");
+        var h4        = document.createElement("h4");
+
+        h4.innerHTML = group_number;
 
         group_elm.className = "group";
         group_elm.id        = group_number;
 
+        group_elm.appendChild(h4);
         this.groupery_groups_elm.appendChild(group_elm);
 
         for (var i = 0, l = group.length; i < l; ++i)
@@ -285,7 +289,7 @@ Grouper.prototype.generate_groups = function()
         for (i = 1; i < n_groups; ++i) {
             this.groups["Group" + i] = [];
             for (j = 0; j < n_students; ++j) {
-                if(name = this.random_name())
+                if (name = this.random_name())
                     this.groups["Group" + i][j] = name;
             }
         }
@@ -294,7 +298,7 @@ Grouper.prototype.generate_groups = function()
             var last_group = "Group" + n_groups;
             this.groups[last_group] = [];
             for (i = 0, l = n_groups + this.student_keys.length; i < l; ++i)
-                if(name = this.random_name())
+                if (name = this.random_name())
                     this.groups[last_group][i] = name;
         }
         new Notification("Created " + n_groups + " groups.", "normal", 3000);

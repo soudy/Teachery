@@ -23,13 +23,13 @@
     var muteAll = false;
 
     if (document.cookie) {
-        var clockCount = cookie.get('clock_count');
+        var clockCount = Cookies.get("clock_count");
         for (var i = 0; i < clockCount+1; i ++) {
-            var settings = cookie.get('clock__'+i);
+            var settings = Cookies.get("clock__"+i);
             if (settings !== null){
                 settings = JSON.parse(settings);
                 clocks[i] = new Clock({
-                    appendTo: document.querySelector('main.timery'),
+                    appendTo: document.querySelector("main.timery"),
                     id: settings.id,
                     name: settings.name,
                     direction: settings.direction,
@@ -40,29 +40,29 @@
         }
     }
 
-    document.querySelector('.addTimer').onclick = function(e){
+    document.querySelector(".addTimer").onclick = function(e){
         e.preventDefault();
         var c = 0;
         for (var key in clocks)
             c = key;
         c++;
         clocks[c] = new Clock({
-            appendTo: document.querySelector('main.timery'),
+            appendTo: document.querySelector("main.timery"),
             id: c,
-            name: 'clock'+c,
+            name: "clock"+c,
         });
-        new Notification('Clock'+c+' added.', 'normal');
-        cookie.create("clock_count", c);
+        new Notification("Clock"+c+" added.", "normal");
+        Cookies.create("clock_count", c);
     };
 
-    document.querySelector('.muteSounds').onclick = function(e){
+    document.querySelector(".muteSounds").onclick = function(e){
         e.preventDefault();
         for(var key in clocks){
             clocks[key].setMuted(true);
         }
     };
 
-    document.querySelector('.removeTimers').onclick = function(e){
+    document.querySelector(".removeTimers").onclick = function(e){
         e.preventDefault();
         var c = 0;
         for (var key in clocks)
@@ -72,25 +72,25 @@
         }
 
         new Confirm({
-            element: document.querySelector('.checkbox-overlay'),
-            message: 'Are you sure u want to delete all clocks?',
+            element: document.querySelector(".checkbox-overlay"),
+            message: "Are you sure you want to delete all clocks?",
             confirm: function(){
                 for (key in clocks){
                     clocks[key].remove(true);
-                    cookie.remove("clock__"+key);
+                    Cookies.remove("clock__"+key);
                 }
-                cookie.remove("clock_count");
+                Cookies.remove("clock_count");
             }
         }).show();
     };
 
-    document.addEventListener('removeClock', function(e){
+    document.addEventListener("removeClock", function(e){
         var name = clocks[e.detail].timer.getName();
-        new Notification(name + ' removed.', 'warning');
+        new Notification(name + " removed.", "warning");
         
         clocks[e.detail] = null;
         delete clocks[e.detail];
 
-        cookie.remove('clock__'+e.detail);
+        Cookies.remove("clock__"+e.detail);
     });
 })();

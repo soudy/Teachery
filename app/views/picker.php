@@ -5,12 +5,24 @@
     </header>
     <!-- /Sorting (Head) -->
 
+    <div id="chosen_name">
+        <p></p>
+    </div>
+
     <div class="pick">
 
         <div class="upkey" id="uploadcsv">
+            <h3>Upload CSV</h3>
+            <form  class="pick-form" action="" method="post">
+                <label for="pickery_class_magister" class="class">
+                    <div class="div-class">Magister (automatic)</div>
+                </label>
+                <input type="file" name="pickery_class_magister" id="pickery_class_magister" value="" accept=".csv" style="display:none" />
+            </form>
+
             <form  class="pick-form" action="" method="post">
                 <label for="pickery_class" class="class">
-                    <div class="div-class">Upload a CSV</div>
+                    <div class="div-class">Other (manual)</div>
                 </label>
                 <input type="file" name="pickery_class" id="pickery_class" value="" accept=".csv" style="display:none" />
             </form>
@@ -23,7 +35,7 @@
                 </div>
             </label>
             <input style="display:none" type="checkbox" name="duplicates" id="allow_duplicates" style="" />
-            
+
             <label class="random-cont" for="">
                 <div name="post_random" id="pickery_post_random" class="random">
                     Random
@@ -66,6 +78,5 @@
             </div>
         </section>
 
-        
     </div>
 </main>

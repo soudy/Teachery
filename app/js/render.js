@@ -17,18 +17,19 @@
  */
 
 if (!window.requestAnimationFrame) {
-	window.requestAnimationFrame = (function() {
-		return window.webkitRequestAnimationFrame ||
-		window.mozRequestAnimationFrame ||
-		window.oRequestAnimationFrame ||
-		window.msRequestAnimationFrame ||
-		function( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element ) {
+    window.requestAnimationFrame = (function() {
+        return window.webkitRequestAnimationFrame ||
+		       window.mozRequestAnimationFrame ||
+	           window.oRequestAnimationFrame ||
+		       window.msRequestAnimationFrame ||
+       function(callback) {
 			window.setTimeout( callback, 1000 / 60 );
-		};
+       };
 	})();
 }
 
-function Render(settings){
+function Render(settings)
+{
 	var self = this;
 	this.call = settings.callback || function(){};
 	this.timeout = settings.timeout || 10;
@@ -36,7 +37,8 @@ function Render(settings){
 	this.break = false;
 
 	this.start = function(){
-		if (this.started) return false;
+		if (this.started) 
+            return false;
 
 		this.break = false;
 		this.started = true;

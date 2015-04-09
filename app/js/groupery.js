@@ -54,7 +54,7 @@
         r.readAsText(file);
 
         // what happens when a file gets selected
-        r.onload = function(e) {
+        r.onload = function() {
             var students = new CSVtoJSON(this.result);
 
             if (grouper)

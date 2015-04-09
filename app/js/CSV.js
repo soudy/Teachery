@@ -16,22 +16,26 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-var Cookies = {
-    create: function(name, value)
+var CSV = {
+    to_json: function(csv)
     {
-        document.cookie = name + "="+value+";expires=Mon, 1 Jan 2020 00:00:00 UTC;";
-    },
+        var cells    = [];
+        var columns  = csv.split("\n");
+        var titles   = columns[0].split(",");
 
-    remove: function(name)
-    {
-        document.cookie = name + "=;expires=Thu, 01 Jan 1990 00:00:01 GMT;";
-    },
+        for (var i = 1, l = columns.length - 1; i < l; ++i) {
+            var student = [];
+            var row     = columns[i].split(",");
 
-    get: function(name)
-    {
-        var regex  = new RegExp("(?:^"+name+"|;\ *"+name+")=(.*?)(?:;|$)", "g");
-        var result = regex.exec(document.cookie);
-        return result ? result[1] : null;
+            for (var j = 0, ll = row.length; j < ll; ++j)
+                student.push(row[j]);
+
+            cells.push(student);
+        }
+
+        return {
+            titles : titles,
+            cells  : cells
+        };
     }
 };
-
