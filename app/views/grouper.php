@@ -8,13 +8,30 @@
     <div class="pick">
 
         <div class="upkey" id="uploadcsv">
+            <h3>Upload CSV</h3>
+            <form  class="pick-form" action="" method="post">
+                <label for="groupery_class_magister" class="class">
+                    <div class="div-class">Magister</div>
+                </label>
+                <input type="file" name="groupery_class_magister" id="groupery_class_magister" value="" accept=".csv" style="display:none" />
+            </form>
+
             <form  class="pick-form" action="" method="post">
                 <label for="groupery_class" class="class">
-                    <div class="div-class">Upload a CSV</div>
+                    <div class="div-class">Other</div>
                 </label>
                 <input type="file" name="groupery_class" id="groupery_class" value="" accept=".csv" style="display:none" />
             </form>
         </div>
+
+        <section class="fields">
+            <h4 id="groupery_all_fields_info"></h4>
+            <table id="groupery_all_fields"></table>
+            <div id="groupery_fields_submit" class="div-class hidden">
+                Go!
+            </div>
+            <h4 id="groupery_all_fields_result"></h4>
+        </section>
 
         <div class="clear-both"></div>
 

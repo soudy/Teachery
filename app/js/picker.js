@@ -24,9 +24,9 @@ var Picker = function(students, fields)
     this.all_names_elm    = document.querySelector("#pickery_all_names");
     this.chosen_name_elm  = document.querySelector("#chosen_name p");
 
-    this.all_fields_elm        = document.querySelector("#all_fields");
-    this.all_fields_info_elm   = document.querySelector("#all_fields_info");
-    this.all_fields_result_elm = document.querySelector("#all_fields_result");
+    this.all_fields_elm        = document.querySelector("#pickery_all_fields");
+    this.all_fields_info_elm   = document.querySelector("#pickery_all_fields_info");
+    this.all_fields_result_elm = document.querySelector("#pickery_all_fields_result");
     this.all_fields_submit     = document.querySelector("#pickery_fields_submit");
 
     this.students     = students;

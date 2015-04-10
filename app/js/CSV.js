@@ -19,9 +19,11 @@
 var CSV = {
     to_json: function(csv)
     {
-        var cells    = [];
-        var columns  = csv.split("\n");
-        var titles   = columns[0].split(",");
+        csv = csv.replace("\r", "");
+
+        var cells   = [];
+        var columns = csv.split("\n");
+        var titles  = columns[0].split(",");
 
         for (var i = 1, l = columns.length - 1; i < l; ++i) {
             var student = [];

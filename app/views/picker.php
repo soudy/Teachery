@@ -15,14 +15,14 @@
             <h3>Upload CSV</h3>
             <form  class="pick-form" action="" method="post">
                 <label for="pickery_class_magister" class="class">
-                    <div class="div-class">Magister (automatic)</div>
+                    <div class="div-class">Magister</div>
                 </label>
                 <input type="file" name="pickery_class_magister" id="pickery_class_magister" value="" accept=".csv" style="display:none" />
             </form>
 
             <form  class="pick-form" action="" method="post">
                 <label for="pickery_class" class="class">
-                    <div class="div-class">Other (manual)</div>
+                    <div class="div-class">Other</div>
                 </label>
                 <input type="file" name="pickery_class" id="pickery_class" value="" accept=".csv" style="display:none" />
             </form>
@@ -44,12 +44,12 @@
         </form>
 
         <section class="fields">
-            <h4 id="all_fields_info"></h4>
-            <table id="all_fields"></table>
+            <h4 id="pickery_all_fields_info"></h4>
+            <table id="pickery_all_fields"></table>
             <div id="pickery_fields_submit" class="div-class hidden">
                 Go!
             </div>
-            <h4 id="all_fields_result"></h4>
+            <h4 id="pickery_all_fields_result"></h4>
         </section>
 
         <div class="clear-both"></div>

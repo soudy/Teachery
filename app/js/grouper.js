@@ -16,12 +16,17 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-var Grouper = function(students)
+var Grouper = function(students, fields)
 {
+    "use strict";
+
     this.students      = students;
-    this.student_count = 0;
+    this.student_count = students.cells.length;
+    this.fields        = fields || [];
+    this.blacklist     = [];
     this.groups        = {};
     this.student_keys  = Object.keys(students);
+
     this.formats = {
         "default" : document.querySelector("#set_default"),
         "json"    : document.querySelector("#set_json"),
@@ -34,6 +39,11 @@ var Grouper = function(students)
     this.generate_groups_elm = document.querySelector("#generate_groups");
     this.groupery_format_elm = document.querySelector("#format");
 
+    this.all_names_elm         = document.querySelector("#groupery_all_names");
+    this.all_fields_elm        = document.querySelector("#groupery_all_fields");
+    this.all_fields_info_elm   = document.querySelector("#groupery_all_fields_info");
+    this.all_fields_result_elm = document.querySelector("#groupery_all_fields_result");
+    this.all_fields_submit     = document.querySelector("#groupery_fields_submit");
 
     if (this.student_count > 1000) {
         new Notification("The maximum amount of importable names is 1000.",
@@ -49,11 +59,96 @@ var Grouper = function(students)
 
 };
 
-
-Grouper.prototype.clear_active = function()
+Grouper.prototype.remove = function()
 {
-    for (var format in this.formats)
-        this.formats[format].classList.remove("active");
+    var element  = this.all_names_elm;
+    var selected = element.options[element.selectedIndex];
+
+    if (!selected) {
+        new Notification("No name selected.", "warning");
+        return false;
+    }
+
+    var selected_id = parseInt(selected.id);
+
+    this.students.cells.splice(selected_id, 1);
+    this.all_names_elm.removeChild(document.getElementById(selected_id));
+
+    this.update_storage();
+};
+
+Grouper.prototype.hide_fields = function()
+{
+    this.all_fields_elm.innerHTML = "";
+    this.all_fields_info_elm.innerHTML = "";
+    this.all_fields_result_elm.innerHTML = "";
+    this.all_fields_submit.classList.add("hidden");
+};
+
+Grouper.prototype.show_fields = function()
+{
+
+    this.all_fields_elm.classList.remove("hidden");
+    this.all_fields_info_elm.innerHTML = "Please select a format to use:";
+
+    for (var i = 0, l = this.students.titles.length; i < l; ++i) {
+        var input = document.createElement("input");
+        input.type = "checkbox";
+        input.id = i;
+
+        input.onchange = function(e) {
+            this.all_fields_result_elm.innerHTML = "";
+
+            if (this.fields.indexOf(e.target.id) >= 0)
+                this.fields.splice(this.fields.indexOf(e.target.id), 1);
+            else
+                this.fields.push(e.target.id);
+
+            for (var j = 0, ll = this.fields.length; j < ll; ++j)
+                // Trailing space for clarity
+                this.all_fields_result_elm.innerHTML += this.students.cells[0][this.fields[j]] + " ";
+        }.bind(this);
+
+        var th = document.createElement("th");
+        th.innerHTML = this.students.titles[i];
+
+        th.appendChild(input);
+        this.all_fields_elm.appendChild(th);
+    }
+
+    var student = this.students.cells[0];
+    var tr      = document.createElement("tr");
+
+    for (var j = 0, ll = student.length; j < ll; ++j) {
+        var td = document.createElement("td");
+        td.innerHTML = student[j];
+        tr.appendChild(td);
+    }
+
+    this.all_fields_elm.appendChild(tr);
+
+    // Show hidden submit button
+    this.all_fields_submit.classList.remove("hidden");
+};
+
+Grouper.prototype.set = function()
+{
+    this.hide_fields();
+
+    for (var i = 0, l = this.students.cells.length; i < l; ++i) {
+        var option = document.createElement("option");
+        var fullname = "";
+
+        for (var j = 0, ll = this.fields.length; j < ll; ++j)
+            fullname += this.students.cells[i][this.fields[j]] + " ";
+
+        option.innerHTML = fullname;
+        option.id = i;
+
+        this.all_names_elm.appendChild(option);
+    }
+
+    this.update_storage();
 };
 
 Grouper.prototype.set_groups = function()
@@ -71,9 +166,7 @@ Grouper.prototype.set_groups = function()
     this.groupery_format_elm.style.display = "block";
 
     for (var group in this.groups) {
-        this.group_count++;
         var group_number = group;
-        group = this.groups[group];
 
         var group_elm = document.createElement("div");
         var h4        = document.createElement("h4");
@@ -86,11 +179,19 @@ Grouper.prototype.set_groups = function()
         group_elm.appendChild(h4);
         this.groupery_groups_elm.appendChild(group_elm);
 
-        for (var i = 0, l = group.length; i < l; ++i)
-            if (group[i])
-                document.getElementById(group_number).innerHTML += group[i] + "<br />";
+        for (var key in this.groups[group]) {
+            var fields = this.groups[group][key];
+            var name = "";
+
+            for (var field in fields)
+                name += " " + fields[field];
+
+            document.getElementById(group_number).innerHTML += name + "<br />";
+        }
+
     }
 };
+
 
 Grouper.prototype.set_json = function()
 {
@@ -110,53 +211,49 @@ Grouper.prototype.set_plain = function()
     this.clear_active();
     this.formats.plain.className = "active";
 
-    var pre = document.createElement("pre");
+    var div = document.createElement("p");
 
-    pre.innerHTML = JSON.stringify(this.groups, null, "\0").replace(/\{|\}|\[|\]|\"|\,/g, "");
+    for (var group in this.groups) {
+        var group_number = group;
+        div.innerHTML += "<p>" + group_number + "</p>";
+
+        var group_elm = document.createElement("div");
+        var h4        = document.createElement("h4");
+
+        h4.innerHTML = group_number;
+
+        group_elm.className = "group";
+        group_elm.id        = group_number;
+
+        group_elm.appendChild(h4);
+        this.groupery_groups_elm.appendChild(group_elm);
+
+        for (var key in this.groups[group]) {
+            var fields = this.groups[group][key];
+            var name = "";
+
+            for (var field in fields)
+                name += " " + fields[field];
+
+            div.innerHTML += name + "<br />";
+        }
+
+    }
 
     this.groupery_groups_elm.innerHTML = "";
-    this.groupery_groups_elm.appendChild(pre);
+    this.groupery_groups_elm.appendChild(div);
 };
 
-Grouper.prototype.set_students = function()
+Grouper.prototype.clear_active = function()
 {
-    for (var student in this.students) {
-        this.student_count++;
-        var fullname = this.students[student].Roepnaam + " " +
-                       this.students[student].Tussenv +
-                       (this.students[student].Tussenv === "" ? "" : " " ) +
-                       this.students[student].Achternaam;
-
-        var option = document.createElement('option');
-
-        option.value     = "student" + this.students[student].Stamnr;
-        option.id        = "student" + this.students[student].Stamnr;
-        option.innerHTML = fullname;
-
-        document.querySelector("#groupery_all_names").appendChild(option);
-    }
-
-    document.querySelector("#groupery_students").innerHTML = "Count: " + this.student_count;
+    for (var format in this.formats)
+        this.formats[format].classList.remove("active");
 };
 
-Grouper.prototype.delete_name = function()
+Grouper.prototype.update_storage = function()
 {
-    var selected    = document.querySelector("#groupery_all_names").value;
-    var selected_id = document.getElementById(selected);
 
-    if (!selected) {
-        new Notification("No name selected.", "normal", 2500);
-        return false;
-    }
-
-    delete this.students[selected];
-    selected_id.parentElement.removeChild(selected_id);
-
-    // update count
-    this.student_count--;
-    document.querySelector("#groupery_students").innerHTML = "Count: " + this.student_count;
-
-    // update storage with deleted user
+    localStorage.setItem("groupery_fields", JSON.stringify(this.fields));
     localStorage.setItem("groupery", JSON.stringify(this.students));
 };
 
@@ -172,6 +269,7 @@ Grouper.prototype.clear_groups = function()
 
     localStorage.removeItem("groupery_groups");
     this.groups = {};
+    this.blacklist = [];
 };
 
 Grouper.prototype.clear_students = function()
@@ -189,28 +287,32 @@ Grouper.prototype.clear_all = function()
     this.clear_students();
 };
 
-Grouper.prototype.random_name = function()
+Grouper.prototype.random = function()
 {
-    var random_key = this.student_keys[Math.floor(Math.random() * this.student_keys.length)];
+    var randint;
 
-    if (!random_key)
-        return null;
+    if (this.blacklist.length >= this.students.cells.length)
+        return false;
 
-    var fullname =
-          this.students[random_key].Roepnaam + " " +
-          this.students[random_key].Tussenv +
-         (this.students[random_key].Tussenv === "" ? "" : " " ) +
-          this.students[random_key].Achternaam;
+    randint = Math.floor(Math.random() * (this.students.cells.length - 0));
 
+    while (this.blacklist.indexOf(randint) >= 0)
+        randint = Math.floor(Math.random() * (this.students.cells.length - 0));
 
-    this.student_keys.splice(this.student_keys.indexOf(random_key), 1);
+    this.blacklist.push(randint);
 
-    return fullname;
+    var student = this.students.cells[randint];
+    var result  = [];
+
+    for (var j = 0, l = this.fields.length; j < l; ++j)
+        result.push(student[this.fields[j]]);
+
+    return result;
 };
 
 Grouper.prototype.generate_groups = function()
 {
-    // resetting student keys so you can keep on generating groups
+    // Resetting student keys so you can keep on generating groups
     this.student_keys = Object.keys(this.students);
 
     var n_students = document.querySelector("#n_students").value || null;
@@ -230,11 +332,11 @@ Grouper.prototype.generate_groups = function()
         return false;
     }
 
-    // if the number of groups is specified
+    // If the number of groups is specified
     if (n_groups) {
         var students_per_group = Math.floor(this.student_count / n_groups);
 
-        // checking for valid input
+        // Checking for valid input
         if (n_groups > Math.floor(this.student_count / 2)) {
             new Notification("Can't create " + n_groups + " groups. " +
                              "Maximum amount possible to create is " +
@@ -243,34 +345,43 @@ Grouper.prototype.generate_groups = function()
             return false;
         }
 
-        if (n_groups <= 0) {
-            new Notification("Please enter a valid number above zero.",
+        if (n_groups <= 1) {
+            new Notification("Please enter a valid number above one.",
                              "normal", 3000);
             return false;
         }
 
-        // creating the groups
+        // Creating the groups
         for (i = 1; i < n_groups; ++i) {
-            this.groups["Group" + i] = [];
+            this.groups["Group" + i] = {};
+
             for (j = 0; j < students_per_group; ++j) {
-                if(name = this.random_name())
-                    this.groups["Group" + i][j] = name;
+                var name = this.random();
+                this.groups["Group" + i][j] = {};
+
+                for (var k = 0, l = name.length; k < l; ++k)
+                    this.groups["Group" + i][j][this.students.titles[this.fields[k]]] = name[k];
             }
         }
 
         if (this.student_keys) {
-            this.groups["Group" + n_groups] = [];
-            for (i = 0, l = students_per_group + this.student_keys.length; i <= l; ++i)
-                if(name = this.random_name())
-                    this.groups["Group" + n_groups][i] = name;
+            this.groups["Group" + n_groups] = {};
+
+            for (var i = 0, l = students_per_group + this.student_keys.length; i <= l; ++i) {
+                var name = this.random();
+                this.groups["Group" + n_groups][i] = {};
+
+                for (var k = 0, l = name.length; k < l; ++k)
+                    this.groups["Group" + n_groups][i][this.students.titles[this.fields[k]]] = name[k];
+            }
         }
+
         new Notification("Created " + n_groups + " groups.", "normal", 3000);
 
-    // if the number of students per group is specified
+    // If the number of students per group is specified
     } else if (n_students) {
         n_groups = Math.floor(this.student_count / n_students);
 
-        // checking for valid input
         if (n_students > Math.floor(this.student_count / 2)) {
             new Notification("Can't create groups with " + n_students +
                              " students. Maximum amount students per group is " +
@@ -279,27 +390,33 @@ Grouper.prototype.generate_groups = function()
             return false;
         }
 
-        if (n_students <= 0) {
-            new Notification("Please enter a valid number above zero.",
+        if (n_students <= 1) {
+            new Notification("Please enter a valid number above one.",
                              "normal", 3000);
             return false;
         }
 
-        // creating the groups
         for (i = 1; i < n_groups; ++i) {
             this.groups["Group" + i] = [];
             for (j = 0; j < n_students; ++j) {
-                if (name = this.random_name())
-                    this.groups["Group" + i][j] = name;
+                var name = this.random();
+                this.groups["Group" + i][j] = {};
+
+                for (var k = 0, l = name.length; k < l; ++k)
+                    this.groups["Group" + i][j][this.students.titles[this.fields[k]]] = name[k];
             }
         }
 
         if (this.student_keys) {
-            var last_group = "Group" + n_groups;
-            this.groups[last_group] = [];
-            for (i = 0, l = n_groups + this.student_keys.length; i < l; ++i)
-                if (name = this.random_name())
-                    this.groups[last_group][i] = name;
+            this.groups["Group" + n_groups] = {};
+
+            for (var i = 0, l = this.student_keys.length; i <= l; ++i) {
+                var name = this.random();
+                this.groups["Group" + n_groups][i] = {};
+
+                for (var k = 0, l = name.length; k < l; ++k)
+                    this.groups["Group" + n_groups][i][this.students.titles[this.fields[k]]] = name[k];
+            }
         }
         new Notification("Created " + n_groups + " groups.", "normal", 3000);
     }
