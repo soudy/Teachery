@@ -27,7 +27,7 @@ var Settings = {
     test_color: function(color)
     {
         var regex  = new RegExp("([a-fA-F0-9]+)");
-        var result = regex.exec(base_color.value);
+        var result = regex.exec(color);
 
         if (!color) {
             new Notification("Please enter a color.");
@@ -35,7 +35,7 @@ var Settings = {
         }
 
         if(!result || !(result[0].length === 3 || result[0].length === 6)) {
-            new Notification("Not a valid color: " + base_color.value, "warning", 2500);
+            new Notification("Not a valid color: " + color, "warning", 2500);
             return false;
         }
 
@@ -65,6 +65,12 @@ var Settings = {
     var text_color            = document.querySelector("#text_color");
     var clocks                = document.querySelectorAll(".clock_default");
     var finish                = document.querySelectorAll(".finish");
+    var stylesheet            = document.querySelector('#stylesheet');
+    
+    function reloadStyle(){
+        var href = stylesheet.href.split('?');
+        stylesheet.href = href[0] + '?id=' + new Date().getMilliseconds();
+    }
 
     base_color.value       = settings.base_color;
     background_color.value = settings.background_color;
@@ -73,15 +79,17 @@ var Settings = {
     base_color.addEventListener("blur", function() {
         settings.base_color = Settings.test_color(this.value);
         Cookies.create("settings", JSON.stringify(settings));
-
-        window.location.reload();
+        
+        reloadStyle();
+        //window.location.reload();
     });
 
     background_color.addEventListener("blur", function() {
         settings.background_color = Settings.test_color(this.value);
         Cookies.create("settings", JSON.stringify(settings));
 
-        window.location.reload();
+        reloadStyle();
+        //window.location.reload();
     });
 
     text_color.addEventListener("blur", function() {
@@ -89,13 +97,15 @@ var Settings = {
         settings.text_color = Settings.test_color(this.value);
         Cookies.create("settings", JSON.stringify(settings));
 
-        window.location.reload();
+        reloadStyle();
+        //window.location.reload();
     });
 
     document.querySelector("#base_reset").onclick = function() {
         settings.base_color = Settings.base_default;
         Cookies.create("settings", JSON.stringify(settings));
 
+        //reloadStyle();
         window.location.reload();
     };
 
@@ -103,6 +113,7 @@ var Settings = {
         settings.background_color = Settings.background_default;
         Cookies.create("settings", JSON.stringify(settings));
 
+        //reloadStyle();
         window.location.reload();
     };
 
@@ -110,6 +121,7 @@ var Settings = {
         settings.text_color = Settings.text_default;
         Cookies.create("settings", JSON.stringify(settings));
 
+        //reloadStyle();
         window.location.reload();
     };
 
@@ -120,7 +132,6 @@ var Settings = {
         clocks[2].value = t[2];
 
         Cookies.create("settings", JSON.stringify(settings));
-        window.location.reload();
     };
 
     // default start time
@@ -153,21 +164,44 @@ var Settings = {
         base_color.value     = base_color_hash.value.slice(1,7);
         settings.base_color  = base_color_hash.value.slice(1,7);
         Cookies.create("settings", JSON.stringify(settings));
-        window.location.reload();
+        reloadStyle();
+        //window.location.reload();
     };
 
     background_color_hash.onchange = function() {
         background_color.value     = background_color_hash.value.slice(1,7);
         settings.background_color  = background_color_hash.value.slice(1,7);
         Cookies.create("settings", JSON.stringify(settings));
-        window.location.reload();
+        reloadStyle();
+        //window.location.reload();
     };
 
     text_color_hash.onchange = function() {
         text_color.value     = text_color_hash.value.slice(1,7);
         settings.text_color  = text_color_hash.value.slice(1,7);
         Cookies.create("settings", JSON.stringify(settings));
-        window.location.reload();
+        reloadStyle();
+        //window.location.reload();
+    };
+
+   // auto mute
+    var mute_toggle = document.querySelector('.auto-mute').querySelectorAll('.bool');
+        if (settings.auto_mute === 0)
+            mute_toggle[0].classList.add('active');
+        else
+            mute_toggle[1].classList.add('active');
+
+    mute_toggle[0].onclick = function(){
+        mute_toggle[1].classList.remove('active');
+        mute_toggle[0].classList.add('active');
+        settings.auto_mute = 1;
+        Cookies.create("settings", JSON.stringify(settings));
+    };
+    mute_toggle[1].onclick = function(){
+        mute_toggle[0].classList.remove('active');
+        mute_toggle[1].classList.add('active');
+        settings.auto_mute = 0;
+        Cookies.create("settings", JSON.stringify(settings));
     };
 
 })();

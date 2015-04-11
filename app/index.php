@@ -3,8 +3,9 @@
     <meta charset="UTF-8">
     <title>Teachery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.php" id="stylesheet">
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+    <link rel="stylesheet" href="css/style.php" id="stylesheet">
+    <link rel="stylesheet" href="css/shake.css">
     <script type="text/javascript" src="js/cookies.js"></script>
     <script type="text/javascript" src="js/notification.js"></script>
     <script type="text/javascript" src="js/confirm.js"></script>
@@ -13,48 +14,9 @@
     <script type="text/javascript" src="js/clock.js"></script>
     <script type="text/javascript" src="js/picker.js"></script>
     <script type="text/javascript" src="js/grouper.js"></script>
-    <style type="text/css" media="all">
-        @-webkit-keyframes shake {
-          0%, 100% {
-            -webkit-transform: translate3d(0, 0, 0);
-                    transform: translate3d(0, 0, 0);
-          }
-
-          10%, 30%, 50%, 70%, 90% {
-            -webkit-transform: translate3d(-3px, 0, 0);
-                    transform: translate3d(-3px, 0, 0);
-          }
-
-          20%, 40%, 60%, 80% {
-            -webkit-transform: translate3d(3px, 0, 0);
-                    transform: translate3d(3px, 0, 0);
-          }
-        }
-
-        @keyframes shake {
-          0%, 100% {
-            -webkit-transform: translate3d(0, 0, 0);
-                    transform: translate3d(0, 0, 0);
-          }
-
-          10%, 30%, 50%, 70%, 90% {
-            -webkit-transform: translate3d(-3px, 0, 0);
-                    transform: translate3d(-3px, 0, 0);
-          }
-
-          20%, 40%, 60%, 80% {
-            -webkit-transform: translate3d(3px, 0, 0);
-                    transform: translate3d(3px, 0, 0);
-          }
-        }
-
-        .shake {
-          -webkit-animation: shake .5s;
-                  animation: shake .5s;
-        }
-    </style>
 </head>
 <body>
+    <div class="nostyle">Loading stylesheet..</div>
     <div class="cookie"></div>
 
     <!-- This is where the navigation resires. -->

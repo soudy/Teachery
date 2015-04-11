@@ -40,6 +40,7 @@ var Clock = function(options)
 
     this.started = false;
     this.mute = options.mute || (settings.auto_mute === 1) ? true : false;
+    this.endmute = options.endmute || (settings.auto_mute === 1) ? true : false;
     this.id = options.id;
 
     this.endsoundsrc = settings.finish || "airhorn";
@@ -89,11 +90,17 @@ var Clock = function(options)
                         onChange: function(e){
                             switch(e.name){
                                 case "direction":
-                                    self.timer.setDirection((e.value == "UP") ? "up" : "down");
+                                    self.timer.setDirection((e.value.toUpperCase() == "UP") ? "up" : "down");
+                                    if (!self.timer.isPaused())
+                                        self.timer.start();
                                     self.updateCookie();
                                     break;
                                 case "muted":
                                     self.setMuted((e.value == "TRUE") ? true : false);
+                                    self.updateCookie();
+                                    break;
+                                case "endmuted":
+                                    self.setEndMuted((e.value == "TRUE") ? true : false);
                                     self.updateCookie();
                                     break;
                             }
@@ -114,12 +121,6 @@ var Clock = function(options)
     this.updateCookie();
     this.updateDisplay();
 };
-
-Clock.prototype.getInfo = function()
-{
-    return JSON.stringify(this);
-};
-
 
 Clock.prototype.updateTimer = function()
 {
@@ -191,7 +192,15 @@ Clock.prototype.setPlaying = function(bool)
 Clock.prototype.setMuted = function(bool)
 {
     this.mute = bool;
+    this.sound.muted = this.mute;
     this.checkSound();
+    this.updateCookie();
+};
+
+Clock.prototype.setEndMuted = function(bool)
+{
+    this.endmute = bool;
+    this.endsound.muted = this.endmute;
     this.updateCookie();
 };
 
@@ -254,6 +263,7 @@ Clock.prototype.getInfo = function()
 {
     return {
         muted: this.mute,
+        endmuteD: this.endmute,
         id: this.id,
         name: this.timer.name,
         direction: this.timer.direction,

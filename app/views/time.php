@@ -33,7 +33,7 @@
         </div>
         <div class="settings-group">
             <div class="settings-texts">
-                <p class="settings-message">Muted</p>
+                <p class="settings-message">Mute pick sound</p>
             </div>
 
             <div class="settings-bool">
@@ -41,6 +41,20 @@
                     TRUE
                 </div>
                 <div data-name="muted" data-value="FALSE">
+                    FALSE
+                </div>
+            </div>
+        </div>
+        <div class="settings-group">
+            <div class="settings-texts">
+                <p class="settings-message">Mute ending sound</p>
+            </div>
+
+            <div class="settings-bool">
+                <div data-name="endmuted" data-value="TRUE">
+                    TRUE
+                </div>
+                <div data-name="endmuted" data-value="FALSE">
                     FALSE
                 </div>
             </div>

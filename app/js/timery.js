@@ -35,6 +35,7 @@
                     direction: settings.direction,
                     time: settings.time,
                     mute: settings.muted,
+                    endmute: settings.endmuted,
                 });
             }
         }

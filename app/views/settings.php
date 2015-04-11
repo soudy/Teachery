@@ -43,6 +43,12 @@
             <span class="ref"><i class="ion ion-refresh" id="time_reset"></i></span>
             <div class="clear-both"></div>
 
+            <h2>Auto mute sounds<br><span class="tiny">(New clocks only!)</small></h2>
+            <div class="optconf auto-mute">
+                <span class="bool">YES</span>
+                <span class="bool">NO</span>
+            </div>
+
             <div class="optcont">
                 <h2 class="h2opt">Sound finish</h2>
                 <span class="opt finish" id="airhorn">Airhorn</span>

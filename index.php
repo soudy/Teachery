@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="landing">
-        <img src="teachery.svg" alt="" >
+        <img src="app/img/teachery.svg" alt="" >
         <div>
             <a href="app">CONTINUE</a>
         </div>

@@ -21,7 +21,6 @@ var Timer = function(settings)
 
 	this.name = settings.name;
 	this.direction = settings.direction || 'up';
-	this.mute = settings.mute || false;
 	this.callback = settings.callback || function(){};
 
 	this.time = false;
@@ -83,8 +82,14 @@ Timer.prototype.setDirection = function(direction)
 {
     if (direction == 'up' || direction == 'down'){
         this.direction = direction;
-        if (this.direction == 'down')
-            this.time = null;
+        if (this.direction == 'down'){
+            this.setTime(this.duration-this.time);
+            this.duration = 0;
+        }
+        if (this.direction == 'up'){
+            this.duration = this.time-this.duration;
+            this.time = false;
+        }
     }
 
     return this;

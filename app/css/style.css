@@ -24,6 +24,8 @@ body                {margin:0;padding:0;font-family: 'Montserrat', sans-serif;
 /* Have a pointer on all buttons and a clearfix bound to a div. */
 .clear-both         {clear:both;}
 .ion-refresh        {cursor:pointer;}
+.tiny               {font-size: 60%;}
+.nostyle            {display:none;}
 
 /* Small resest for chrome and user preferences. */
 a                   {color:inherit;text-decoration:inherit;}
@@ -234,7 +236,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 
 .setting-clock .boolcont{margin:40 0 0 0;}
 .setting-clock .h2bool  {width:60%;float:left;}
-.setting-clock .bool    {width:20%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s, color .2s;}
+.setting-clock .bool    {width:50%;background:#214E96;text-align:center;float:left;line-height:3em;color:white;transition:background .2s, color .2s;}
 .bool:hover             {background:white;color:#214E96;cursor:pointer;}
 .bool:active,
 .bool.active            {background:white;color:#214E96;color:#191919}
@@ -330,7 +332,7 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
 *:-moz-full-screen .checkbox-input input{font-size:15vh;width:20%;}
 
 @media (max-width: 720px) {
-    body                {margin-bottom:35px;}
+    body                {margin-bottom:40px;}
 
     /* CORE RESPONSIVE */
     .cookie             {width:100%;line-height:1em;}
@@ -367,6 +369,8 @@ header h1               {font-family: 'Montserrat', sans-serif;text-align:center
     .setting-color,
     .setting-clock,
     .setting-general    {width:100%;padding:0 25;}
+
+    .setting-clock h2   {margin-top:40px;}
 
     /* PICKERY */
     .class              {width:100%;}
