@@ -6,14 +6,15 @@
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
     <link rel="stylesheet" href="css/style.php" id="stylesheet">
     <link rel="stylesheet" href="css/shake.css">
-    <script type="text/javascript" src="js/cookies.js"></script>
-    <script type="text/javascript" src="js/notification.js"></script>
-    <script type="text/javascript" src="js/confirm.js"></script>
-    <script type="text/javascript" src="js/timer.js"></script>
-    <script type="text/javascript" src="js/render.js"></script>
-    <script type="text/javascript" src="js/clock.js"></script>
-    <script type="text/javascript" src="js/picker.js"></script>
-    <script type="text/javascript" src="js/grouper.js"></script>
+    <script type="text/javascript" src="js/util/cookies.js"></script>
+    <script type="text/javascript" src="js/util/confirm.js"></script>
+    <script type="text/javascript" src="js/util/render.js"></script>
+    <script type="text/javascript" src="js/util/CSV.js"></script>
+    <script type="text/javascript" src="js/vendor/notification.js"></script>
+    <script type="text/javascript" src="js/vendor/timer.js"></script>
+    <script type="text/javascript" src="js/vendor/clock.js"></script>
+    <script type="text/javascript" src="js/vendor/picker.js"></script>
+    <script type="text/javascript" src="js/vendor/grouper.js"></script>
 </head>
 <body>
     <div class="nostyle">Loading stylesheet..</div>
@@ -55,11 +56,10 @@
 
     <div id="notlist"></div>
 
+    <script type="text/javascript" src="js/view/timery.js"></script>
+    <script type="text/javascript" src="js/view/settings.js"></script>
+    <script type="text/javascript" src="js/view/pickery.js"></script>
+    <script type="text/javascript" src="js/view/groupery.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/CSV.js"></script>
-    <script type="text/javascript" src="js/timery.js"></script>
-    <script type="text/javascript" src="js/settings.js"></script>
-    <script type="text/javascript" src="js/pickery.js"></script>
-    <script type="text/javascript" src="js/groupery.js"></script>
 </body>
 </html>

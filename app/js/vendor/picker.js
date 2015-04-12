@@ -22,7 +22,11 @@ var Picker = function(students, fields)
 
     this.chosen_names_elm = document.querySelector("#pickery_chosen_names");
     this.all_names_elm    = document.querySelector("#pickery_all_names");
+    this.chosen_name  = document.querySelector("#chosen_name");
     this.chosen_name_elm  = document.querySelector("#chosen_name p");
+    this.chosen_sound = new Audio();
+    this.chosen_sound.src = "sounds/chat_tone.mp3"; 
+    this.chosen_timeout = null;
 
     this.csv_overlay           = document.querySelector("#csv_overlay");
     this.all_fields_elm        = document.querySelector("#pickery_all_fields");
@@ -180,6 +184,14 @@ Picker.prototype.random = function()
     option.id        = randint;
 
     this.chosen_name_elm.innerHTML = fullname;
+    this.chosen_sound.currentTime = 0;
+    this.chosen_sound.play();
+
+    this.chosen_name.classList.add("shake");
+    clearTimeout(this.chosen_timeout);
+    this.chosen_timeout = setTimeout(function(){
+        this.chosen_name.classList.remove("shake");
+    }.bind(this), 500);
 
     this.chosen_names_elm.insertBefore(
         option,
