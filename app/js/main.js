@@ -38,11 +38,20 @@
             }, 1000);
         };
     }
-
+    
+    function setTitle(section){
+        var title = document.querySelector('title');
+        var hash = section || window.location.hash;
+        hash = hash.substr(1);
+        var parts = title.innerHTML.split(' - ');
+        title.innerHTML = parts[0]+' - '+hash;
+    }
+    
     // Preload
     var hash = (window.location.hash !== "") ? window.location.hash : "#home";
     if (hash === "#")
         hash = "#home";
+    setTitle(hash);
     var elm = document.querySelector(hash);
     if (elm)
         elm.classList.add("show");
@@ -69,6 +78,7 @@
         var menu_item = document.querySelector(window.location.hash + "_menu");
         if (menu_item)
             menu_item.classList.add("active");
+        setTitle();
     };
 
 })();

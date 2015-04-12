@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>Teachery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Teachery is a web application aimed at teachers everywhere. The goal of Teachery is to make teaching easier by giving teachers a small set of handy tools.">
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
     <link rel="stylesheet" href="css/style.php" id="stylesheet">
