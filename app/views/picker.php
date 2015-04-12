@@ -46,7 +46,7 @@
                     Duplicate
                 </div>
             </label>
-            <input style="display:none" type="checkbor" name="duplicates" id="allow_duplicates" style="" />
+            <input style="display:none" type="checkbox" name="duplicates" id="allow_duplicates" style="" />
 
             <label class="random-cont" for="">
                 <div name="post_random" id="pickery_post_random" class="random">
