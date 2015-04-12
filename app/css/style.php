@@ -19,6 +19,26 @@
 
 header("Content-type: text/css; charset: UTF-8");
 
+function html2rgb($color)
+{
+    if ($color[0] == '#')
+        $color = substr($color, 1);
+
+    if (strlen($color) == 6)
+        list($r, $g, $b) = array($color[0].$color[1],
+                                 $color[2].$color[3],
+                                 $color[4].$color[5]);
+    elseif (strlen($color) == 3)
+        list($r, $g, $b) = array($color[0].$color[0], $color[1].$color[1], $color[2].$color[2]);
+    else
+        return false;
+
+    $r = hexdec($r); $g = hexdec($g); $b = hexdec($b);
+
+    return array($r, $g, $b);
+}
+  
+
 $content = file_get_contents('style.css');
 
 // BASE_COLOR: #821031;
@@ -36,8 +56,17 @@ $settings = json_decode($json);
 
 foreach ($colors as $value) {
     if(isset($settings->{$value[1]}))
-        $content = str_replace($value[0], $settings->{$value[1]}, $content);
+        $content = str_replace('$'.$value[1], '#'.$settings->{$value[1]}, $content);
+    else
+        $content = str_replace('$'.$value[1], '#'.$value[0], $content);
 }
+$overlay_color = "rgba(255,255,255,0.9)";
+if (isset($settings->background_color)){
+    list($r, $g, $b) = html2rgb($settings->background_color);
+    $overlay_color = "rgba($r, $g, $b, 0.9)";
+}
+$content = str_replace('$overlay_color', $overlay_color, $content);
+
 
 echo $content;
 

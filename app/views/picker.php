@@ -1,4 +1,15 @@
 <main>
+    
+    <div id="csv_overlay" class="csv-overlay hidden">
+        <section class="fields">
+            <h4 class="csv-title" id="pickery_all_fields_info">Please select the fields to use:</h4>
+            <ul id="pickery_all_fields"></ul>
+            <div id="pickery_fields_submit" class="div-class">
+                Go!
+            </div>
+        </section>
+    </div>    
+
      <!-- Sorting (Head) -->
     <header>
         <h1>Pickery</h1>
@@ -22,35 +33,27 @@
 
             <form  class="pick-form" action="" method="post">
                 <label for="pickery_class" class="class">
-                    <div class="div-class">Other</div>
+                    <div class="div-class">Custom</div>
                 </label>
                 <input type="file" name="pickery_class" id="pickery_class" value="" accept=".csv" style="display:none" />
             </form>
         </div>
 
-        <form class="hashkey">
+        <div class="hashkey">
+            <h3>Actions</h3>
             <label class="dupes-cont" id="label_duplicates" for="allow_duplicates">
                 <div class="dupes">
                     Duplicate
                 </div>
             </label>
-            <input style="display:none" type="checkbox" name="duplicates" id="allow_duplicates" style="" />
+            <input style="display:none" type="checkbor" name="duplicates" id="allow_duplicates" style="" />
 
             <label class="random-cont" for="">
                 <div name="post_random" id="pickery_post_random" class="random">
                     Random
                 </div>
             </label>
-        </form>
-
-        <section class="fields">
-            <h4 id="pickery_all_fields_info"></h4>
-            <table id="pickery_all_fields"></table>
-            <div id="pickery_fields_submit" class="div-class hidden">
-                Go!
-            </div>
-            <h4 id="pickery_all_fields_result"></h4>
-        </section>
+        </div>
 
         <div class="clear-both"></div>
 
