@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>Teachery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
     <link rel="stylesheet" href="css/style.php" id="stylesheet">
     <link rel="stylesheet" href="css/shake.css">
