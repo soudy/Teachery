@@ -240,7 +240,7 @@ header h1               {display:inline-block;width:300px;font-family: 'Montserr
 
 .setting-clock .optcont {margin: 40 0 0 0;}
 .setting-clock .h2opt   {width:100%;float:left;}
-.setting-clock .opt     {width:33.3334%;background:$base_color;text-align:center;float:left;line-height:3em;color:white;transition:background .2s, color .2s;}
+.setting-clock .opt     {width:50%;background:$base_color;text-align:center;float:left;line-height:3em;color:white;transition:background .2s, color .2s;}
 .opt:hover              {background:white;color:$base_color;cursor:pointer;}
 .opt:active,
 .opt.active             {background:white;color:$base_color;color:$text_color}
