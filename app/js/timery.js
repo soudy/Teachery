@@ -60,6 +60,7 @@
         e.preventDefault();
         for(var key in clocks){
             clocks[key].setMuted(true);
+            clocks[key].setEndMuted(true);
         }
     };
 

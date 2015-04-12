@@ -282,6 +282,11 @@ function fullScreenEnabled(){
     document.mozFullScreenEnabled || document.msFullscreenEnabled;
 }
 
+
+/**
+ * Clock settings class
+ *
+ */
 function clockSettings(options){
     var self = this;
     this.elm = options.element || options.elm;
