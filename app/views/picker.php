@@ -1,8 +1,8 @@
 <main>
     
-    <div id="csv_overlay" class="csv-overlay hidden">
+    <div id="csv_overlay_pickery" class="csv-overlay hidden">
         <section class="fields">
-            <h4 class="csv-title" id="pickery_all_fields_info">Please select the fields to use:</h4>
+            <h4 class="csv-title" id="pickery_all_fields_info">Please select the fields to use: <br><span class="tiny">(Click in the right order)</span></h4>
             <ul id="pickery_all_fields"></ul>
             <div id="pickery_fields_submit" class="div-class">
                 Go!

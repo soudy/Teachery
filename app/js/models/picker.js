@@ -28,7 +28,7 @@ var Picker = function(students, fields)
     this.chosen_sound.src = "sounds/chat_tone.mp3"; 
     this.chosen_timeout = null;
 
-    this.csv_overlay           = document.querySelector("#csv_overlay");
+    this.csv_overlay           = document.querySelector("#csv_overlay_pickery");
     this.all_fields_elm        = document.querySelector("#pickery_all_fields");
     this.all_fields_info_elm   = document.querySelector("#pickery_all_fields_info");
     this.all_fields_submit     = document.querySelector("#pickery_fields_submit");

@@ -172,6 +172,8 @@ header h1               {display:inline-block;width:300px;font-family: 'Montserr
                         -webkit-align-items: center;align-items: center;
                         justify-content: center;-webkit-justify-content: center;}
 
+    .csv-overlay ul     {list-style:none;margin:0 0 20px 0;padding:0;}
+
 
     /* Results */
     .put-result         {display:block;text-align:center;width:100%;}

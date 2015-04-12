@@ -1,4 +1,15 @@
 <main>
+
+    <div id="csv_overlay_groupery" class="csv-overlay hidden">
+        <section class="fields">
+            <h4 class="csv-title" id="groupery_all_fields_info">Please select the fields to use: <br><span class="tiny">(Click in the right order)</span></h4>
+            <ul id="groupery_all_fields"></ul>
+            <div id="groupery_fields_submit" class="div-class">
+                Go!
+            </div>
+        </section>
+    </div>    
+
      <!-- Sorting (Head) -->
     <header>
         <h1>Groupery</h1>
@@ -23,15 +34,6 @@
                 <input type="file" name="groupery_class" id="groupery_class" value="" accept=".csv" style="display:none" />
             </form>
         </div>
-
-        <section class="fields">
-            <h4 id="groupery_all_fields_info"></h4>
-            <table id="groupery_all_fields"></table>
-            <div id="groupery_fields_submit" class="div-class hidden">
-                Go!
-            </div>
-            <h4 id="groupery_all_fields_result"></h4>
-        </section>
 
         <div class="clear-both"></div>
 

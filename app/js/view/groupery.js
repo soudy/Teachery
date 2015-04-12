@@ -117,7 +117,10 @@
     };
 
     document.querySelector("#generate_groups").onclick = function() {
-        grouper.generate_groups();
+        if (grouper)
+            grouper.generate_groups();
+        else
+            new Notification("No CSV imported", "warning", 4000);
     };
 
     // Formatting options (default, json, plain)

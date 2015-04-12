@@ -39,9 +39,9 @@ var Grouper = function(students, fields)
     this.groupery_format_elm = document.querySelector("#format");
 
     this.all_names_elm         = document.querySelector("#groupery_all_names");
+    this.csv_overlay           = document.querySelector("#csv_overlay_groupery");
     this.all_fields_elm        = document.querySelector("#groupery_all_fields");
     this.all_fields_info_elm   = document.querySelector("#groupery_all_fields_info");
-    this.all_fields_result_elm = document.querySelector("#groupery_all_fields_result");
     this.all_fields_submit     = document.querySelector("#groupery_fields_submit");
 
     if (this.student_count > 1000) {
@@ -78,16 +78,13 @@ Grouper.prototype.remove = function()
 
 Grouper.prototype.hide_fields = function()
 {
+    this.csv_overlay.classList.add('hidden');
     this.all_fields_elm.innerHTML = "";
-    this.all_fields_info_elm.innerHTML = "";
-    this.all_fields_result_elm.innerHTML = "";
-    this.all_fields_submit.classList.add("hidden");
 };
 
 Grouper.prototype.show_fields = function()
 {
-    this.all_fields_elm.classList.remove("hidden");
-    this.all_fields_info_elm.innerHTML = "Please select a format to use:";
+    this.csv_overlay.classList.remove('hidden');
 
     for (var i = 0, l = this.students.titles.length; i < l; ++i) {
         var input = document.createElement("input");
@@ -95,38 +92,20 @@ Grouper.prototype.show_fields = function()
         input.id = i;
 
         input.onchange = function(e) {
-            this.all_fields_result_elm.innerHTML = "";
 
             if (this.fields.indexOf(e.target.id) >= 0)
                 this.fields.splice(this.fields.indexOf(e.target.id), 1);
             else
                 this.fields.push(e.target.id);
-
-            for (var j = 0, ll = this.fields.length; j < ll; ++j)
-                // Trailing space for clarity
-                this.all_fields_result_elm.innerHTML += this.students.cells[0][this.fields[j]] + " ";
         }.bind(this);
 
-        var th = document.createElement("th");
-        th.innerHTML = this.students.titles[i];
-
-        th.appendChild(input);
-        this.all_fields_elm.appendChild(th);
+        var li = document.createElement("li");
+        var span = document.createElement("span");
+        span.innerHTML += this.students.titles[i];
+        li.appendChild(input);
+        li.appendChild(span);
+        this.all_fields_elm.appendChild(li);
     }
-
-    var student = this.students.cells[0];
-    var tr      = document.createElement("tr");
-
-    for (var j = 0, ll = student.length; j < ll; ++j) {
-        var td = document.createElement("td");
-        td.innerHTML = student[j];
-        tr.appendChild(td);
-    }
-
-    this.all_fields_elm.appendChild(tr);
-
-    // Show hidden submit button
-    this.all_fields_submit.classList.remove("hidden");
 };
 
 Grouper.prototype.set = function()
