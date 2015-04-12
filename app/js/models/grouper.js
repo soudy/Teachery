@@ -25,7 +25,6 @@ var Grouper = function(students, fields)
     this.fields        = fields || [];
     this.blacklist     = [];
     this.groups        = {};
-    this.student_keys  = Object.keys(students);
 
     this.formats = {
         "default" : document.querySelector("#set_default"),
@@ -87,7 +86,6 @@ Grouper.prototype.hide_fields = function()
 
 Grouper.prototype.show_fields = function()
 {
-
     this.all_fields_elm.classList.remove("hidden");
     this.all_fields_info_elm.innerHTML = "Please select a format to use:";
 
@@ -186,7 +184,7 @@ Grouper.prototype.set_groups = function()
             for (var field in fields)
                 name += " " + fields[field];
 
-            document.getElementById(group_number).innerHTML += name + "<br />";
+            document.getElementById(group_number).innerHTML += name + "<br>";
         }
 
     }
@@ -235,7 +233,7 @@ Grouper.prototype.set_plain = function()
             for (var field in fields)
                 name += " " + fields[field];
 
-            div.innerHTML += name + "<br />";
+            div.innerHTML += name + "<br>";
         }
 
     }
@@ -312,12 +310,8 @@ Grouper.prototype.random = function()
 
 Grouper.prototype.generate_groups = function()
 {
-    // Resetting student keys so you can keep on generating groups
-    this.student_keys = Object.keys(this.students);
-
     var n_students = document.querySelector("#n_students").value || null;
     var n_groups   = document.querySelector("#n_groups").value || null;
-    var i, j;
 
     if (Object.keys(this.groups).length) {
         this.clear_groups();
@@ -332,11 +326,7 @@ Grouper.prototype.generate_groups = function()
         return false;
     }
 
-    // If the number of groups is specified
     if (n_groups) {
-        var students_per_group = Math.floor(this.student_count / n_groups);
-
-        // Checking for valid input
         if (n_groups > Math.floor(this.student_count / 2)) {
             new Notification("Can't create " + n_groups + " groups. " +
                              "Maximum amount possible to create is " +
@@ -345,43 +335,8 @@ Grouper.prototype.generate_groups = function()
             return false;
         }
 
-        if (n_groups <= 1) {
-            new Notification("Please enter a valid number above one.",
-                             "normal", 3000);
-            return false;
-        }
-
-        // Creating the groups
-        for (i = 1; i < n_groups; ++i) {
-            this.groups["Group" + i] = {};
-
-            for (j = 0; j < students_per_group; ++j) {
-                var name = this.random();
-                this.groups["Group" + i][j] = {};
-
-                for (var k = 0, l = name.length; k < l; ++k)
-                    this.groups["Group" + i][j][this.students.titles[this.fields[k]]] = name[k];
-            }
-        }
-
-        if (this.student_keys) {
-            this.groups["Group" + n_groups] = {};
-
-            for (var i = 0, l = students_per_group + this.student_keys.length; i <= l; ++i) {
-                var name = this.random();
-                this.groups["Group" + n_groups][i] = {};
-
-                for (var k = 0, l = name.length; k < l; ++k)
-                    this.groups["Group" + n_groups][i][this.students.titles[this.fields[k]]] = name[k];
-            }
-        }
-
-        new Notification("Created " + n_groups + " groups.", "normal", 3000);
-
-    // If the number of students per group is specified
+        this.make_groups(parseInt(n_groups), null);
     } else if (n_students) {
-        n_groups = Math.floor(this.student_count / n_students);
-
         if (n_students > Math.floor(this.student_count / 2)) {
             new Notification("Can't create groups with " + n_students +
                              " students. Maximum amount students per group is " +
@@ -390,37 +345,103 @@ Grouper.prototype.generate_groups = function()
             return false;
         }
 
-        if (n_students <= 1) {
-            new Notification("Please enter a valid number above one.",
-                             "normal", 3000);
-            return false;
-        }
-
-        for (i = 1; i < n_groups; ++i) {
-            this.groups["Group" + i] = [];
-            for (j = 0; j < n_students; ++j) {
-                var name = this.random();
-                this.groups["Group" + i][j] = {};
-
-                for (var k = 0, l = name.length; k < l; ++k)
-                    this.groups["Group" + i][j][this.students.titles[this.fields[k]]] = name[k];
-            }
-        }
-
-        if (this.student_keys) {
-            this.groups["Group" + n_groups] = {};
-
-            for (var i = 0, l = this.student_keys.length; i <= l; ++i) {
-                var name = this.random();
-                this.groups["Group" + n_groups][i] = {};
-
-                for (var k = 0, l = name.length; k < l; ++k)
-                    this.groups["Group" + n_groups][i][this.students.titles[this.fields[k]]] = name[k];
-            }
-        }
-        new Notification("Created " + n_groups + " groups.", "normal", 3000);
+        this.make_groups(null, parseInt(n_students));
+    } else {
+        new Notification("Something went wrong. Please try again.",
+        "normal", 3000);
+        return false;
     }
 
     this.set_groups();
     localStorage.setItem("groupery_groups", JSON.stringify(this.groups));
+};
+
+Grouper.prototype.make_groups = function(n_groups, n_students)
+{
+    var names      = [];
+    var used_names = 0;
+    var i, j, k, h, l, count;
+
+    // Generate an array with names in random order
+    while ((name = this.random())) {
+        names.push(name.split(","));
+    }
+
+    if (n_groups) {
+        var students_per_group = Math.floor(this.student_count / n_groups);
+
+        if (n_groups <= 1) {
+            new Notification("Please enter a valid number above one.",
+            "normal", 3000);
+            return false;
+        }
+
+        for (i = 1, count = 0; i <= n_groups; ++i, count += students_per_group) {
+            this.groups["Group " + i] = {};
+
+            for (j = count, k = 0; j < count + students_per_group; ++j, ++k) {
+                this.groups["Group " + i][k] = {};
+
+                for (h = 0, l = names[j].length; h < l; ++h) {
+                    var title = this.students.titles[this.fields[h]];
+                    this.groups["Group " + i][k][title] = names[j][h];
+                }
+
+                used_names++;
+            }
+        }
+
+    } else if (n_students) {
+        n_groups = Math.ceil(this.student_count / n_students);
+
+        if (n_groups <= 1) {
+            new Notification("Please enter a valid number above one.",
+            "normal", 3000);
+            return false;
+        }
+
+        for (i = 1, count = 0; i <= n_groups; ++i, count += n_students) {
+            this.groups["Group " + i] = {};
+
+            for (j = count, k = 0; j < count + n_students; ++j, ++k) {
+                if (!names[j])
+                    continue;
+
+                this.groups["Group " + i][k] = {};
+
+                for (h = 0, l = names[j].length; h < l; ++h) {
+                    var title = this.students.titles[this.fields[h]];
+                    this.groups["Group " + i][k][title] = names[j][h];
+                }
+
+                used_names++;
+            }
+        }
+    }
+
+    names.splice(0, used_names);
+
+    /*
+     * If there are leftover names, try to divide them over the groups if
+     * possible, else append them to the last group.
+     *
+     * TODO: Evenly divide if possible
+     */
+    if (names) {
+        var last_group_length = Object.keys(this.groups["Group " + n_groups]).length;
+
+        for (j = 0, i = last_group_length; i < last_group_length + names.length; ++j, ++i) {
+            if (!names[j])
+                continue;
+
+            this.groups["Group " + n_groups][i] = {};
+
+            for (h = 0, l = names[j].length; h < l; ++h) {
+                var title = this.students.titles[this.fields[h]];
+                this.groups["Group " + n_groups][i][title] = names[j][h];
+            }
+        }
+    }
+
+    new Notification("Created " + n_groups + " groups.", "normal", 3000);
 };

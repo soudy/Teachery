@@ -10,11 +10,11 @@
     <script type="text/javascript" src="js/util/confirm.js"></script>
     <script type="text/javascript" src="js/util/render.js"></script>
     <script type="text/javascript" src="js/util/CSV.js"></script>
-    <script type="text/javascript" src="js/vendor/notification.js"></script>
-    <script type="text/javascript" src="js/vendor/timer.js"></script>
-    <script type="text/javascript" src="js/vendor/clock.js"></script>
-    <script type="text/javascript" src="js/vendor/picker.js"></script>
-    <script type="text/javascript" src="js/vendor/grouper.js"></script>
+    <script type="text/javascript" src="js/models/notification.js"></script>
+    <script type="text/javascript" src="js/models/timer.js"></script>
+    <script type="text/javascript" src="js/models/clock.js"></script>
+    <script type="text/javascript" src="js/models/picker.js"></script>
+    <script type="text/javascript" src="js/models/grouper.js"></script>
 </head>
 <body>
     <div class="nostyle">Loading stylesheet..</div>
