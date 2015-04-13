@@ -8,15 +8,6 @@
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
     <link rel="stylesheet" href="css/style.php" id="stylesheet">
     <link rel="stylesheet" href="css/shake.css">
-    <script type="text/javascript" src="js/util/cookies.js"></script>
-    <script type="text/javascript" src="js/util/confirm.js"></script>
-    <script type="text/javascript" src="js/util/render.js"></script>
-    <script type="text/javascript" src="js/util/CSV.js"></script>
-    <script type="text/javascript" src="js/models/notification.js"></script>
-    <script type="text/javascript" src="js/models/timer.js"></script>
-    <script type="text/javascript" src="js/models/clock.js"></script>
-    <script type="text/javascript" src="js/models/picker.js"></script>
-    <script type="text/javascript" src="js/models/grouper.js"></script>
 </head>
 <body>
     <div class="nostyle">Loading stylesheet..</div>
@@ -58,10 +49,6 @@
 
     <div id="notlist"></div>
 
-    <script type="text/javascript" src="js/view/timery.js"></script>
-    <script type="text/javascript" src="js/view/settings.js"></script>
-    <script type="text/javascript" src="js/view/pickery.js"></script>
-    <script type="text/javascript" src="js/view/groupery.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/teachery.min.js"></script>
 </body>
 </html>

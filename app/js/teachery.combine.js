@@ -1517,7 +1517,7 @@ Grouper.prototype.make_groups = function(n_groups, n_students)
  */
 
 var Settings = {
-    base_default       : "214E98",
+    base_default       : "f20094",
     text_default       : "191919",
     background_default : "FFFFFF",
     mute_default       : 1,

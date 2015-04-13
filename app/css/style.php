@@ -46,7 +46,7 @@ $content = file_get_contents('style.css');
 // TEXT_COLOR: #000000;
 $colors = array(
     /* array('821031', 'base_color'), */
-    array('214E96', 'base_color'),
+    array('F20095', 'base_color'),
     array('FFF', 'background_color'),
     array('191919', 'text_color'),
 );
