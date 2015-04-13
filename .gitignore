@@ -1,3 +1,2 @@
 /app/.htaccess
-/app/api/classes/*.csv
-/app/api/cache/*.json
+/node_modules/*

@@ -1,0 +1,18 @@
+{
+  "name": "Teachery",
+  "version": "0.0.0",
+  "description": "Teachery ======== Teachery is a web application aimed at teachers everywhere. The goal of Teachery is to make teaching easier by giving teachers a small set of handy tools.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kendaru/Teachery.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/kendaru/Teachery/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-concat": "~0.5.1",
+    "grunt-contrib-uglify": "~0.9.1"
+  }
+}
