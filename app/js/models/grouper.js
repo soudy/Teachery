@@ -20,11 +20,11 @@ var Grouper = function(students, fields)
 {
     "use strict";
 
-    this.students      = students;
-    this.student_count = students.cells.length;
-    this.fields        = fields || [];
-    this.blacklist     = [];
-    this.groups        = {};
+    this.students       = students;
+    this.student_count  = students.cells.length;
+    this.fields         = fields || [];
+    this.blacklist      = [];
+    this.groups         = {};
 
     this.formats = {
         "default" : document.querySelector("#set_default"),
@@ -291,6 +291,10 @@ Grouper.prototype.generate_groups = function()
 {
     var n_students = document.querySelector("#n_students").value || null;
     var n_groups   = document.querySelector("#n_groups").value || null;
+
+    if (!this.students.titles)
+        this.students.titles = ['Name'];
+
 
     if (Object.keys(this.groups).length) {
         this.clear_groups();

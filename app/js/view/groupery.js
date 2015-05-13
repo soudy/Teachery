@@ -82,8 +82,8 @@
         r.readAsText(file);
 
         r.onload = function() {
-            grouper = new Grouper(CSV.to_json(this.result));
-            grouper.set(false);
+            grouper = new Grouper(CSV.to_json(this.result), [0]);
+            grouper.set();
 
             new Notification("Imported " + file.name.replace(".csv", ""),
                              "normal", 4000);

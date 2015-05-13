@@ -48,10 +48,12 @@ var CSV = {
 
         var entries = csv.join(",").split(",");
 
-        entries.splice(entries.length, 1);
+        // Remove last element as it will always be an empty string becausse of
+        // joining with ","
+        entries.splice((entries.length - 1), 1);
 
         return {
-            cells: csv.join(",").split(",")
+            cells: entries
         };
     }
 };

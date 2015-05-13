@@ -87,8 +87,8 @@
 
         // What happens when a file gets selected
         r.onload = function() {
-            picker = new Picker(CSV.to_json(this.result));
-            picker.set(false);
+            picker = new Picker(CSV.to_json(this.result), [0]);
+            picker.set();
 
             new Notification("Imported " + file.name.replace(".csv", ""),
                              "normal", 4000);

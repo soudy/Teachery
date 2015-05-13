@@ -81,30 +81,19 @@ Picker.prototype.show_fields = function()
     }
 };
 
-Picker.prototype.set = function(fields)
+Picker.prototype.set = function()
 {
     this.hide_fields();
 
     for (var i = 0, l = this.students.cells.length; i < l; ++i) {
         var option = document.createElement("option");
 
-        if (fields) {
-            console.log(this.fields);
-            var fullname = "";
-            for (var j = 0, ll = this.fields.length; j < ll; ++j) {
-                fullname += this.students.cells[i][this.fields[j]] + " ";
+        var fullname = "";
+        for (var j = 0, ll = this.fields.length; j < ll; ++j) {
+            fullname += this.students.cells[i][this.fields[j]] + " ";
 
-                option.innerHTML = fullname;
-                option.id = i;
-
-                this.all_names_elm.appendChild(option);
-            }
-        } else {
-            console.log("got here");
-            option.innerHTML = this.students.cells[i];
+            option.innerHTML = fullname;
             option.id = i;
-
-            console.log(this.students.cells[i]);
 
             this.all_names_elm.appendChild(option);
         }
