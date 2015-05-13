@@ -1,5 +1,5 @@
 <main>
-    
+
     <div id="csv_overlay_pickery" class="csv-overlay hidden">
         <section class="fields">
             <h4 class="csv-title" id="pickery_all_fields_info">Please select the fields to use: <br><span class="tiny">(Click in the right order)</span></h4>
@@ -8,7 +8,7 @@
                 Go!
             </div>
         </section>
-    </div>    
+    </div>
 
      <!-- Sorting (Head) -->
     <header>

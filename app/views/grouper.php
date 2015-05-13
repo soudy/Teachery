@@ -8,7 +8,7 @@
                 Go!
             </div>
         </section>
-    </div>    
+    </div>
 
      <!-- Sorting (Head) -->
     <header>
@@ -29,7 +29,7 @@
 
             <form  class="pick-form" action="" method="post">
                 <label for="groupery_class" class="class">
-                    <div class="div-class">Other</div>
+                    <div class="div-class">Custom</div>
                 </label>
                 <input type="file" name="groupery_class" id="groupery_class" value="" accept=".csv" style="display:none" />
             </form>
