@@ -17,7 +17,7 @@
  */
 
 var CSV = {
-    to_json: function(csv)
+    to_json_magister: function(csv)
     {
         csv = csv.replace("\r", "");
 
@@ -38,6 +38,20 @@ var CSV = {
         return {
             titles : titles,
             cells  : cells
+        };
+    },
+
+    to_json: function(csv)
+    {
+        csv = csv.replace("\r", "");
+        csv = csv.split("\n");
+
+        var entries = csv.join(",").split(",");
+
+        entries.splice(entries.length, 1);
+
+        return {
+            cells: csv.join(",").split(",")
         };
     }
 };

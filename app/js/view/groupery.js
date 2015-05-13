@@ -53,7 +53,7 @@
         r.readAsText(file);
 
         r.onload = function() {
-            grouper = new Grouper(CSV.to_json(this.result), [2, 3, 4]);
+            grouper = new Grouper(CSV.to_json_magister(this.result), [2, 3, 4]);
             grouper.set();
 
             new Notification("Imported " + file.name.replace(".csv", ""),
@@ -83,7 +83,7 @@
 
         r.onload = function() {
             grouper = new Grouper(CSV.to_json(this.result));
-            grouper.show_fields();
+            grouper.set(false);
 
             new Notification("Imported " + file.name.replace(".csv", ""),
                              "normal", 4000);

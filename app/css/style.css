@@ -163,7 +163,7 @@ header h1               {display:inline-block;width:300px;font-family: 'Montserr
     /*.hashkey label:first-child div{border-left:10px solid black;}*/
 
     .hashkey label div:hover  {background:$background_color !important;color:$base_color;-webkit-transition:background .2s, color .2s;transition:background .2s, color .2s;}
-    
+
 
     .csv-overlay        {z-index:1000;position:fixed;top:0;left:0;padding:10px;background:$overlay_color;width:100%;height:100%;
                         display: -webkit-box;

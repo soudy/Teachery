@@ -25,7 +25,7 @@ var Picker = function(students, fields)
     this.chosen_name  = document.querySelector("#chosen_name");
     this.chosen_name_elm  = document.querySelector("#chosen_name p");
     this.chosen_sound = new Audio();
-    this.chosen_sound.src = "sounds/chat_tone.mp3"; 
+    this.chosen_sound.src = "sounds/chat_tone.mp3";
     this.chosen_timeout = null;
 
     this.csv_overlay           = document.querySelector("#csv_overlay_pickery");
@@ -52,14 +52,13 @@ var Picker = function(students, fields)
 
 Picker.prototype.hide_fields = function()
 {
-    this.csv_overlay.classList.add('hidden');
+    this.csv_overlay.classList.add("hidden");
     this.all_fields_elm.innerHTML = "";
 };
 
 Picker.prototype.show_fields = function()
 {
-
-    this.csv_overlay.classList.remove('hidden');
+    this.csv_overlay.classList.remove("hidden");
 
     for (var i = 0, l = this.students.titles.length; i < l; ++i) {
         var input = document.createElement("input");
@@ -82,21 +81,33 @@ Picker.prototype.show_fields = function()
     }
 };
 
-Picker.prototype.set = function()
+Picker.prototype.set = function(fields)
 {
     this.hide_fields();
 
     for (var i = 0, l = this.students.cells.length; i < l; ++i) {
         var option = document.createElement("option");
-        var fullname = "";
 
-        for (var j = 0, ll = this.fields.length; j < ll; ++j)
-            fullname += this.students.cells[i][this.fields[j]] + " ";
+        if (fields) {
+            console.log(this.fields);
+            var fullname = "";
+            for (var j = 0, ll = this.fields.length; j < ll; ++j) {
+                fullname += this.students.cells[i][this.fields[j]] + " ";
 
-        option.innerHTML = fullname;
-        option.id = i;
+                option.innerHTML = fullname;
+                option.id = i;
 
-        this.all_names_elm.appendChild(option);
+                this.all_names_elm.appendChild(option);
+            }
+        } else {
+            console.log("got here");
+            option.innerHTML = this.students.cells[i];
+            option.id = i;
+
+            console.log(this.students.cells[i]);
+
+            this.all_names_elm.appendChild(option);
+        }
     }
 
     this.update_storage();
@@ -105,7 +116,6 @@ Picker.prototype.set = function()
 
 Picker.prototype.update_storage = function()
 {
-
     localStorage.setItem("pickery_blacklist", JSON.stringify(this.blacklist));
     localStorage.setItem("pickery_fields", JSON.stringify(this.fields));
     localStorage.setItem("pickery", JSON.stringify(this.students));
