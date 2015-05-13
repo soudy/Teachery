@@ -103,65 +103,65 @@ Confirm.prototype.hide = function()
 };
 
 /*
- * Teachery is a web application to make the life of teachers easier.
- * Copyright (C) 2015 Terence Keur, Mirko van der Waal and Steven Oud
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, see <http://www.gnu.org/licenses/>.
- */
+* Teachery is a web application to make the life of teachers easier.
+* Copyright (C) 2015 Terence Keur, Mirko van der Waal and Steven Oud
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, see <http://www.gnu.org/licenses/>.
+*/
 
 if (!window.requestAnimationFrame) {
     window.requestAnimationFrame = (function() {
         return window.webkitRequestAnimationFrame ||
-		       window.mozRequestAnimationFrame ||
-	           window.oRequestAnimationFrame ||
-		       window.msRequestAnimationFrame ||
-       function(callback) {
-			window.setTimeout( callback, 1000 / 60 );
-       };
-	})();
+               window.mozRequestAnimationFrame ||
+               window.oRequestAnimationFrame ||
+               window.msRequestAnimationFrame ||
+        function(callback) {
+            window.setTimeout( callback, 1000 / 60 );
+        };
+    })();
 }
 
 function Render(settings)
 {
-	var self = this;
-	this.call = settings.callback || function(){};
-	this.timeout = settings.timeout || 10;
-	this.started = false;
-	this.break = false;
+    var self = this;
+    this.call = settings.callback || function(){};
+    this.timeout = settings.timeout || 10;
+    this.started = false;
+    this.break = false;
 
-	this.start = function(){
-		if (this.started) 
+    this.start = function(){
+        if (this.started)
             return false;
 
-		this.break = false;
-		this.started = true;
-		function render(){
-			if (self.break) return false;
-			self.call();
-			setTimeout(function(){
-				window.requestAnimationFrame(render);
-			}, self.timeout);
-		}
-		render();
-		return this;
-	};
+        this.break = false;
+        this.started = true;
+        function render(){
+            if (self.break) return false;
+            self.call();
+            setTimeout(function(){
+                window.requestAnimationFrame(render);
+            }, self.timeout);
+        }
+        render();
+        return this;
+    };
 
-	this.stop = function(){
-		this.break = true;
-		this.started = false;
-		return this;
-	};
+    this.stop = function(){
+        this.break = true;
+        this.started = false;
+        return this;
+    };
 }
 
 /*
@@ -183,7 +183,7 @@ function Render(settings)
  */
 
 var CSV = {
-    to_json: function(csv)
+    to_json_magister: function(csv)
     {
         csv = csv.replace("\r", "");
 
@@ -204,6 +204,22 @@ var CSV = {
         return {
             titles : titles,
             cells  : cells
+        };
+    },
+
+    to_json: function(csv)
+    {
+        csv = csv.replace("\r", "");
+        csv = csv.split("\n");
+
+        var entries = csv.join(",").split(",");
+
+        // Remove last element as it will always be an empty string becausse of
+        // joining with ","
+        entries.splice((entries.length - 1), 1);
+
+        return {
+            cells: entries
         };
     }
 };
@@ -772,7 +788,7 @@ var Picker = function(students, fields)
     this.chosen_name  = document.querySelector("#chosen_name");
     this.chosen_name_elm  = document.querySelector("#chosen_name p");
     this.chosen_sound = new Audio();
-    this.chosen_sound.src = "sounds/chat_tone.mp3"; 
+    this.chosen_sound.src = "sounds/chat_tone.mp3";
     this.chosen_timeout = null;
 
     this.csv_overlay           = document.querySelector("#csv_overlay_pickery");
@@ -799,14 +815,13 @@ var Picker = function(students, fields)
 
 Picker.prototype.hide_fields = function()
 {
-    this.csv_overlay.classList.add('hidden');
+    this.csv_overlay.classList.add("hidden");
     this.all_fields_elm.innerHTML = "";
 };
 
 Picker.prototype.show_fields = function()
 {
-
-    this.csv_overlay.classList.remove('hidden');
+    this.csv_overlay.classList.remove("hidden");
 
     for (var i = 0, l = this.students.titles.length; i < l; ++i) {
         var input = document.createElement("input");
@@ -835,15 +850,16 @@ Picker.prototype.set = function()
 
     for (var i = 0, l = this.students.cells.length; i < l; ++i) {
         var option = document.createElement("option");
-        var fullname = "";
 
-        for (var j = 0, ll = this.fields.length; j < ll; ++j)
+        var fullname = "";
+        for (var j = 0, ll = this.fields.length; j < ll; ++j) {
             fullname += this.students.cells[i][this.fields[j]] + " ";
 
-        option.innerHTML = fullname;
-        option.id = i;
+            option.innerHTML = fullname;
+            option.id = i;
 
-        this.all_names_elm.appendChild(option);
+            this.all_names_elm.appendChild(option);
+        }
     }
 
     this.update_storage();
@@ -852,7 +868,6 @@ Picker.prototype.set = function()
 
 Picker.prototype.update_storage = function()
 {
-
     localStorage.setItem("pickery_blacklist", JSON.stringify(this.blacklist));
     localStorage.setItem("pickery_fields", JSON.stringify(this.fields));
     localStorage.setItem("pickery", JSON.stringify(this.students));
@@ -994,11 +1009,11 @@ var Grouper = function(students, fields)
 {
     "use strict";
 
-    this.students      = students;
-    this.student_count = students.cells.length;
-    this.fields        = fields || [];
-    this.blacklist     = [];
-    this.groups        = {};
+    this.students       = students;
+    this.student_count  = students.cells.length;
+    this.fields         = fields || [];
+    this.blacklist      = [];
+    this.groups         = {};
 
     this.formats = {
         "default" : document.querySelector("#set_default"),
@@ -1265,6 +1280,10 @@ Grouper.prototype.generate_groups = function()
 {
     var n_students = document.querySelector("#n_students").value || null;
     var n_groups   = document.querySelector("#n_groups").value || null;
+
+    if (!this.students.titles)
+        this.students.titles = ['Name'];
+
 
     if (Object.keys(this.groups).length) {
         this.clear_groups();
@@ -1765,7 +1784,7 @@ var Settings = {
              * 2, 3, 4 are the name-related columns in the CSV generated by
              * Magister.
              */
-            picker = new Picker(CSV.to_json(this.result), [2, 3, 4]);
+            picker = new Picker(CSV.to_json_magister(this.result), [2, 3, 4]);
             picker.set();
 
             new Notification("Imported " + file.name.replace(".csv", ""),
@@ -1795,8 +1814,8 @@ var Settings = {
 
         // What happens when a file gets selected
         r.onload = function() {
-            picker = new Picker(CSV.to_json(this.result));
-            picker.show_fields();
+            picker = new Picker(CSV.to_json(this.result), [0]);
+            picker.set();
 
             new Notification("Imported " + file.name.replace(".csv", ""),
                              "normal", 4000);
@@ -1900,7 +1919,7 @@ var Settings = {
         r.readAsText(file);
 
         r.onload = function() {
-            grouper = new Grouper(CSV.to_json(this.result), [2, 3, 4]);
+            grouper = new Grouper(CSV.to_json_magister(this.result), [2, 3, 4]);
             grouper.set();
 
             new Notification("Imported " + file.name.replace(".csv", ""),
@@ -1929,8 +1948,8 @@ var Settings = {
         r.readAsText(file);
 
         r.onload = function() {
-            grouper = new Grouper(CSV.to_json(this.result));
-            grouper.show_fields();
+            grouper = new Grouper(CSV.to_json(this.result), [0]);
+            grouper.set();
 
             new Notification("Imported " + file.name.replace(".csv", ""),
                              "normal", 4000);
