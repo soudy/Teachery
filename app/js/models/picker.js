@@ -22,16 +22,16 @@ var Picker = function(students, fields)
 
     this.chosen_names_elm = document.querySelector("#pickery_chosen_names");
     this.all_names_elm    = document.querySelector("#pickery_all_names");
-    this.chosen_name  = document.querySelector("#chosen_name");
+    this.chosen_name      = document.querySelector("#chosen_name");
     this.chosen_name_elm  = document.querySelector("#chosen_name p");
-    this.chosen_sound = new Audio();
+    this.chosen_sound     = new Audio();
     this.chosen_sound.src = "sounds/chat_tone.mp3";
-    this.chosen_timeout = null;
+    this.chosen_timeout   = null;
 
-    this.csv_overlay           = document.querySelector("#csv_overlay_pickery");
-    this.all_fields_elm        = document.querySelector("#pickery_all_fields");
-    this.all_fields_info_elm   = document.querySelector("#pickery_all_fields_info");
-    this.all_fields_submit     = document.querySelector("#pickery_fields_submit");
+    this.csv_overlay         = document.querySelector("#csv_overlay_pickery");
+    this.all_fields_elm      = document.querySelector("#pickery_all_fields");
+    this.all_fields_info_elm = document.querySelector("#pickery_all_fields_info");
+    this.all_fields_submit   = document.querySelector("#pickery_fields_submit");
 
     this.students     = students;
     this.blacklist    = [];
@@ -89,13 +89,21 @@ Picker.prototype.set = function()
         var option = document.createElement("option");
 
         var fullname = "";
-        for (var j = 0, ll = this.fields.length; j < ll; ++j) {
-            fullname += this.students.cells[i][this.fields[j]] + " ";
-
+        if (this.fields === '*') {
+            fullname = this.students.cells[i];
             option.innerHTML = fullname;
             option.id = i;
 
             this.all_names_elm.appendChild(option);
+        } else {
+            for (var j = 0, ll = this.fields.length; j < ll; ++j) {
+                fullname += this.students.cells[i][this.fields[j]] + " ";
+
+                option.innerHTML = fullname;
+                option.id = i;
+
+                this.all_names_elm.appendChild(option);
+            }
         }
     }
 
@@ -116,8 +124,12 @@ Picker.prototype.set_chosen_names = function()
         var option = document.createElement("option");
         var fullname = "";
 
-        for (var j = 0, ll = this.fields.length; j < ll; ++j)
-            fullname += this.students.cells[this.blacklist[i]][this.fields[j]] + " ";
+        if (this.fields === '*') {
+            fullname = this.students.cells[this.blacklist[i]];
+        } else {
+            for (var j = 0, ll = this.fields.length; j < ll; ++j)
+                fullname += this.students.cells[this.blacklist[i]][this.fields[j]] + " ";
+        }
 
         option.innerHTML = fullname;
         option.id = i;
@@ -174,8 +186,11 @@ Picker.prototype.random = function()
 
     var fullname = "";
 
-    for (var j = 0, l = this.fields.length; j < l; ++j)
-        fullname += student[this.fields[j]] + " ";
+    if (this.fields === '*')
+        fullname = student;
+    else
+        for (var j = 0, l = this.fields.length; j < l; ++j)
+            fullname += student[this.fields[j]] + " ";
 
     this.chosen_names.push(fullname);
 

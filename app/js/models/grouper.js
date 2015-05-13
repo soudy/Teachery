@@ -116,8 +116,11 @@ Grouper.prototype.set = function()
         var option = document.createElement("option");
         var fullname = "";
 
-        for (var j = 0, ll = this.fields.length; j < ll; ++j)
-            fullname += this.students.cells[i][this.fields[j]] + " ";
+        if (this.fields === '*')
+            fullname = this.students.cells[i];
+        else
+            for (var j = 0, ll = this.fields.length; j < ll; ++j)
+                fullname += this.students.cells[i][this.fields[j]] + " ";
 
         option.innerHTML = fullname;
         option.id = i;
@@ -281,8 +284,11 @@ Grouper.prototype.random = function()
     var student = this.students.cells[randint];
     var result  = [];
 
-    for (var j = 0, l = this.fields.length; j < l; ++j)
-        result.push(student[this.fields[j]]);
+    if (this.fields === '*')
+        result.push(student);
+    else
+        for (var j = 0, l = this.fields.length; j < l; ++j)
+            result.push(student[this.fields[j]]);
 
     return result;
 };
@@ -366,7 +372,13 @@ Grouper.prototype.make_groups = function(n_groups, n_students)
                 this.groups["Group " + i][k] = {};
 
                 for (h = 0, l = names[j].length; h < l; ++h) {
-                    var title = this.students.titles[this.fields[h]];
+                    var title;
+
+                    if (this.fields === '*')
+                        title = this.students.titles[h];
+                    else
+                        title = this.students.titles[this.fields[h]];
+
                     this.groups["Group " + i][k][title] = names[j][h];
                 }
 
@@ -393,7 +405,13 @@ Grouper.prototype.make_groups = function(n_groups, n_students)
                 this.groups["Group " + i][k] = {};
 
                 for (h = 0, l = names[j].length; h < l; ++h) {
-                    var title = this.students.titles[this.fields[h]];
+                    var title;
+
+                    if (this.fields === '*')
+                        title = this.students.titles[h];
+                    else
+                        title = this.students.titles[this.fields[h]];
+
                     this.groups["Group " + i][k][title] = names[j][h];
                 }
 
@@ -420,7 +438,12 @@ Grouper.prototype.make_groups = function(n_groups, n_students)
             this.groups["Group " + n_groups][i] = {};
 
             for (h = 0, l = names[j].length; h < l; ++h) {
-                var title = this.students.titles[this.fields[h]];
+                var title;
+
+                if (this.fields === '*')
+                    title = this.students.titles[h];
+                else
+                    title = this.students.titles[this.fields[h]];
                 this.groups["Group " + n_groups][i][title] = names[j][h];
             }
         }
